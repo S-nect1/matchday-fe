@@ -1,6 +1,6 @@
 // Routing
 
-import Header from '@/widgets/header/ui/Header';
+import { Header } from '@/widgets/header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const Routers = () => {
