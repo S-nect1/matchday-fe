@@ -1,11 +1,8 @@
-import Routers from '@/pages';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router';
 
 function App() {
-  return (
-    <div className="index__landing__page">
-      <Routers />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

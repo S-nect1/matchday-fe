@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const Header = () => {
   return (
-    <header className="header__container">
+    <header className="header__container bg-[#fff]">
       <div
         className="header__wrapper flex h-[100px] max-w-[1280px] items-center justify-between"
         style={{ margin: '0 auto' }}
