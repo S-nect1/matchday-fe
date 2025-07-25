@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { MainLayout } from './layouts';
 import { TeamsWrite } from '@/pages';
+import { TeamListsDetail } from '@/pages/team-lists-by-id/TeamListsDetail';
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
       {
         path: 'teams-write',
         element: <TeamsWrite />,
+      },
+      {
+        path: 'teams-lists/:teamId',
+        element: <TeamListsDetail />,
       },
     ],
   },
