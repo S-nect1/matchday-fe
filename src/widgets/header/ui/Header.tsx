@@ -1,17 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Logo } from './Logo';
+import { Navigation } from './Navigation';
 
 export const Header = () => {
   return (
-    <header className="header__container bg-[#fff]">
+    <header className="header__container sticky top-0 z-50 border-b border-gray-200 bg-white">
       <div
-        className="header__wrapper flex h-[100px] max-w-[1280px] items-center justify-between"
+        className="header__wrapper !flex h-[80px] max-w-[1100px] items-center px-4"
         style={{ margin: '0 auto' }}
       >
-        <h1 className="logo">
-          <Link to="/">
-            <img src={'/logo.svg'} alt="logo" />
-          </Link>
-        </h1>
+        <Logo />
+        <Navigation />
       </div>
     </header>
   );
