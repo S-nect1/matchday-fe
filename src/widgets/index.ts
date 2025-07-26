@@ -1,2 +1,2 @@
-export * from './match-list-card';
-export * from './match-create-card';
+export { Header } from './header';
+export { Footer } from './footer';

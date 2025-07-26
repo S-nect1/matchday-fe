@@ -1,7 +1,12 @@
-import { Card, CardContent } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  Badge,
+  CalendarIcon,
+  ArrowRightIcon,
+  MapPinIcon,
+} from '@/shared/ui';
 import { dateFormatter } from './date-formatter';
-import { CalendarIcon, ArrowRightIcon, MapPinIcon } from '@/shared/ui';
-import { Badge } from '@/components/ui/badge';
 
 type Props = {
   location: string;
@@ -27,7 +32,7 @@ export const ListViewCard = ({
   const { month, day, weekday, time } = dateFormatter(date);
   return (
     <Card
-      className="mx-auto rounded-[10px] border-none py-[30px]"
+      className="mx-auto w-full min-w-[1170px] rounded-[10px] border-none py-[30px]"
       style={{
         boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.10)',
       }}

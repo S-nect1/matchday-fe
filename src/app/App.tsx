@@ -1,11 +1,8 @@
-import { MatchCreateCard } from '@/widgets';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router';
 
 function App() {
-  return (
-    <div className="mx-auto w-[80%]">
-      <MatchCreateCard />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

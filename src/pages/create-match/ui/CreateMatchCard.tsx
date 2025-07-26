@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui';
 
-export const MatchCreateCard = () => {
+export const CreateMatchCard = () => {
   return (
     <Card className="gap-[50px] py-[50px]">
       <CardHeader className="px-[50px]">

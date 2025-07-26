@@ -1,7 +1,11 @@
-import { Card, CardContent } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  Badge,
+  CalendarIcon,
+  MapPinIcon,
+} from '@/shared/ui';
 import { dateFormatter } from './date-formatter';
-import { CalendarIcon, MapPinIcon } from '@/shared/ui';
-import { Badge } from '@/components/ui/badge';
 
 type Props = {
   location: string;
