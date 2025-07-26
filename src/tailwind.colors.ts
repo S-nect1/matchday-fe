@@ -1,0 +1,28 @@
+
+export const colors = {
+  primary: '#0043ff',
+  secondary: '#00ffa6',
+  white: '#ffffff',
+  black: '#000000',
+  'gray-1': '#f8f8f8',
+  'gray-2': '#f5f5f5',
+  'gray-3': '#eeeeee',
+  'gray-4': '#e0e0e0',
+  'gray-5': '#bdbdbd',
+  'gray-6': '#9e9e9e',
+  'gray-7': '#757575',
+  'gray-8': '#616161',
+  'gray-9': '#424242',
+  'gray-10': '#212121',
+  blue: {
+    100: '#ccd9ff',
+    500: '#0043ff',
+    700: '#001f63',
+  },
+  red: '#9a5858',
+  green: {
+    300: '#aad93b',
+    500: '#34a817',
+  },
+  yellow: '#ffe812',
+};
