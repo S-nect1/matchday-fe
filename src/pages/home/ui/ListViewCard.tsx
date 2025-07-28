@@ -32,7 +32,7 @@ export const ListViewCard = ({
   const { month, day, weekday, time } = dateFormatter(date);
   return (
     <Card
-      className="mx-auto w-full min-w-[1170px] rounded-[10px] border-none py-[30px]"
+      className="w-[1170px] rounded-[10px] border border-transparent py-[30px] transition-colors duration-200 hover:border hover:border-[#0043FF]"
       style={{
         boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.10)',
       }}

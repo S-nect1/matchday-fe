@@ -31,7 +31,7 @@ export const GridViewCard = ({
   const { month, day, weekday, time } = dateFormatter(date);
   return (
     <Card
-      className="w-[370px] rounded-[10px] border-none p-0"
+      className="w-[370px] rounded-[10px] border border-transparent p-0 transition-colors duration-200 hover:border hover:border-[#0043FF]"
       style={{
         boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.10)',
       }}
