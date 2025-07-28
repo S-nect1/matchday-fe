@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { CircleQuestionMarkIcon } from 'lucide-react';
 
-import { FilterModal, SearchBar, DatePicker } from '@/widgets';
+import { FilterModal, SearchBar, DatePicker, CustomTooltip } from '@/widgets';
 import {
   Button,
   cityProvinceData,
@@ -10,8 +11,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  hoursData,
+  minutesData,
 } from '@/shared';
-import { hoursData, minutesData } from '@/shared/lib/match-filter-constants';
 
 type Props = {
   searchText: string;
@@ -209,7 +211,19 @@ export const SearchMatchModal = ({
             </div>
           </div>
           <div className="flex w-full flex-col gap-[5px]">
-            <h3 className="text-lg leading-[27px] font-bold">팀 실력</h3>
+            <div className="flex w-full flex-row items-center justify-between">
+              <h3 className="text-lg leading-[27px] font-bold">팀 실력</h3>
+              <CustomTooltip
+                hoverContent={
+                  <div className="flex flex-row items-center gap-1 text-[#BDBDBD]">
+                    <span className="text-sm font-medium">팀실력</span>
+                    <CircleQuestionMarkIcon className="w-[14px]" />
+                  </div>
+                }
+                title="팀실력 안내"
+                content={`내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입\n니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다.\n 내용입니다. 내용입니다.`}
+              />
+            </div>
             <div className="flex w-full flex-row gap-[5px]">
               {Object.entries(teamAbilityLabels).map(([key, label]) => (
                 <Button
