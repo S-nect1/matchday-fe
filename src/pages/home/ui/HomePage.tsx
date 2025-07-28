@@ -1,17 +1,18 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { CustomPagination } from '@/widgets';
+import { CustomPagination, SearchBar } from '@/widgets';
 import { mockMatchData } from '@/entities';
-import { Button, FilterIcon, PlusIconWhite, SearchIcon } from '@/shared';
+import { Button, PlusIconWhite } from '@/shared';
 
 import { ListViewCard } from './ListViewCard';
 import { GridViewCard } from './GridViewCard';
+import { SearchMatchModal } from './SearchMatchModal';
 
 export const HomePage = () => {
   const navigate = useNavigate();
 
-  const [isGrid, setIsGrid] = useState(true);
+  const [isGrid, setIsGrid] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -51,25 +52,20 @@ export const HomePage = () => {
             className="flex flex-row gap-[5px] rounded-[5px] border border-[#E0E0E0] bg-[#fff] px-[15px] py-2 text-[16px] leading-6 font-medium text-[#757575] hover:bg-[#f5f5f5]"
             onClick={handleGridToggle}
           >
-            {isGrid ? '리스트뷰' : '그리드뷰'}
+            {isGrid ? '그리드뷰' : '리스트뷰'}
           </Button>
-          <Button
-            variant="none"
-            className="flex flex-row gap-[5px] rounded-[5px] border border-[#E0E0E0] bg-[#fff] px-[15px] py-2 text-[16px] leading-6 font-medium text-[#757575] hover:bg-[#f5f5f5]"
-          >
-            <FilterIcon />
-            필터
-          </Button>
-          <div className="flex w-50 flex-row items-center justify-between border border-t-0 border-r-0 border-l-0 border-b-[#212121] py-2">
-            <input
-              className="w-[151px] text-[16px] leading-6 font-normal text-ellipsis placeholder:text-[#bdbdbd]"
-              type="text"
-              value={searchText}
-              onChange={e => setSearchText(e.target.value)}
-              placeholder="검색어를 입력해 주세요."
+          <SearchMatchModal
+            searchText={searchText}
+            setSearchText={setSearchText}
+            onChangeSearchText={e => setSearchText(e.target.value)}
+          />
+          <div className="w-50">
+            <SearchBar
+              searchText={searchText}
+              onChangeSearchText={e => setSearchText(e.target.value)}
             />
-            <SearchIcon />
           </div>
+
           <Button
             variant="none"
             className="flex flex-row gap-[5px] rounded-[5px] bg-[#0043FF] px-[15px] py-2 text-[16px] leading-6 font-bold text-white hover:bg-[#0033cc]"

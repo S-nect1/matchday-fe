@@ -16,6 +16,8 @@ export const buttonVariants = cva(
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
+        select:
+          'bg-[#fff] rounded-[5px] text-[16px] font-bold leading-6 border border-[#e0e0e0]',
         none: 'cursor-pointer',
       },
       size: {

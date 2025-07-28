@@ -4,3 +4,4 @@ export { MapPinIcon } from './MapPinIcon';
 export { PlusIconWhite } from './PlusIconWhite';
 export { FilterIcon } from './FilterIcon';
 export { SearchIcon } from './SearchIcon';
+export { CloseIcon } from './CloseIcon';

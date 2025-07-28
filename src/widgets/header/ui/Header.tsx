@@ -1,5 +1,5 @@
-import { Button } from '@/shared/ui/button';
 import { useState, useEffect } from 'react';
+import { Button } from '@/shared';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
