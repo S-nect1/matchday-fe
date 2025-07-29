@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { CircleQuestionMarkIcon } from 'lucide-react';
 
-import { FilterModal, SearchBar, DatePicker, CustomTooltip } from '@/widgets';
+import {
+  FilterModal,
+  SearchBar,
+  DatePicker,
+  CustomTooltip,
+  CustomSelect,
+} from '@/widgets';
 import {
   Button,
   cityProvinceData,
   districtCountyData,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
   hoursData,
   minutesData,
 } from '@/shared';
@@ -135,40 +136,20 @@ export const SearchMatchModal = ({
             ))}
           </div>
           <div className="flex flex-row gap-[15px]">
-            <div className="flex w-full flex-col gap-[5px]">
-              <h3 className="text-lg leading-[27px] font-bold">시/도</h3>
-              <Select onValueChange={value => setSelectedCity(value)}>
-                <SelectTrigger className="w-full shadow-none">
-                  <SelectValue placeholder="시/도를 선택해 주세요.">
-                    {selectedCity || '시/도를 선택해 주세요.'}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {cityProvinceData.map(city => (
-                    <SelectItem key={city} value={city}>
-                      {city}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex w-full flex-col gap-[5px]">
-              <h3 className="text-lg leading-[27px] font-bold">구/군</h3>
-              <Select onValueChange={value => setSelectedDistrict(value)}>
-                <SelectTrigger className="w-full shadow-none">
-                  <SelectValue placeholder="구/군을 선택해 주세요.">
-                    {selectedDistrict || '구/군을 선택해 주세요.'}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {districtCountyData.map(district => (
-                    <SelectItem key={district} value={district}>
-                      {district}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            <CustomSelect
+              label="시/도"
+              value={selectedCity}
+              placeholder="시/도를 선택해 주세요."
+              options={cityProvinceData}
+              onChange={setSelectedCity}
+            />
+            <CustomSelect
+              label="구/군"
+              value={selectedDistrict}
+              placeholder="구/군을 선택해 주세요."
+              options={districtCountyData}
+              onChange={setSelectedDistrict}
+            />
           </div>
           <div className="flex w-full flex-col gap-[5px]">
             <h3 className="text-lg leading-[27px] font-bold">날짜</h3>
@@ -178,34 +159,21 @@ export const SearchMatchModal = ({
             <h3 className="text-lg leading-[27px] font-bold">경기일시</h3>
             <div className="flex flex-row gap-[15px]">
               <div className="flex w-full flex-row gap-[10px]">
-                <Select onValueChange={value => setSelectedHour(value)}>
-                  <SelectTrigger className="w-full shadow-none">
-                    <SelectValue>{selectedHour || ''}</SelectValue>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {hoursData.map(hour => (
-                      <SelectItem key={hour} value={String(hour)}>
-                        {hour}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
+                <CustomSelect
+                  value={selectedHour}
+                  placeholder=""
+                  options={hoursData.map(String)}
+                  onChange={setSelectedHour}
+                />
                 <span className="text-lg font-medium">시</span>
               </div>
               <div className="flex w-full flex-row gap-[10px]">
-                <Select onValueChange={value => setSelectedMinute(value)}>
-                  <SelectTrigger className="w-full shadow-none">
-                    <SelectValue>{selectedMinute || ''}</SelectValue>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {minutesData.map(minute => (
-                      <SelectItem key={minute} value={String(minute)}>
-                        {minute}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <CustomSelect
+                  value={selectedMinute}
+                  placeholder=""
+                  options={minutesData.map(String)}
+                  onChange={setSelectedMinute}
+                />
                 <span className="text-lg font-medium">분</span>
               </div>
             </div>

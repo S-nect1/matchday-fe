@@ -1,9 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
 import { Footer, Header } from '@/widgets';
-import { SideBannerLg, SideBannerMd, SideBannerSm } from '@/shared';
 
-import { MainBanner } from './ui';
+import { MainBanner, SideBannerLg, SideBannerMd, SideBannerSm } from './ui';
 
 export const HomeLayout = () => {
   return (
