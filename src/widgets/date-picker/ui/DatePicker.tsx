@@ -27,9 +27,14 @@ function parseDate(value: string): Date | null {
 type Props = {
   date: Date | null;
   onChange: (date: Date | null) => void;
+  placeholder?: string;
 };
 
-export const DatePicker = ({ date, onChange }: Props) => {
+export const DatePicker = ({
+  date,
+  onChange,
+  placeholder = '날짜를 선택해 주세요.',
+}: Props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(date ? formatDate(date) : '');
   const [month, setMonth] = useState<Date | undefined>(date ?? undefined);
@@ -44,13 +49,13 @@ export const DatePicker = ({ date, onChange }: Props) => {
   }, [date]);
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="relative flex gap-2">
+    <div className="flex w-full flex-col gap-3">
+      <div className="relative flex flex-1 gap-2">
         <Input
           id="date"
           value={value}
-          placeholder="날짜를 선택해 주세요."
-          className="bg-background px-[15px] py-2 pr-10 text-[16px]"
+          placeholder={placeholder}
+          className="bg-background h-[45px] px-[15px] py-2 text-[16px]"
           onChange={e => {
             const input = e.target.value;
             setValue(input);

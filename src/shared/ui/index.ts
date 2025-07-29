@@ -7,3 +7,4 @@ export * from './card';
 export * from './select';
 export * from './pagination';
 export * from './dialog';
+export * from './input';
