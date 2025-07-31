@@ -3,7 +3,7 @@ type Props = {
   setHasBall: (value: boolean) => void;
 };
 
-const HasBallCheck = ({ hasBall, setHasBall }: Props) => {
+export const HasBallCheck = ({ hasBall, setHasBall }: Props) => {
   return (
     <div className="flex flex-row gap-[30px]">
       <div className="flex flex-row items-center gap-[10px] text-[16px] font-medium">
@@ -27,5 +27,3 @@ const HasBallCheck = ({ hasBall, setHasBall }: Props) => {
     </div>
   );
 };
-
-export default HasBallCheck;

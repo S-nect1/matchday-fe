@@ -1,1 +1,1 @@
-export { CreateMatchPage } from './ui/CreateMatchPage';
+export { CreateMatchPage } from './ui';

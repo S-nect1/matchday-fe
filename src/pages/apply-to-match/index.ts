@@ -1,1 +1,1 @@
-export { ApplyToMatchPage } from './ui/ApplyToMatchPage';
+export { ApplyToMatchPage } from './ui';

@@ -1,2 +1,9 @@
 export * from './ui';
-export * from './lib';
+export {
+  cityProvinceData,
+  districtCountyData,
+  hoursData,
+  minutesData,
+  matchTime,
+  bankList,
+} from './lib';

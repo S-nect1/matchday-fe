@@ -1,3 +1,3 @@
-export { mockMatchData } from './mock-data';
-export type { MatchData } from './mock-data';
-export { MainBannerImg } from './assets/banner';
+export { mockMatchData } from './model/mock-data';
+export type { MatchData } from './model/mock-data';
+export { mainBannerImg } from './ui/banner';

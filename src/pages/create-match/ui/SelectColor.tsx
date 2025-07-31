@@ -13,7 +13,7 @@ type Props = {
   setUniformColor: (value: string) => void;
 };
 
-const SelectColor = ({ uniformColor, setUniformColor }: Props) => {
+export const SelectColor = ({ uniformColor, setUniformColor }: Props) => {
   return (
     <>
       <Dialog>
@@ -39,5 +39,3 @@ const SelectColor = ({ uniformColor, setUniformColor }: Props) => {
     </>
   );
 };
-
-export default SelectColor;

@@ -1,4 +1,4 @@
-import { MainBannerImg } from '@/entities';
+import { mainBannerImg } from '@/entities';
 import { LogoWhite } from '@/shared/ui';
 
 export const MainBanner = () => {
@@ -6,7 +6,7 @@ export const MainBanner = () => {
     <div
       className="mx-auto flex w-[1170px] flex-col justify-start gap-[15px] rounded-[10px] bg-cover bg-center py-[55px] pl-25"
       style={{
-        backgroundImage: `url(${MainBannerImg.topBanner})`,
+        backgroundImage: `url(${mainBannerImg.topBanner})`,
       }}
     >
       <h1 className="text-[32px] leading-12 font-bold text-[#fff]">

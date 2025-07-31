@@ -1,1 +1,1 @@
-export * from './ui';
+export { FilterModal } from './ui';

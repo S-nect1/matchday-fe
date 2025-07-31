@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { CustomSelect, DatePicker } from '@/widgets';
 import { matchTime, bankList } from '@/shared';
@@ -11,9 +12,8 @@ import {
   Input,
 } from '@/shared';
 
-import HasBallCheck from './HasBallCheck';
-import SelectColor from './SelectColor';
-import { useNavigate } from 'react-router-dom';
+import { HasBallCheck } from './HasBallCheck';
+import { SelectColor } from './SelectColor';
 
 export const CreateMatchPage = () => {
   const navigate = useNavigate();
