@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { CustomSelect, DatePicker } from '@/widgets';
-import { matchTime, bankList } from '@/shared';
+import { HOURS, BANK_LIST } from '@/shared';
 import {
   Button,
   Card,
@@ -114,7 +114,7 @@ export const CreateMatchPage = () => {
             <CustomSelect
               value={selectedStartTime}
               placeholder="경기 시간을 선택해 주세요."
-              options={matchTime}
+              options={HOURS}
               onChange={setSelectedStartTime}
             />
           </div>
@@ -128,7 +128,7 @@ export const CreateMatchPage = () => {
             <CustomSelect
               value={selectedEndTime}
               placeholder="종료 시간을 선택해 주세요."
-              options={matchTime}
+              options={HOURS}
               onChange={setSelectedEndTime}
             />
           </div>
@@ -142,7 +142,7 @@ export const CreateMatchPage = () => {
             <CustomSelect
               value={selectedEndTime}
               placeholder="종료 시간을 선택해 주세요."
-              options={matchTime}
+              options={HOURS}
               onChange={setSelectedEndTime}
             />
           </div>
@@ -169,7 +169,7 @@ export const CreateMatchPage = () => {
             <CustomSelect
               value={selectedBank}
               placeholder="은행을 선택해 주세요."
-              options={bankList}
+              options={BANK_LIST}
               onChange={setSelectedBank}
             />
             <Input
@@ -211,9 +211,9 @@ export const CreateMatchPage = () => {
           <Button
             size="lg"
             className="w-60 bg-[#0043FF] text-[16px] leading-6 font-bold hover:bg-[#0037cc]"
-            onClick={() => console.log('매치 적용하기. 서버 요청 필요')}
+            onClick={() => console.log('매치 등록하기. 서버 요청 필요')}
           >
-            필터적용
+            매치 등록하기
           </Button>
           <div className="absolute right-0 bottom-18 flex flex-row items-center gap-[10px]">
             <input

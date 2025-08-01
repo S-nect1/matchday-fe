@@ -1,9 +1,2 @@
 export * from './ui';
-export {
-  cityProvinceData,
-  districtCountyData,
-  hoursData,
-  minutesData,
-  matchTime,
-  bankList,
-} from './lib';
+export { KOREA_CITIES, DISTRICTS, HOURS, MINUTES, BANK_LIST } from './lib';

@@ -7,7 +7,7 @@ import { Button, PlusIconWhite } from '@/shared';
 
 import { ListViewCard } from './ListViewCard';
 import { GridViewCard } from './GridViewCard';
-import { SearchMatchModal } from './SearchMatchModal';
+import { FilterMatches } from './FilterMatches';
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ export const HomePage = () => {
           >
             {isGrid ? '그리드뷰' : '리스트뷰'}
           </Button>
-          <SearchMatchModal
+          <FilterMatches
             searchText={searchText}
             setSearchText={setSearchText}
             onChangeSearchText={e => setSearchText(e.target.value)}
