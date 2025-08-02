@@ -1,2 +1,2 @@
 export { TeamsWrite } from './teams-write/TeamsWrite';
-export { TeamListsDetail } from './team-lists-by-id/TeamListsDetail';
+export { TeamsJoin } from './teams-join/TeamsJoin';

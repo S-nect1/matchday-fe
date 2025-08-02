@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styles from './TeamWriteForm.module.scss';
 import { InputField } from './InputField';
 import { AREA_OPTIONS, DISTRICT_OPTIONS } from '../../../shared/constant/areas';
-import { UNIFORM_TOP_COLORS } from '../../../shared/constant/uniform-colors';
 import { BANK_OPTIONS } from '../../../shared/constant/banks';
 import type { Option } from '../../../shared/constant/areas';
 
@@ -17,7 +16,6 @@ export const TeamWriteForm = () => {
     activityDistrict: '', // 구/군 추가
     limitedMember: '', // 멤버수 제한 추가
     teamJoinCode: '', // 가입 팀 코드 추가
-    preferredTime: [] as string[],
     introduction: '',
     leaderName: '',
     phone: '',
@@ -46,26 +44,23 @@ export const TeamWriteForm = () => {
     }
   };
 
-  const handleTimeChange = (time: string) => {
-    setFormData(prev => ({
-      ...prev,
-      preferredTime: prev.preferredTime.includes(time)
-        ? prev.preferredTime.filter(t => t !== time)
-        : [...prev.preferredTime, time],
-    }));
+  const handleSelectChange = (name: string, value: string) => {
+    // 시/도가 변경되면 구/군 초기화
+    if (name === 'activityArea') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value,
+        activityDistrict: '', // 구/군 초기화
+      }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleTeamTypeChange = (type: string) => {
     setFormData(prev => ({
       ...prev,
       teamType: prev.teamType === type ? '' : type, // 같은 값이면 해제, 다른 값이면 선택
-    }));
-  };
-
-  const handleUniformTopColorChange = (colorId: string) => {
-    setFormData(prev => ({
-      ...prev,
-      uniformTopColor: prev.uniformTopColor === colorId ? '' : colorId, // 같은 값이면 해제, 다른 값이면 선택
     }));
   };
 
@@ -131,18 +126,16 @@ export const TeamWriteForm = () => {
               />
               <div className={styles.fileContent}>
                 <svg
-                  width="100"
-                  height="69"
-                  viewBox="0 0 100 69"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
                   className={styles.fileIcon}
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 48 48"
                 >
                   <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M78.5686 10.712C78.5686 16.6248 83.3628 21.4193 89.2831 21.4193C95.2033 21.4193 100 16.6248 100 10.712C100 4.79685 95.2033 0 89.2831 0C83.3652 0 78.5686 4.79447 78.5686 10.712ZM2.66088 69H95.3914C97.9266 69 98.8217 66.7229 97.3815 64.6338L63.5644 15.0045C62.1195 12.9153 59.6223 12.8178 58.0131 14.776L45.0086 30.6133C43.3946 32.5739 40.6142 32.7381 38.8265 30.9345L33.4119 25.5452C31.6241 23.7416 28.9675 24.1128 27.5083 26.1876L0.706489 64.6529C-0.755124 66.7325 0.125669 69 2.66088 69Z"
-                    fill="#E0E0E0"
+                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
                 <div className={styles.fileText}>
@@ -152,9 +145,9 @@ export const TeamWriteForm = () => {
                     </span>
                   ) : (
                     <>
+                      <span className={styles.fileLink}>파일을 선택하거나</span>
                       <span className={styles.fileDrop}>
-                        500KB이하의 JPG, JPEG, PNG 파일 형식으로 등록할 수
-                        있습니다.
+                        이곳으로 드래그해주세요
                       </span>
                     </>
                   )}
@@ -173,32 +166,78 @@ export const TeamWriteForm = () => {
             placeholder="팀 이름을 입력해주세요"
           />
 
-          {/* 팀 소개 */}
+          {/* 팀 설명 */}
           <InputField
             label="팀 설명"
             type="textarea"
             name="introduction"
             value={formData.introduction}
             onChange={handleInputChange}
-            placeholder="팀 설명을 입력해주세요. (ex. XX 유소년 클럽입니다.)"
+            placeholder="팀을 소개해주세요"
             rows={4}
           />
 
           {/* 팀 유형 */}
           <div className={styles.fieldGroup}>
             <label className={styles.label}>팀 유형</label>
-            <div className={styles.checkboxGroup}>
+            <div className={styles.customCheckboxGroup}>
               {['소모임', '동아리', '동호회'].map(type => (
-                <label key={type} className={styles.checkboxItem}>
-                  <input
-                    type="checkbox"
-                    checked={formData.teamType === type}
-                    onChange={() => handleTeamTypeChange(type)}
-                    className={styles.checkbox}
-                  />
+                <div
+                  key={type}
+                  className={`${styles.customCheckbox} ${formData.teamType === type ? styles.checked : ''}`}
+                  onClick={() => handleTeamTypeChange(type)}
+                >
+                  <div className={styles.checkboxInner}>
+                    {formData.teamType === type && (
+                      <svg
+                        className={styles.checkIcon}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M20 6L9 17l-5-5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </div>
                   <span className={styles.checkboxLabel}>{type}</span>
-                </label>
+                </div>
               ))}
+            </div>
+          </div>
+
+          {/* 상의 유니폼 색깔 */}
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>상의 유니폼 색깔</label>
+            <div className={styles.colorPickerContainer}>
+              <input
+                type="color"
+                name="uniformTopColor"
+                value={formData.uniformTopColor || '#000000'}
+                onChange={e => {
+                  setFormData(prev => ({
+                    ...prev,
+                    uniformTopColor: e.target.value,
+                  }));
+                }}
+                className={styles.colorPicker}
+                title="색상을 선택하세요"
+              />
+              <div className={styles.colorPreview}>
+                <div
+                  className={styles.colorSwatch}
+                  style={{
+                    backgroundColor: formData.uniformTopColor || '#000000',
+                  }}
+                />
+                <span className={styles.colorValue}>
+                  {formData.uniformTopColor || '#000000'}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -208,7 +247,7 @@ export const TeamWriteForm = () => {
             type="select"
             name="activityArea"
             value={formData.activityArea}
-            onChange={handleInputChange}
+            onSelectChange={value => handleSelectChange('activityArea', value)}
             placeholder="시/도를 선택해주세요"
             options={AREA_OPTIONS}
           />
@@ -219,7 +258,9 @@ export const TeamWriteForm = () => {
             type="select"
             name="activityDistrict"
             value={formData.activityDistrict}
-            onChange={handleInputChange}
+            onSelectChange={value =>
+              handleSelectChange('activityDistrict', value)
+            }
             placeholder={
               formData.activityArea
                 ? '구/군을 선택해주세요'
@@ -228,25 +269,9 @@ export const TeamWriteForm = () => {
             options={getDistrictOptions()}
           />
 
-          {/* 상의 유니폼 색깔 */}
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>상의 유니폼 색깔</label>
-            <div className={styles.colorPalette}>
-              {UNIFORM_TOP_COLORS.map(color => (
-                <div
-                  key={color.id}
-                  className={`${styles.colorSwatch} ${color.id === 'white' ? styles.white : ''} ${formData.uniformTopColor === color.id ? styles.selected : ''}`}
-                  style={{ backgroundColor: color.color }}
-                  onClick={() => handleUniformTopColorChange(color.id)}
-                  title={color.name}
-                />
-              ))}
-            </div>
-          </div>
-
           {/* 멤버수 제한 */}
           <InputField
-            label="멤버 수 제한"
+            label="멤버수 제한"
             type="text"
             name="limitedMember"
             value={formData.limitedMember}
@@ -295,7 +320,7 @@ export const TeamWriteForm = () => {
             type="select"
             name="bank"
             value={formData.bank}
-            onChange={handleInputChange}
+            onSelectChange={value => handleSelectChange('bank', value)}
             placeholder="은행을 선택해주세요"
             options={BANK_OPTIONS}
           />
@@ -314,7 +339,7 @@ export const TeamWriteForm = () => {
         {/* 등록 버튼 */}
         <div className={styles.submitSection}>
           <button type="submit" className={styles.submitButton}>
-            팀 만들기
+            등록
           </button>
         </div>
       </form>

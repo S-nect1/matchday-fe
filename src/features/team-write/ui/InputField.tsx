@@ -1,16 +1,24 @@
 import styles from './InputField.module.scss';
 import type { Option } from '../../../shared/constant/areas';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../../../shared/ui/select';
 
 export interface InputFieldProps {
   label: string;
   type?: 'text' | 'email' | 'tel' | 'select' | 'textarea';
   name: string;
   value: string;
-  onChange: (
+  onChange?: (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => void;
+  onSelectChange?: (value: string) => void;
   placeholder?: string;
   options?: Option[];
   rows?: number;
@@ -23,6 +31,7 @@ export const InputField = ({
   name,
   value,
   onChange,
+  onSelectChange,
   placeholder,
   options = [],
   rows = 4,
@@ -32,19 +41,18 @@ export const InputField = ({
     switch (type) {
       case 'select':
         return (
-          <select
-            name={name}
-            value={value}
-            onChange={onChange}
-            className={styles.select}
-          >
-            {placeholder && <option value="">{placeholder}</option>}
-            {options.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <Select value={value} onValueChange={onSelectChange}>
+            <SelectTrigger className={styles.select}>
+              <SelectValue placeholder={placeholder} />
+            </SelectTrigger>
+            <SelectContent>
+              {options.map(option => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         );
 
       case 'textarea':

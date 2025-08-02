@@ -1,6 +1,5 @@
 .fieldGroup {
   margin-bottom: 2rem;
-  display: flex;
 
   &:last-child {
     margin-bottom: 0;
@@ -12,12 +11,11 @@
   font-size: 1rem;
   font-weight: 600;
   color: #374151;
-  width: 20%;
-  margin-top: 4px;
+  margin-bottom: 0.75rem;
 }
 
 .input {
-  width: 600px;
+  width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
@@ -36,9 +34,60 @@
 }
 
 .select {
-  @extend .input;
+  width: 100%;
+  height: auto;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
   background-color: white;
+  outline: none;
+  transition: all 0.2s ease;
   cursor: pointer;
+  color: #374151;
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px #3b82f6;
+  }
+
+  &[data-placeholder] {
+    color: #9ca3af;
+  }
+
+  &:hover {
+    border-color: #9ca3af;
+  }
+
+  &[data-state='open'] {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  }
+
+  // shadcn select 스타일 오버라이드
+  &[data-slot='select-trigger'] {
+    border: 1px solid #d1d5db;
+    background-color: white;
+    color: #374151;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    min-height: 2.75rem;
+
+    &:hover {
+      border-color: #9ca3af;
+    }
+
+    &:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    }
+
+    &[data-placeholder] {
+      color: #9ca3af;
+    }
+  }
 }
 
 .textarea {

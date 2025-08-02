@@ -1,9 +1,7 @@
 .teamWriteForm {
   width: 100%;
-  max-width: 80rem; /* 768px */
+  max-width: 48rem; /* 768px */
   margin: 0 auto;
-  margin-top: 60px;
-  margin-bottom: 60px;
 
   .form {
     display: flex;
@@ -30,7 +28,6 @@
 
   .fieldGroup {
     margin-bottom: 2rem;
-    display: flex;
 
     &:last-child {
       margin-bottom: 0;
@@ -42,13 +39,10 @@
     font-size: 1rem;
     font-weight: 600;
     color: #374151;
-    width: 20%;
-    margin-top: 4px;
+    margin-bottom: 0.75rem;
   }
 
   .fileUpload {
-    width: 550px;
-    height: 300px;
     position: relative;
     border: 2px dashed #d1d5db;
     border-radius: 0.5rem;
@@ -56,9 +50,6 @@
     text-align: center;
     transition: all 0.2s ease;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     &:hover {
       border-color: #9ca3af;
@@ -140,88 +131,213 @@
 
   .checkboxGroup {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 0.75rem;
 
     .checkboxItem {
       display: flex;
       align-items: center;
       cursor: pointer;
+      position: relative;
 
       .checkbox {
-        margin-right: 0.75rem;
-        width: 1rem;
-        height: 1rem;
-        accent-color: #3b82f6;
+        position: absolute;
+        opacity: 0;
         cursor: pointer;
+        height: 0;
+        width: 0;
       }
 
       .checkboxLabel {
+        position: relative;
+        padding-left: 2rem;
         font-size: 1rem;
         color: #374151;
-        margin-top: 4px;
+        cursor: pointer;
+        user-select: none;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1.25rem;
+          height: 1.25rem;
+          border: 2px solid #d1d5db;
+          border-radius: 0.25rem;
+          background-color: white;
+          transition: all 0.2s ease;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0.25rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 0.75rem;
+          height: 0.75rem;
+          border-radius: 0.125rem;
+          background-color: #3b82f6;
+          opacity: 0;
+          transition: all 0.2s ease;
+        }
+      }
+
+      .checkbox:checked + .checkboxLabel::before {
+        border-color: #3b82f6;
+        background-color: #3b82f6;
+      }
+
+      .checkbox:checked + .checkboxLabel::after {
+        opacity: 1;
+      }
+
+      .checkbox:focus + .checkboxLabel::before {
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      }
+
+      &:hover .checkboxLabel::before {
+        border-color: #9ca3af;
       }
     }
   }
 
-  .colorPalette {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 4px;
-    width: 320px;
-    padding: 8px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    background-color: #f8fafc;
+  .customCheckboxGroup {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 
-    .colorSwatch {
-      width: 32px;
-      height: 32px;
-      border-radius: 4px;
+    .customCheckbox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      background-color: white;
       cursor: pointer;
-      border: 2px solid transparent;
       transition: all 0.2s ease;
-      position: relative;
+      user-select: none;
 
       &:hover {
-        transform: scale(1.1);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        background-color: #f9fafb;
       }
 
-      &.selected {
+      &.checked {
+        background-color: #eff6ff;
+        color: #1e40af;
+      }
+
+      .checkboxInner {
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 2px solid #d1d5db;
+        border-radius: 0.25rem;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+
+        .checkIcon {
+          width: 0.875rem;
+          height: 0.875rem;
+          color: #3b82f6;
+        }
+      }
+
+      &.checked .checkboxInner {
         border-color: #3b82f6;
-        box-shadow: 0 0 0 2px #dbeafe;
-        transform: scale(1.1);
+        background-color: #3b82f6;
+
+        .checkIcon {
+          color: white;
+        }
       }
 
-      &.white {
-        border-color: #d1d5db;
+      .checkboxLabel {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #374151;
+        transition: color 0.2s ease;
+      }
 
-        &:hover {
+      &.checked .checkboxLabel {
+        color: #1e40af;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .colorPickerContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .colorPicker {
+      width: 60px;
+      height: 60px;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      background: none;
+      padding: 0;
+
+      &::-webkit-color-swatch-wrapper {
+        padding: 0;
+        border-radius: 0.5rem;
+        border: 2px solid #d1d5db;
+      }
+
+      &::-webkit-color-swatch {
+        border: none;
+        border-radius: 0.375rem;
+      }
+
+      &::-moz-color-swatch {
+        border: none;
+        border-radius: 0.375rem;
+      }
+
+      &:hover {
+        &::-webkit-color-swatch-wrapper {
           border-color: #9ca3af;
         }
+      }
 
-        &.selected {
+      &:focus {
+        outline: none;
+        &::-webkit-color-swatch-wrapper {
           border-color: #3b82f6;
+          box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
         }
       }
+    }
 
-      // 선택된 색상에 체크 표시
-      &.selected::after {
-        content: '✓';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 12px;
-        font-weight: bold;
-        text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+    .colorPreview {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      background-color: #f9fafb;
+
+      .colorSwatch {
+        width: 32px;
+        height: 32px;
+        border-radius: 0.25rem;
+        border: 2px solid #d1d5db;
+        flex-shrink: 0;
       }
 
-      &.selected.white::after {
-        color: #3b82f6;
-        text-shadow: none;
+      .colorValue {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.875rem;
+        color: #374151;
+        font-weight: 500;
       }
     }
   }
