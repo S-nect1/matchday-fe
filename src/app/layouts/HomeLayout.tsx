@@ -1,14 +1,15 @@
 import { Outlet } from 'react-router-dom';
 
-import { Footer, Header } from '@/widgets';
+import { Footer } from '@/widgets';
 
 import { MainBanner, SideBannerLg, SideBannerMd, SideBannerSm } from './ui';
+import { Navbar } from '@/widgets/navbar';
 
 export const HomeLayout = () => {
   return (
     <div className="min-h-screen flex-col">
-      <Header />
-      <div className="mt-[114px] mb-[150px] flex min-w-[1680px] flex-col justify-center gap-[50px] overflow-x-auto">
+      <Navbar />
+      <div className="mt-[114px] mb-[150px] flex flex-col justify-center gap-[50px] overflow-x-auto">
         <MainBanner />
         <div className="flex flex-row justify-center gap-[50px]">
           <aside className="ml-5 flex flex-col gap-[15px]">

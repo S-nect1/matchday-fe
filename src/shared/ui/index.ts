@@ -1,6 +1,7 @@
 export * from './Icon';
 export * from './Logo';
 export * from './logos';
+export { CustomColorPicker } from './uniform-color-picker';
 
 export * from './badge';
 export * from './button';
@@ -18,3 +19,4 @@ export * from './navigation-menu';
 export * from './separator';
 export * from './tabs';
 export * from './tooltip';
+export * from './color-picker';

@@ -8,7 +8,6 @@ import {
   LocationMap,
 } from '@/widgets';
 import type { PlaceSearchResult } from '@/widgets/place-search-modal/ui/PlaceSearchModal';
-import { HOURS, BANK_LIST } from '@/shared';
 import {
   Button,
   Card,
@@ -16,10 +15,12 @@ import {
   CardHeader,
   CardTitle,
   Input,
+  HOURS,
+  BANK_LIST,
+  CustomColorPicker,
 } from '@/shared';
 
 import { HasBallCheck } from './HasBallCheck';
-import { SelectColor } from './SelectColor';
 
 export const CreateMatchPage = () => {
   const navigate = useNavigate();
@@ -274,7 +275,7 @@ export const CreateMatchPage = () => {
               상의 유니폼 색깔<span className="text-[#ff4e3e]">*</span>
             </h3>
             <div className="flex flex-row items-center gap-[10px]">
-              <SelectColor
+              <CustomColorPicker
                 uniformColor={uniformColor}
                 setUniformColor={setUniformColor}
               />
@@ -292,7 +293,7 @@ export const CreateMatchPage = () => {
           <div className="flex w-full flex-row justify-end gap-[15px]">
             <Button
               size="lg"
-              className="w-60 bg-[#eee] text-[16px] leading-6 font-bold text-[#757575] hover:bg-[#e0e0e0]"
+              className="w-60 border border-[#eee] bg-white text-[16px] leading-6 font-bold text-[#000] hover:bg-[#4D7FFF] hover:text-white"
               onClick={() => navigate(-1)}
             >
               돌아가기

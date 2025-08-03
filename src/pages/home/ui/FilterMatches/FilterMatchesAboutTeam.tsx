@@ -56,6 +56,7 @@ export const FilterMatchesAboutTeam = ({
               className="flex-1 text-[#0043FF]"
               style={{
                 borderColor: teamAbility[key] ? '#0043FF' : '',
+                borderWidth: teamAbility[key] ? '2px' : '',
               }}
               onClick={() =>
                 onUpdateTeamAbility({
@@ -77,9 +78,10 @@ export const FilterMatchesAboutTeam = ({
               key={key}
               variant="select"
               size="lg"
-              className="flex-1"
+              className="flex-1 border-1"
               style={{
                 borderColor: age[key] ? '#0043FF' : '',
+                borderWidth: age[key] ? '2px' : '',
               }}
               onClick={() =>
                 onUpdateAge({
@@ -104,6 +106,7 @@ export const FilterMatchesAboutTeam = ({
               className="flex-1"
               style={{
                 borderColor: gender[key] ? '#0043FF' : '',
+                borderWidth: gender[key] ? '2px' : '',
               }}
               onClick={() =>
                 onUpdateGender({
