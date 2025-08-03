@@ -18,6 +18,7 @@ import {
   HOURS,
   BANK_LIST,
   CustomColorPicker,
+  SelectButton,
 } from '@/shared';
 
 import { HasBallCheck } from './HasBallCheck';
@@ -116,28 +117,16 @@ export const CreateMatchPage = () => {
               매치종목<span className="text-[#ff4e3e]">*</span>
             </h3>
             <div className="flex w-210 flex-row gap-[15px]">
-              <Button
-                size="lg"
-                variant="select"
-                className="flex-1 text-[16px] font-bold"
-                style={{
-                  borderColor: selectedCategory === '축구' ? '#0043FF' : '',
-                }}
-                onClick={() => setSelectedCategory('축구')}
-              >
-                축구
-              </Button>
-              <Button
-                size="lg"
-                variant="select"
-                className="flex-1 text-[16px] font-bold"
-                style={{
-                  borderColor: selectedCategory === '풋살' ? '#0043FF' : '',
-                }}
-                onClick={() => setSelectedCategory('풋살')}
-              >
-                풋살
-              </Button>
+              <SelectButton
+                label="축구"
+                isSelected={selectedCategory === '축구'}
+                onClickSelectButton={() => setSelectedCategory('축구')}
+              />
+              <SelectButton
+                label="풋살"
+                isSelected={selectedCategory === '풋살'}
+                onClickSelectButton={() => setSelectedCategory('풋살')}
+              />
             </div>
           </div>
           <div className="flex flex-row items-center gap-[30px]">
@@ -145,28 +134,16 @@ export const CreateMatchPage = () => {
               인원 수<span className="text-[#ff4e3e]">*</span>
             </h3>
             <div className="flex w-210 flex-row gap-[15px]">
-              <Button
-                size="lg"
-                variant="select"
-                className="flex-1 text-[16px] font-bold"
-                style={{
-                  borderColor: selectedTeamSize === 11 ? '#0043FF' : '',
-                }}
-                onClick={() => setSelectedTeamSize(11)}
-              >
-                11 vs 11
-              </Button>
-              <Button
-                size="lg"
-                variant="select"
-                className="flex-1 text-[16px] font-bold"
-                style={{
-                  borderColor: selectedTeamSize === 7 ? '#0043FF' : '',
-                }}
-                onClick={() => setSelectedTeamSize(7)}
-              >
-                7 vs 7
-              </Button>
+              <SelectButton
+                label="11 vs 11"
+                isSelected={selectedTeamSize === 11}
+                onClickSelectButton={() => setSelectedTeamSize(11)}
+              />
+              <SelectButton
+                label="7 vs 7"
+                isSelected={selectedTeamSize === 7}
+                onClickSelectButton={() => setSelectedTeamSize(7)}
+              />
             </div>
           </div>
           <div className="flex flex-row items-center gap-[30px]">

@@ -2,6 +2,7 @@ export * from './Icon';
 export * from './Logo';
 export * from './logos';
 export { CustomColorPicker } from './uniform-color-picker';
+export { SelectButton } from './select-button';
 
 export * from './badge';
 export * from './button';

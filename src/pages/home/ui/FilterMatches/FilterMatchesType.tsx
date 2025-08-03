@@ -1,5 +1,4 @@
-import { Button } from '@/shared';
-
+import { SelectButton } from '@/shared';
 import {
   MATCH_TYPES,
   MATCH_TYPE_LABELS,
@@ -17,23 +16,15 @@ export const FilterMatchesType = ({ matchType, onUpdateMatchType }: Props) => {
   return (
     <div className="grid grid-flow-row grid-cols-2 gap-[15px]">
       {MATCH_TYPES.map(key => (
-        <Button
-          key={key}
-          variant="select"
-          size="lg"
-          className="flex-1 border-1"
-          style={{
-            borderColor: matchType[key] ? '#0043FF' : '',
-            borderWidth: matchType[key] ? '2px' : '',
-          }}
-          onClick={() =>
+        <SelectButton
+          label={MATCH_TYPE_LABELS[key]}
+          isSelected={matchType[key]}
+          onClickSelectButton={() =>
             onUpdateMatchType({
               [key]: !matchType[key],
             })
           }
-        >
-          {MATCH_TYPE_LABELS[key]}
-        </Button>
+        />
       ))}
     </div>
   );

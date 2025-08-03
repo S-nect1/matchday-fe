@@ -1,7 +1,7 @@
 import { CircleQuestionMarkIcon } from 'lucide-react';
 
-import { Button } from '@/shared';
 import { CustomTooltip } from '@/widgets';
+import { SelectButton } from '@/shared';
 import {
   TEAM_ABILITIES,
   TEAM_ABILITY_LABELS,
@@ -49,23 +49,15 @@ export const FilterMatchesAboutTeam = ({
         </div>
         <div className="flex w-full flex-row gap-[5px]">
           {TEAM_ABILITIES.map(key => (
-            <Button
-              key={key}
-              variant="select"
-              size="lg"
-              className="flex-1 text-[#0043FF]"
-              style={{
-                borderColor: teamAbility[key] ? '#0043FF' : '',
-                borderWidth: teamAbility[key] ? '2px' : '',
-              }}
-              onClick={() =>
+            <SelectButton
+              label={TEAM_ABILITY_LABELS[key]}
+              isSelected={teamAbility[key]}
+              onClickSelectButton={() =>
                 onUpdateTeamAbility({
                   [key]: !teamAbility[key],
                 })
               }
-            >
-              {TEAM_ABILITY_LABELS[key]}
-            </Button>
+            />
           ))}
         </div>
       </div>
@@ -74,23 +66,15 @@ export const FilterMatchesAboutTeam = ({
         <h3 className="text-lg leading-[27px] font-bold">연령대</h3>
         <div className="flex w-full flex-row gap-[5px]">
           {AGES.map(key => (
-            <Button
-              key={key}
-              variant="select"
-              size="lg"
-              className="flex-1 border-1"
-              style={{
-                borderColor: age[key] ? '#0043FF' : '',
-                borderWidth: age[key] ? '2px' : '',
-              }}
-              onClick={() =>
+            <SelectButton
+              label={AGE_LABELS[key]}
+              isSelected={age[key]}
+              onClickSelectButton={() =>
                 onUpdateAge({
                   [key]: !age[key],
                 })
               }
-            >
-              {AGE_LABELS[key]}
-            </Button>
+            />
           ))}
         </div>
       </div>
@@ -99,23 +83,15 @@ export const FilterMatchesAboutTeam = ({
         <h3 className="text-lg leading-[27px] font-bold">성별</h3>
         <div className="flex w-full flex-row gap-[5px]">
           {GENDERS.map(key => (
-            <Button
-              key={key}
-              variant="select"
-              size="lg"
-              className="flex-1"
-              style={{
-                borderColor: gender[key] ? '#0043FF' : '',
-                borderWidth: gender[key] ? '2px' : '',
-              }}
-              onClick={() =>
+            <SelectButton
+              label={GENDER_LABELS[key]}
+              isSelected={gender[key]}
+              onClickSelectButton={() =>
                 onUpdateGender({
                   [key]: !gender[key],
                 })
               }
-            >
-              {GENDER_LABELS[key]}
-            </Button>
+            />
           ))}
         </div>
       </div>
