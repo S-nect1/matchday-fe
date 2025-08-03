@@ -1,5 +1,5 @@
-import { Icon } from './Icon';
-import { Text } from './Text';
+import { Icon } from '@/shared/ui/Logo/Icon';
+import { Text } from '@/shared/ui/Logo/Text';
 
 interface LogoProps {
   isIcon?: boolean;
