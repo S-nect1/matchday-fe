@@ -1,1 +1,1 @@
-export { PlaceSearchModal } from './PlaceSearchModal';
+export { PlaceSearchModal, type PlaceSearchResult } from './PlaceSearchModal';

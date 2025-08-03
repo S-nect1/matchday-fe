@@ -6,8 +6,9 @@ import {
   DatePicker,
   PlaceSearchModal,
   LocationMap,
+  type PlaceSearchResult,
 } from '@/widgets';
-import type { PlaceSearchResult } from '@/widgets/place-search-modal/ui/PlaceSearchModal';
+
 import {
   Button,
   Card,

@@ -2,7 +2,9 @@ import {
   Pagination,
   PaginationContent,
   PaginationEllipsis,
+  PaginationFirst,
   PaginationItem,
+  PaginationLast,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
@@ -19,6 +21,12 @@ export const CustomPagination = ({
   totalPages,
   onPageChange,
 }: Props) => {
+  // 처음 페이지로 이동
+  const handleFirstPage = () => {
+    if (currentPage > 1) {
+      onPageChange(1);
+    }
+  };
   // 이전 페이지로 이동
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -30,6 +38,13 @@ export const CustomPagination = ({
   const handleNext = () => {
     if (currentPage < totalPages) {
       onPageChange(currentPage + 1);
+    }
+  };
+
+  // 마지막 페이지로 이동
+  const handleLastPage = () => {
+    if (currentPage < totalPages) {
+      onPageChange(totalPages);
     }
   };
 
@@ -90,6 +105,16 @@ export const CustomPagination = ({
     <Pagination className="py-1">
       <PaginationContent>
         <PaginationItem>
+          <PaginationFirst
+            onClick={handleFirstPage}
+            className={
+              currentPage === 1
+                ? 'pointer-events-none opacity-50'
+                : 'cursor-pointer'
+            }
+          />
+        </PaginationItem>
+        <PaginationItem>
           <PaginationPrevious
             onClick={handlePrevious}
             className={
@@ -128,6 +153,16 @@ export const CustomPagination = ({
         <PaginationItem>
           <PaginationNext
             onClick={handleNext}
+            className={
+              currentPage === totalPages
+                ? 'pointer-events-none opacity-50'
+                : 'cursor-pointer'
+            }
+          />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLast
+            onClick={handleLastPage}
             className={
               currentPage === totalPages
                 ? 'pointer-events-none opacity-50'

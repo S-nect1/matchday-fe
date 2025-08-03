@@ -5,5 +5,5 @@ export { FilterModal } from './filter-modal';
 export { DatePicker } from './date-picker';
 export { CustomTooltip } from './tooltip';
 export { CustomSelect } from './select';
-export { PlaceSearchModal } from './place-search-modal';
+export { PlaceSearchModal, type PlaceSearchResult } from './place-search-modal';
 export { LocationMap } from './location-map';

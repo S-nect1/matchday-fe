@@ -1,1 +1,1 @@
-export { PlaceSearchModal } from './ui';
+export { PlaceSearchModal, type PlaceSearchResult } from './ui';
