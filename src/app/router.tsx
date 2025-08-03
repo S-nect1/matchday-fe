@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { ApplyToMatchPage, CreateMatchPage, HomePage } from '@/pages';
-import { MainLayout } from './layouts';
 import { HomeLayout } from './layouts';
 
 export const router = createBrowserRouter([
@@ -11,7 +10,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <MainLayout />,
+    element: <HomeLayout />,
     children: [
       {
         path: '/create-match',

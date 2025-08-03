@@ -21,7 +21,7 @@ export const FilterMatchesType = ({ matchType, onUpdateMatchType }: Props) => {
           key={key}
           variant="select"
           size="lg"
-          className="flex-1"
+          className="flex-1 border-2"
           style={{
             borderColor: matchType[key] ? '#0043FF' : '',
           }}
