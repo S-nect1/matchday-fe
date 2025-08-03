@@ -1,5 +1,6 @@
-export * from './icon';
-export * from './logo';
+export * from './Icon';
+export * from './Logo';
+export * from './logos';
 
 export * from './badge';
 export * from './button';
@@ -8,3 +9,12 @@ export * from './select';
 export * from './pagination';
 export * from './dialog';
 export * from './input';
+export * from './avatar';
+export * from './calendar';
+export * from './dropdown-menu';
+export * from './form';
+export * from './label';
+export * from './navigation-menu';
+export * from './separator';
+export * from './tabs';
+export * from './tooltip';
