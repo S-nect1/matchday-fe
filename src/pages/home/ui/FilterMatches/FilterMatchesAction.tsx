@@ -10,7 +10,8 @@ export const FilterMatchesAction = ({ onReset, onApplyFilter }: Props) => {
     <div className="mt-[15px] flex w-full flex-row gap-[15px]">
       <Button
         size="lg"
-        className="flex-1 border border-[#eee] bg-white text-[16px] leading-6 font-bold text-[#000] hover:bg-[#4D7FFF] hover:text-white"
+        variant="hoverHighlight"
+        className="flex-1"
         onClick={onReset}
       >
         초기화

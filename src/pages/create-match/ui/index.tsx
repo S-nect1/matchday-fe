@@ -187,7 +187,8 @@ export const CreateMatchPage = () => {
                   value={zipCode}
                 />
                 <Button
-                  className="h-[45px] w-[110px] rounded-[5px] bg-[#eee] font-medium text-[#757575] hover:bg-[#e0e0e0]"
+                  variant="hoverHighlight"
+                  className="h-[45px] w-[110px]"
                   onClick={handlePlaceSearchOpen}
                 >
                   검색
@@ -270,7 +271,8 @@ export const CreateMatchPage = () => {
           <div className="flex w-full flex-row justify-end gap-[15px]">
             <Button
               size="lg"
-              className="w-60 border border-[#eee] bg-white text-[16px] leading-6 font-bold text-[#000] hover:bg-[#4D7FFF] hover:text-white"
+              variant="hoverHighlight"
+              className="w-60"
               onClick={() => navigate(-1)}
             >
               돌아가기
