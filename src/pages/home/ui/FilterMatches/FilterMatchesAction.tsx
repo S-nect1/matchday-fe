@@ -18,7 +18,7 @@ export const FilterMatchesAction = ({ onReset, onApplyFilter }: Props) => {
       </Button>
       <Button
         size="lg"
-        className="flex-1 bg-[#0043FF] text-[16px] leading-6 font-bold hover:bg-[#0037cc]"
+        className="flex-1 bg-[#0043FF] text-[16px] leading-6 font-bold text-white hover:bg-[#0037cc]"
         onClick={onApplyFilter}
       >
         필터적용

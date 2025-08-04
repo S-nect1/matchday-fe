@@ -280,7 +280,7 @@ export const CreateMatchPage = () => {
             </Button>
             <Button
               size="lg"
-              className="w-60 bg-[#0043FF] text-[16px] leading-6 font-bold hover:bg-[#0037cc]"
+              className="w-60 bg-[#0043FF] text-[16px] leading-6 font-bold text-white hover:bg-[#0037cc]"
               onClick={() => console.log('매치 등록하기. 서버 요청 필요')}
             >
               매치 등록하기
