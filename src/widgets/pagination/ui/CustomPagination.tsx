@@ -109,7 +109,7 @@ export const CustomPagination = ({
             onClick={handleFirstPage}
             className={
               currentPage === 1
-                ? 'pointer-events-none opacity-50'
+                ? 'pointer-events-none opacity-10'
                 : 'cursor-pointer'
             }
           />
@@ -119,7 +119,7 @@ export const CustomPagination = ({
             onClick={handlePrevious}
             className={
               currentPage === 1
-                ? 'pointer-events-none opacity-50'
+                ? 'pointer-events-none opacity-10'
                 : 'cursor-pointer'
             }
           />
@@ -155,7 +155,7 @@ export const CustomPagination = ({
             onClick={handleNext}
             className={
               currentPage === totalPages
-                ? 'pointer-events-none opacity-50'
+                ? 'pointer-events-none opacity-10'
                 : 'cursor-pointer'
             }
           />
@@ -165,7 +165,7 @@ export const CustomPagination = ({
             onClick={handleLastPage}
             className={
               currentPage === totalPages
-                ? 'pointer-events-none opacity-50'
+                ? 'pointer-events-none opacity-10'
                 : 'cursor-pointer'
             }
           />
