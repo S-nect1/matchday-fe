@@ -266,3 +266,22 @@ export const location: Region[] = [
   { location1: '제주특별자치도', location2: '제주시' },
   { location1: '제주특별자치도', location2: '서귀포시' },
 ];
+
+// 시/도 목록 추출 (중복 제거)
+export const getProvinces = (): string[] => {
+  const provinces = location.map(item => item.location1);
+  return [...new Set(provinces)];
+};
+
+// 특정 시/도의 구/군 목록 추출
+export const getCitiesByProvince = (province: string): string[] => {
+  return location
+    .filter(item => item.location1 === province)
+    .map(item => item.location2);
+};
+
+// 시/도와 구/군으로 전체 지역명 생성
+export const getFullLocationName = (province: string, city: string): string => {
+  if (!province || !city) return '';
+  return `${province} ${city}`;
+};

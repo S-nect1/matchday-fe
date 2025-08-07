@@ -14,3 +14,5 @@ export * from './label';
 export * from './navigation-menu';
 export * from './separator';
 export * from './tabs';
+export * from './popover';
+export * from './color-picker';
