@@ -1,6 +1,15 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* Pretendard Variable 폰트 정의 */
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+
 @custom-variant dark (.dark &);
 
 @theme inline {
@@ -349,4 +358,13 @@
   [hidden] {
     display: none;
   }
+}
+
+html,
+body {
+  background-color: #f8f8f8;
+}
+
+body {
+  font-family: 'Pretendard Variable';
 }

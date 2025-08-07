@@ -1,10 +1,15 @@
+export * from './Icon';
 export * from './Logo';
 export * from './logos';
+export { CustomColorPicker } from './uniform-color-picker';
+export { SelectButton } from './select-button';
 
+export * from './badge';
 export * from './button';
 export * from './card';
 export * from './select';
 export * from './pagination';
+export * from './dialog';
 export * from './input';
 export * from './avatar';
 export * from './calendar';
@@ -14,3 +19,5 @@ export * from './label';
 export * from './navigation-menu';
 export * from './separator';
 export * from './tabs';
+export * from './tooltip';
+export * from './color-picker';
