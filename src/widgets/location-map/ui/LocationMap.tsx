@@ -6,6 +6,7 @@ interface LocationMapProps {
   width?: string;
   height?: string;
   level?: number;
+  // onClick 함수는 부모 컴포넌트에서 useCallback으로 래핑하여 전달해주세요
   onClick?: () => void;
 }
 
@@ -21,7 +22,7 @@ export const LocationMap = ({
   const markerRef = useRef<any>(null);
   const infowindowRef = useRef<any>(null);
 
-  // 기본 지도 생성 (처음 로드 시)
+  // 기본 지도 생성 (컴포넌트 마운트 시 한 번만)
   useEffect(() => {
     if (!mapContainer.current) return;
 
@@ -51,19 +52,37 @@ export const LocationMap = ({
         mapOption
       );
       setMap(kakaoMap);
-
-      // 지도 클릭 이벤트 추가
-      if (onClick) {
-        (window as any).kakao.maps.event.addListener(
-          kakaoMap,
-          'click',
-          onClick
-        );
-      }
     } catch (error) {
       console.error('지도 생성 중 오류:', error);
     }
-  }, [level, onClick]);
+  }, [level]); // level만 dependency로 유지
+
+  // 지도 클릭 이벤트 리스너 관리 (별도 useEffect)
+  useEffect(() => {
+    if (!map || !onClick) return;
+
+    try {
+      // 클릭 이벤트 리스너 추가
+      const clickListener = (window as any).kakao.maps.event.addListener(
+        map,
+        'click',
+        onClick
+      );
+
+      // cleanup 함수로 이벤트 리스너 제거
+      return () => {
+        if (clickListener && (window as any).kakao?.maps?.event) {
+          (window as any).kakao.maps.event.removeListener(
+            map,
+            'click',
+            clickListener
+          );
+        }
+      };
+    } catch (error) {
+      console.error('지도 클릭 이벤트 설정 중 오류:', error);
+    }
+  }, [map, onClick]);
 
   // 선택된 장소가 변경될 때 지도 업데이트
   useEffect(() => {

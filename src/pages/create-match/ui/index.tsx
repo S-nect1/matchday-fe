@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -31,8 +31,9 @@ export const CreateMatchPage = () => {
     '축구'
   );
   const [selectedTeamSize, setSelectedTeamSize] = useState<11 | 7>(11);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedStartTime, setSelectedStartTime] = useState<string>('');
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const [selectedEndTime, setSelectedEndTime] = useState<string>('');
   const [rentalFee, setRentalFee] = useState<number | undefined>(undefined);
   const [selectedBank, setSelectedBank] = useState('');
@@ -92,12 +93,12 @@ export const CreateMatchPage = () => {
   };
 
   // 지도 클릭 시 카카오맵 웹으로 연결
-  const handleMapClick = () => {
+  const handleMapClick = useCallback(() => {
     if (selectedPlace) {
       const kakaoMapUrl = `https://map.kakao.com/link/map/${encodeURIComponent(selectedPlace.place_name)},${selectedPlace.y},${selectedPlace.x}`;
       window.open(kakaoMapUrl, '_blank');
     }
-  };
+  }, [selectedPlace]);
 
   return (
     <>
@@ -152,7 +153,10 @@ export const CreateMatchPage = () => {
               경기일시<span className="text-[#ff4e3e]">*</span>
             </h3>
             <div className="flex w-210 flex-row gap-[15px]">
-              <DatePicker date={selectedDate} onChange={setSelectedDate} />
+              <DatePicker
+                date={selectedStartDate}
+                onChange={setSelectedStartDate}
+              />
               <CustomSelect
                 value={selectedStartTime}
                 placeholder="경기 시간을 선택해 주세요."
@@ -166,7 +170,10 @@ export const CreateMatchPage = () => {
               종료일시<span className="text-[#ff4e3e]">*</span>
             </h3>
             <div className="flex w-210 flex-row gap-[15px]">
-              <DatePicker date={selectedDate} onChange={setSelectedDate} />
+              <DatePicker
+                date={selectedEndDate}
+                onChange={setSelectedEndDate}
+              />
               <CustomSelect
                 value={selectedEndTime}
                 placeholder="종료 시간을 선택해 주세요."

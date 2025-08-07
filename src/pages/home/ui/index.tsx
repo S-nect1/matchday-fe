@@ -78,9 +78,9 @@ export const HomePage = () => {
       </div>
       {isGrid ? (
         <div className="grid grid-flow-row grid-cols-3 gap-[30px]">
-          {currentData.map((match, index) => (
+          {currentData.map(match => (
             <GridViewCard
-              key={index}
+              key={match.id}
               location={match.location}
               date={match.date}
               title={match.title}
@@ -94,9 +94,9 @@ export const HomePage = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-[30px]">
-          {currentData.map((match, index) => (
+          {currentData.map(match => (
             <ListViewCard
-              key={index}
+              key={match.id}
               location={match.location}
               date={match.date}
               title={match.title}

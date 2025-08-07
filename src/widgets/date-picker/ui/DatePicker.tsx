@@ -55,7 +55,7 @@ export const DatePicker = ({
           id="date"
           value={value}
           placeholder={placeholder}
-          className="bg-background h-[45px] px-[15px] py-2 text-[16px]"
+          className="h-[45px] bg-white px-[15px] py-2 text-[16px]"
           onChange={e => {
             const input = e.target.value;
             setValue(input);
@@ -78,10 +78,11 @@ export const DatePicker = ({
           <PopoverTrigger asChild>
             <Button
               id="date-picker"
+              size="icon"
               variant="ghost"
               className="absolute top-1/2 right-2 size-6 -translate-y-1/2"
             >
-              <CalendarIcon className="size-3.5" />
+              <CalendarIcon className="size-6 text-[#757575]" />
               <span className="sr-only">Select date</span>
             </Button>
           </PopoverTrigger>

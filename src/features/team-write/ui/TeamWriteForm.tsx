@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styles from './TeamWriteForm.module.scss';
 import { InputField } from './InputField';
-import { AREA_OPTIONS, DISTRICT_OPTIONS } from '../../../shared/constant/areas';
-import { BANK_OPTIONS } from '../../../shared/constant/banks';
-import type { Option } from '../../../shared/constant/areas';
+import { AREA_OPTIONS, DISTRICT_OPTIONS } from '@/shared/constant/areas';
+import { BANK_OPTIONS } from '@/shared/constant/banks';
+import type { Option } from '@/shared/constant/areas';
 
 export const TeamWriteForm = () => {
   const [formData, setFormData] = useState({

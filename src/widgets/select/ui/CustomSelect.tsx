@@ -25,7 +25,7 @@ export const CustomSelect = ({
     <div className="flex w-full flex-col gap-[5px]">
       {label && <h3 className="text-lg leading-[27px] font-bold">{label}</h3>}
       <Select onValueChange={onChange} value={value}>
-        <SelectTrigger className="flex w-full flex-1 items-center px-[15px] py-3 shadow-none">
+        <SelectTrigger className="flex w-full flex-1 items-center bg-white px-[15px] py-3 shadow-none">
           <SelectValue placeholder={placeholder}>
             {value || placeholder}
           </SelectValue>
