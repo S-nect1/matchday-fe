@@ -4,3 +4,4 @@ export { SignupPage } from './signup';
 export { SignupFormPage } from './signup-form';
 export { SignupAdditionalInfoPage } from './signup-additional-info-page';
 export { TeamForm } from './team-form';
+export { TeamJoinPage } from './team-join';
