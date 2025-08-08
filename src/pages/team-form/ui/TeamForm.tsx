@@ -186,7 +186,7 @@ export const TeamForm = () => {
             error={errors.ceoAccount}
           />
         </FormCardContent>
-        <div className="submit-button-wrapper flex w-full flex-col items-end gap-2">
+        <div className="submit-button-wrapper mt-[50px] flex w-full flex-col items-end gap-2">
           {!isFormComplete() && (
             <p className="text-sm text-gray-500">
               모든 필수 항목을 입력해주세요
