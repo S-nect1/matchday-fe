@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import type { PlaceSearchResult } from '@/widgets/place-search-modal/ui/PlaceSearchModal';
+import type { PlaceSearchResult } from '@/widgets';
+import { MARKER_IMAGE_URL, MARKER_IMAGE_SIZE } from '@/shared';
 
 interface LocationMapProps {
   selectedPlace: PlaceSearchResult | null;
@@ -109,8 +110,8 @@ export const LocationMap = ({
 
       // MatchDay 마커 아이콘 설정
       const markerIcon = new (window as any).kakao.maps.MarkerImage(
-        '/images/marker.png',
-        new (window as any).kakao.maps.Size(36, 36)
+        MARKER_IMAGE_URL,
+        MARKER_IMAGE_SIZE
       );
 
       // 새로운 마커 생성

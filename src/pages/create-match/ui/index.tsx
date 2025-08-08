@@ -250,27 +250,20 @@ export const CreateMatchPage = () => {
                       <div className="flex flex-row gap-[5px]">
                         <LocationMarkerIcon />
                         <span className="text-lg font-bold">
-                          {selectedPlace?.place_name}
+                          {selectedPlace.place_name}
                         </span>
                       </div>
                       <div
                         className="flex cursor-pointer flex-row gap-[5px]"
                         onClick={() => setIsLocationMapOpen(!isLocationMapOpen)}
                       >
+                        <span className="text-[16px] font-medium text-[#757575]">
+                          {isLocationMapOpen ? '접기' : '위치 자세히보기'}
+                        </span>
                         {isLocationMapOpen ? (
-                          <>
-                            <span className="text-[16px] font-medium text-[#757575]">
-                              접기
-                            </span>
-                            <ArrowUpForNotDetail />
-                          </>
+                          <ArrowUpForNotDetail />
                         ) : (
-                          <>
-                            <span className="text-[16px] font-medium text-[#757575]">
-                              위치 자세히보기
-                            </span>
-                            <ArrowDownForDetail />
-                          </>
+                          <ArrowDownForDetail />
                         )}
                       </div>
                     </div>
