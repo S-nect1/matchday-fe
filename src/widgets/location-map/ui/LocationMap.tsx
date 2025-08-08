@@ -12,8 +12,8 @@ interface LocationMapProps {
 
 export const LocationMap = ({
   selectedPlace,
-  width = '840px',
-  height = '600px',
+  width = '100%',
+  height = '250px',
   level = 3,
   onClick,
 }: LocationMapProps) => {
