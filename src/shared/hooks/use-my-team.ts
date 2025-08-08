@@ -39,7 +39,7 @@ export const useMyTeam = (): UseMyTeamState => {
       try {
         // TODO: 실제 API로 교체: GET /api/me/team
         // 데모용 가짜 데이터
-        const mockIsMember = false; // 가입 여부 (임시)
+        const mockIsMember = true; // 가입 여부 (임시)
 
         if (!mockIsMember) {
           if (!isMounted) return;

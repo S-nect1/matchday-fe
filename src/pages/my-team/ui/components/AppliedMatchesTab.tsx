@@ -7,7 +7,7 @@ interface MatchApplication {
   teamInfo: string;
 }
 
-export const MatchesTab: React.FC = () => {
+export const AppliedMatchesTab: React.FC = () => {
   const applications: MatchApplication[] = [
     {
       id: 1,
@@ -43,7 +43,7 @@ export const MatchesTab: React.FC = () => {
       <div>
         {/* Header with Navigation */}
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">등록한 매치</h3>
+          <h3 className="text-lg font-semibold">신청한 매치</h3>
           <div className="flex gap-2">
             <button className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 hover:bg-gray-300">
               <svg
@@ -248,10 +248,10 @@ export const MatchesTab: React.FC = () => {
         </div>
       </div>
 
-      {/* Received Applications Section */}
+      {/* Applied Applications Section */}
       <div>
         <div className="mb-4">
-          <h3 className="text-lg font-semibold">받은 매치 신청</h3>
+          <h3 className="text-lg font-semibold">신청한 매치 신청</h3>
           <p className="mt-1 text-sm text-gray-600">대기중인 신청 3팀</p>
         </div>
 

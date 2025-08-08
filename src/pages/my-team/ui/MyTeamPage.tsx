@@ -7,11 +7,21 @@ import { TeamInfoTab } from './components/TeamInfoTab';
 import { CalendarTab } from './components/CalendarTab';
 import { ScheduleTab } from './components/ScheduleTab';
 import { MatchesTab } from './components/MatchesTab';
+import { MemberManagementTab } from './components/MemberManagementTab';
+import { AppliedMatchesTab } from './components/AppliedMatchesTab';
+import { MatchResultsTab } from './components/MatchResultsTab';
 
 export const MyTeamPage = () => {
   const { isMember, team, members, isLoading, error } = useMyTeam();
   const [activeTab, setActiveTab] = React.useState<
-    'info' | 'calendar' | 'schedule' | 'matches'
+    | 'info'
+    | 'calendar'
+    | 'schedule'
+    | 'matches'
+    | 'members'
+    | 'registered'
+    | 'applied'
+    | 'results'
   >('info');
 
   const ProgressCircle: React.FC<{
@@ -198,7 +208,7 @@ export const MyTeamPage = () => {
           {activeTab === 'calendar' && (
             <CalendarTab ProgressCircle={ProgressCircle} />
           )}
-          {activeTab === 'schedule' && <ScheduleTab />}
+          {activeTab === 'schedule' && <ScheduleTab isTeamMember={isMember} />}
           {activeTab === 'matches' && <MatchesTab />}
         </div>
       </div>
@@ -206,55 +216,126 @@ export const MyTeamPage = () => {
   }
 
   return (
-    <div className="container mx-auto my-16">
-      <div className="rounded-md border bg-white p-8 shadow">
-        <div className="mb-4 flex items-center justify-between">
+    <div className="container mx-auto my-10">
+      {/* Banner */}
+      <div
+        className="relative overflow-hidden rounded-xl after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:to-black/100 after:content-['']"
+        style={{
+          backgroundImage: `url(${bannerImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 flex items-start justify-between p-6 sm:p-8 lg:p-10">
           <div>
-            <h1 className="text-2xl font-bold">{team?.teamName}</h1>
-            <p className="text-gray-600">{team?.teamDescription}</p>
-            <div className="mt-2 text-sm text-gray-500">
-              <span>{team?.teamType}</span>
-              <span className="mx-2">•</span>
-              <span>
-                {team?.location.province} {team?.location.city}
+            <h1 className="text-2xl font-extrabold text-white sm:text-3xl">
+              {team?.teamName || '팀 이름입니다.'}
+            </h1>
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-blue-500 px-3 py-1 text-xs font-semibold text-white">
+                M1
+              </span>
+              <span className="rounded-full bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
+                20대
+              </span>
+              <span className="rounded-full bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
+                서울특별시 강남구
+              </span>
+              <span className="rounded-full bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
+                소모임 <span className="text-yellow-300">★★★★★</span>
               </span>
             </div>
+            <p className="mt-4 max-w-3xl text-sm leading-6 text-white/95">
+              {team?.teamDescription ||
+                '팀 설명입니다. 팀 설명입니다. 팀 설명입니다. 팀 설명입니다. 팀 설명입니다. 팀 설명입니다. 팀 설명입니다.'}
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">상의 유니폼</span>
-            <div
-              className="h-6 w-6 rounded-full border"
-              style={{ backgroundColor: team?.uniformColor }}
-            />
+          <div className="flex gap-2">
+            <Button className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+              새로운 매치 등록하기
+            </Button>
+            <Button className="rounded-md bg-white px-4 py-2 text-gray-700 hover:bg-gray-100">
+              팀 프로필 편집
+            </Button>
           </div>
+        </div>
+      </div>
+
+      {/* Tabs and Content */}
+      <div className="mt-8 rounded-xl border bg-white p-4 shadow-sm sm:p-6">
+        <div className="grid h-12 grid-cols-6 border-b text-sm">
+          <button
+            className={`flex h-full w-full items-center justify-center border-b-2 font-semibold ${
+              activeTab === 'info'
+                ? 'border-blue-500 text-blue-500'
+                : 'border-transparent text-gray-500'
+            }`}
+            onClick={() => setActiveTab('info')}
+          >
+            팀 정보 · 리뷰
+          </button>
+          <button
+            className={`flex h-full w-full items-center justify-center border-b-2 font-semibold ${
+              activeTab === 'schedule'
+                ? 'border-blue-500 text-blue-500'
+                : 'border-transparent text-gray-500'
+            }`}
+            onClick={() => setActiveTab('schedule')}
+          >
+            일정
+          </button>
+          <button
+            className={`flex h-full w-full items-center justify-center border-b-2 font-semibold ${
+              activeTab === 'members'
+                ? 'border-blue-500 text-blue-500'
+                : 'border-transparent text-gray-500'
+            }`}
+            onClick={() => setActiveTab('members')}
+          >
+            회원관리
+          </button>
+          <button
+            className={`flex h-full w-full items-center justify-center border-b-2 font-semibold ${
+              activeTab === 'registered'
+                ? 'border-blue-500 text-blue-500'
+                : 'border-transparent text-gray-500'
+            }`}
+            onClick={() => setActiveTab('registered')}
+          >
+            등록한 매치
+          </button>
+          <button
+            className={`flex h-full w-full items-center justify-center border-b-2 font-semibold ${
+              activeTab === 'applied'
+                ? 'border-blue-500 text-blue-500'
+                : 'border-transparent text-gray-500'
+            }`}
+            onClick={() => setActiveTab('applied')}
+          >
+            신청한 매치
+          </button>
+          <button
+            className={`flex h-full w-full items-center justify-center border-b-2 font-semibold ${
+              activeTab === 'results'
+                ? 'border-blue-500 text-blue-500'
+                : 'border-transparent text-gray-500'
+            }`}
+            onClick={() => setActiveTab('results')}
+          >
+            최근 경기 결과
+          </button>
         </div>
 
-        <div className="mt-6">
-          <h2 className="mb-3 text-lg font-semibold">팀원</h2>
-          <ul className="divide-y">
-            {members.map(m => (
-              <li key={m.id} className="flex items-center justify-between py-3">
-                <div className="flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-full bg-gray-200" />
-                  <div>
-                    <div className="font-medium">{m.name}</div>
-                    <div className="text-xs text-gray-500">{m.role}</div>
-                  </div>
-                </div>
-                <Button size="sm" variant="outline">
-                  프로필 보기
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="mt-8 flex gap-3">
-          <Button className="bg-[rgb(67,0,255)] text-white">
-            팀 일정 보기
-          </Button>
-          <Button variant="outline">공지사항</Button>
-        </div>
+        {/* Tab Content */}
+        {activeTab === 'info' && (
+          <TeamInfoTab ProgressCircle={ProgressCircle} />
+        )}
+        {activeTab === 'schedule' && <ScheduleTab isTeamMember={isMember} />}
+        {activeTab === 'members' && <MemberManagementTab />}
+        {activeTab === 'registered' && <MatchesTab />}
+        {activeTab === 'applied' && <AppliedMatchesTab />}
+        {activeTab === 'results' && <MatchResultsTab />}
       </div>
     </div>
   );
