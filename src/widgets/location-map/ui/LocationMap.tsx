@@ -155,8 +155,6 @@ export const LocationMap = ({
       style={{
         width,
         height,
-        borderRadius: '8px',
-        border: '1px solid #e0e0e0',
         cursor: onClick ? 'pointer' : 'default',
       }}
       className="overflow-hidden"
