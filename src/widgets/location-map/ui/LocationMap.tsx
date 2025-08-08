@@ -107,9 +107,16 @@ export const LocationMap = ({
         markerRef.current.setMap(null);
       }
 
+      // MatchDay 마커 아이콘 설정
+      const markerIcon = new (window as any).kakao.maps.MarkerImage(
+        '/images/marker.png',
+        new (window as any).kakao.maps.Size(36, 36)
+      );
+
       // 새로운 마커 생성
       const newMarker = new (window as any).kakao.maps.Marker({
         position: newPosition,
+        image: markerIcon,
       });
 
       newMarker.setMap(map);
