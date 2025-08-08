@@ -20,6 +20,9 @@ import {
   BANK_LIST,
   CustomColorPicker,
   SelectButton,
+  LocationMarkerIcon,
+  ArrowDownForDetail,
+  ArrowUpForNotDetail,
 } from '@/shared';
 
 import { HasBallCheck } from './HasBallCheck';
@@ -50,8 +53,8 @@ export const CreateMatchPage = () => {
     null
   );
   const [zipCode, setZipCode] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
   const [detailAddress, setDetailAddress] = useState<string>('');
+  const [isLocationMapOpen, setIsLocationMapOpen] = useState<boolean>(false);
 
   // 장소 검색 관련 핸들러
   const handlePlaceSearchOpen = () => {
@@ -64,7 +67,6 @@ export const CreateMatchPage = () => {
 
   const handlePlaceSelect = (place: PlaceSearchResult) => {
     setSelectedPlace(place);
-    setAddress(place.road_address_name || place.address_name);
 
     // 좌표를 주소로 변환하여 우편번호 추출
     const geocoder = new (window as any).kakao.maps.services.Geocoder();
@@ -228,7 +230,10 @@ export const CreateMatchPage = () => {
                   className="h-[45px] w-full bg-[#FAFAFA] placeholder:text-[#BDBDBD]"
                   disabled={true}
                   placeholder="주소"
-                  value={address}
+                  value={
+                    selectedPlace?.road_address_name ||
+                    selectedPlace?.address_name
+                  }
                   aria-label="주소"
                 />
                 <Input
@@ -239,13 +244,44 @@ export const CreateMatchPage = () => {
                   onChange={e => setDetailAddress(e.target.value)}
                   aria-label="상세주소"
                 />
-                <LocationMap
-                  selectedPlace={selectedPlace}
-                  width="840px"
-                  height="600px"
-                  level={3}
-                  onClick={handleMapClick}
-                />
+                {selectedPlace && (
+                  <div className="flex w-full flex-col gap-[10px] rounded-[5px] border border-[#E0E0E0] p-[15px]">
+                    <div className="flex flex-row items-center justify-between">
+                      <div className="flex flex-row gap-[5px]">
+                        <LocationMarkerIcon />
+                        <span className="text-lg font-bold">
+                          {selectedPlace.place_name}
+                        </span>
+                      </div>
+                      <div
+                        className="flex cursor-pointer flex-row gap-[5px]"
+                        onClick={() => setIsLocationMapOpen(!isLocationMapOpen)}
+                      >
+                        <span className="text-[16px] font-medium text-[#757575]">
+                          {isLocationMapOpen ? '접기' : '위치 자세히보기'}
+                        </span>
+                        {isLocationMapOpen ? (
+                          <ArrowUpForNotDetail />
+                        ) : (
+                          <ArrowDownForDetail />
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-[16px] text-[#757575]">
+                      {selectedPlace.road_address_name ||
+                        selectedPlace.address_name}
+                    </p>
+                    {isLocationMapOpen && (
+                      <LocationMap
+                        selectedPlace={selectedPlace}
+                        width="100%"
+                        height="250px"
+                        level={3}
+                        onClick={handleMapClick}
+                      />
+                    )}
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex flex-row items-center gap-[30px]">

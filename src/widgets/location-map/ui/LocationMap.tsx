@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import type { PlaceSearchResult } from '@/widgets/place-search-modal/ui/PlaceSearchModal';
+import type { PlaceSearchResult } from '@/widgets';
+import { MARKER_IMAGE_URL, MARKER_IMAGE_SIZE } from '@/shared';
 
 interface LocationMapProps {
   selectedPlace: PlaceSearchResult | null;
@@ -12,8 +13,8 @@ interface LocationMapProps {
 
 export const LocationMap = ({
   selectedPlace,
-  width = '840px',
-  height = '600px',
+  width = '100%',
+  height = '250px',
   level = 3,
   onClick,
 }: LocationMapProps) => {
@@ -107,9 +108,16 @@ export const LocationMap = ({
         markerRef.current.setMap(null);
       }
 
+      // MatchDay 마커 아이콘 설정
+      const markerIcon = new (window as any).kakao.maps.MarkerImage(
+        MARKER_IMAGE_URL,
+        MARKER_IMAGE_SIZE
+      );
+
       // 새로운 마커 생성
       const newMarker = new (window as any).kakao.maps.Marker({
         position: newPosition,
+        image: markerIcon,
       });
 
       newMarker.setMap(map);
@@ -148,8 +156,6 @@ export const LocationMap = ({
       style={{
         width,
         height,
-        borderRadius: '8px',
-        border: '1px solid #e0e0e0',
         cursor: onClick ? 'pointer' : 'default',
       }}
       className="overflow-hidden"
