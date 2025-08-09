@@ -10,6 +10,7 @@ import {
   SignupFormPage,
   TeamForm,
   TeamJoinPage,
+  TeamsPage,
 } from '@/pages';
 import { MyTeamPage } from '@/pages/my-team';
 
@@ -27,10 +28,7 @@ export const router = createBrowserRouter([
         path: 'matches',
         element: <div className="p-8 text-center">매치 페이지 (구현 예정)</div>,
       },
-      {
-        path: 'teams',
-        element: <div className="p-8 text-center">팀 페이지 (구현 예정)</div>,
-      },
+      { path: 'teams', element: <TeamsPage /> },
       { path: 'my-team', element: <MyTeamPage /> },
       { path: 'team-form', element: <TeamForm /> },
       { path: 'team-join', element: <TeamJoinPage /> },
