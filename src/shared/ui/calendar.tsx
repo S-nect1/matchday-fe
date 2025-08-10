@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -6,19 +8,18 @@ import {
 import * as React from 'react';
 import { DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker';
 import 'react-day-picker/style.css';
-import { ko } from 'date-fns/locale';
-import { format } from 'date-fns';
 
 import { buttonVariants } from '@/shared/lib/button-variants';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
+
 import { Card } from './card';
 
 function Calendar({
   rootClassName,
   className,
   classNames,
-  showOutsideDays = true,
+  showOutsideDays = false,
   captionLayout = 'label',
   buttonVariant = 'ghost',
   formatters,
@@ -29,6 +30,8 @@ function Calendar({
   rootClassName?: string;
 }) {
   const defaultClassNames = getDefaultClassNames();
+
+  console.log('defaultClassNames.selected: ', defaultClassNames.selected);
 
   return (
     <Card className={cn('h-fit w-fit py-0', rootClassName)}>
@@ -61,12 +64,12 @@ function Calendar({
           ),
           button_previous: cn(
             buttonVariants({ variant: buttonVariant }),
-            'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none',
+            'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none !justify-start',
             defaultClassNames.button_previous
           ),
           button_next: cn(
             buttonVariants({ variant: buttonVariant }),
-            'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none',
+            'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none !justify-end',
             defaultClassNames.button_next
           ),
           month_caption: cn(
@@ -98,7 +101,8 @@ function Calendar({
             'text-muted-foreground rounded-md flex-1 font-normal text-[0.8rem] select-none',
             defaultClassNames.weekday
           ),
-          week: cn('flex w-full mt-2', defaultClassNames.week),
+          selected: classNames?.selected,
+          week: cn('flex w-full mt-2 gap-4', defaultClassNames.week),
           week_number_header: cn(
             'select-none w-(--cell-size)',
             defaultClassNames.week_number_header
@@ -108,21 +112,19 @@ function Calendar({
             defaultClassNames.week_number
           ),
           day: cn(
-            'relative w-full h-full p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none',
-            'text-gray-500',
-            defaultClassNames.day
+            'relative w-full h-full p-0 text-center group/day aspect-square select-none',
+            'text-gray-500'
+            // defaultClassNames.day,
           ),
-          day_button: cn('', defaultClassNames.day_button),
+          chevron: '',
+          day_button: '',
           range_start: cn(
             'rounded-l-md bg-accent',
             defaultClassNames.range_start
           ),
           range_middle: cn('rounded-none', defaultClassNames.range_middle),
           range_end: cn('rounded-r-md bg-accent', defaultClassNames.range_end),
-          today: cn(
-            'bg-accent text-accent-foreground rounded-md data-[selected=true]:rounded-none',
-            defaultClassNames.today
-          ),
+          today: '',
           outside: cn(
             'text-muted-foreground aria-selected:text-muted-foreground',
             defaultClassNames.outside
@@ -157,6 +159,7 @@ function Calendar({
             if (orientation === 'left') {
               return (
                 <ChevronLeftIcon
+                  stroke="var(--color-gray-500)"
                   className={cn('size-4', className)}
                   {...props}
                 />
@@ -166,6 +169,7 @@ function Calendar({
             if (orientation === 'right') {
               return (
                 <ChevronRightIcon
+                  stroke="var(--color-gray-500)"
                   className={cn('size-4', className)}
                   {...props}
                 />
@@ -200,8 +204,6 @@ function CalendarDayButton({
   modifiers,
   ...props
 }: React.ComponentProps<typeof DayButton>) {
-  const defaultClassNames = getDefaultClassNames();
-
   const ref = React.useRef<HTMLButtonElement>(null);
   React.useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
@@ -210,7 +212,7 @@ function CalendarDayButton({
   return (
     <Button
       ref={ref}
-      variant="ghost"
+      variant="none"
       size="icon"
       data-day={day.date.toLocaleDateString()}
       data-selected-single={
@@ -220,12 +222,14 @@ function CalendarDayButton({
         !modifiers.range_middle
       }
       data-selected={modifiers.selected}
-      data-range-start={modifiers.range_start}
-      data-range-end={modifiers.range_end}
-      data-range-middle={modifiers.range_middle}
+      // data-range-start={modifiers.range_start}
+      // data-range-end={modifiers.range_end}
+      // data-range-middle={modifiers.range_middle}
       className={cn(
-        'data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground dark:hover:text-accent-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal data-[range-end=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-start=true]:rounded-l-md [&>span]:text-xs [&>span]:opacity-70',
-        defaultClassNames.day,
+        'data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground dark:hover:text-accent-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal',
+        // defaultClassNames.day,
+        'rounded-full text-gray-400',
+        'data-[selected=true]:text-primary-foreground data-[selected=true]:bg-primary',
         className
       )}
       {...props}
