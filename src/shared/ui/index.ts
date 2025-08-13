@@ -3,6 +3,7 @@ export * from './Logo';
 export * from './logos';
 export { CustomColorPicker } from './uniform-color-picker';
 export { SelectButton } from './select-button';
+export { TopImageBanner } from './page-banner';
 
 export * from './badge';
 export * from './button';
