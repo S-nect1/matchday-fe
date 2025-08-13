@@ -11,6 +11,7 @@ import {
   TeamForm,
   TeamJoinPage,
 } from '@/pages';
+import { MyTeamPage } from '@/pages/my-team';
 
 import { HomeLayout, MainLayout } from './layouts';
 
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
         path: 'teams',
         element: <div className="p-8 text-center">팀 페이지 (구현 예정)</div>,
       },
+      { path: 'my-team', element: <MyTeamPage /> },
       { path: 'team-form', element: <TeamForm /> },
       { path: 'team-join', element: <TeamJoinPage /> },
       {
