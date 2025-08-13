@@ -1,10 +1,5 @@
-import {
-  Card,
-  CardContent,
-  Badge,
-  CalendarIcon,
-  MapPinIcon,
-} from '@/shared/ui';
+import { Badge, CalendarIcon, Card, CardContent, MapPinIcon } from '@/shared';
+
 import { dateFormatter } from './date-formatter';
 
 type Props = {

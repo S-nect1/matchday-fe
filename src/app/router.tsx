@@ -1,13 +1,15 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+
 import {
   ApplyToMatchPage,
   CreateMatchPage,
   HomePage,
   LoginPage,
-  SignupPage,
   SignupAdditionalInfoPage,
   SignupFormPage,
+  SignupPage,
 } from '@/pages';
+
 import { HomeLayout, MainLayout } from './layouts';
 
 export const router = createBrowserRouter([

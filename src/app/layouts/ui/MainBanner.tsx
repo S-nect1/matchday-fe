@@ -1,5 +1,5 @@
 import { mainBannerImg } from '@/entities';
-import { LogoWhite } from '@/shared/ui';
+import { LogoWhite } from '@/shared';
 
 export const MainBanner = () => {
   return (
