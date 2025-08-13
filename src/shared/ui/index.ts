@@ -21,3 +21,4 @@ export * from './separator';
 export * from './tabs';
 export * from './tooltip';
 export * from './color-picker';
+export * from './checkbox';
