@@ -70,10 +70,18 @@ function SelectContent({
         <SelectScrollUpButton />
         <SelectPrimitive.Viewport
           className={cn(
-            'p-1',
+            'overflow-y-auto p-1',
             position === 'popper' &&
               'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1'
           )}
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            boxSizing: 'border-box',
+            overflowX: 'hidden',
+            paddingRight: 0,
+            marginRight: 0,
+          }}
         >
           {children}
         </SelectPrimitive.Viewport>
