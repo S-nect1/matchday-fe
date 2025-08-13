@@ -1,5 +1,5 @@
-import { Logo } from '@/shared/ui/Logo';
 import { Link } from 'react-router-dom';
+import { Logo } from '@/shared';
 
 export const Footer = () => {
   return (

@@ -1,0 +1,1 @@
+export { mainBannerImg } from './banner';

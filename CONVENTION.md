@@ -49,20 +49,20 @@ src/
 
 ```typescript
 // 1. 라이브러리 코드
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
 
 // 2. 다른 레이어/슬라이스 (절대경로)
-import { AppLayout } from "@/app/layouts";
-import { HomePage } from "@/pages/home";
-import { SearchWidget } from "@/widgets/search";
-import { User } from "@/entities/user";
-import { Button } from "@/shared/ui";
+import { AppLayout } from '@/app/layouts';
+import { HomePage } from '@/pages/home';
+import { SearchWidget } from '@/widgets/search';
+import { User } from '@/entities/user';
+import { Button } from '@/shared/ui';
 
 // 3. 동일 슬라이스 (상대경로)
-import { authApi } from "./api";
-import { AuthForm } from "../ui";
-import { useAuthValidation } from "./hooks";
+import { authApi } from './api';
+import { AuthForm } from '../ui';
+import { useAuthValidation } from './hooks';
 ```
 
 ### 1.4 파일 및 폴더 명명 규칙
@@ -124,9 +124,9 @@ export const SomeComponent = () => {
 
 ```typescript
 // features/auth/index.ts
-export { LoginForm } from "./ui/LoginForm";
-export { useAuth } from "./hooks/use-auth";
-export { authApi } from "./api/auth-api";
+export { LoginForm } from './ui/LoginForm';
+export { useAuth } from './hooks/use-auth';
+export { authApi } from './api/auth-api';
 ```
 
 #### Export 규칙
@@ -147,45 +147,45 @@ const MyComponent = ({ prop1, prop2 }: Props) => {
   // 1. 전역 상태 store들
   const userStore = useUserStore();
   const authStore = useAuthStore();
-  
+
   // 2. 로컬 상태 (useState 등)
   const [localState, setLocalState] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // 3. 데이터 fetching 및 상태 관리 hooks
   const { data: users, isLoading: usersLoading } = useQuery({
     queryKey: ['users'],
     queryFn: fetchUsers,
   });
-  
+
   // 4. 컴포넌트 초기화 로직 (optional)
   useEffect(() => {
     // 마운트 시 실행될 초기화 로직
     initializeComponent();
   }, []);
-  
+
   // 5. 계산된 값들 (useMemo)
   const filteredUsers = useMemo(() => {
     return users?.filter(user => user.name.includes(localState)) || [];
   }, [users, localState]);
-  
+
   const displayConfig = useMemo(() => {
     return {
       showHeader: users && users.length > 0,
       title: `총 ${users?.length || 0}개의 사용자`,
     };
   }, [users]);
-  
+
   // 6. 이벤트 핸들러 함수들 (useCallback)
   const handleInputChange = useCallback((value: string) => {
     setLocalState(value);
   }, []);
-  
+
   const handleSubmit = useCallback(() => {
     // 제출 로직
     console.log('Submitted:', localState);
   }, [localState]);
-  
+
   // 7. 사이드 이펙트 (useEffect)
   useEffect(() => {
     // 특정 상태 변경에 따른 사이드 이펙트
@@ -193,12 +193,12 @@ const MyComponent = ({ prop1, prop2 }: Props) => {
       trackUserInput(localState);
     }
   }, [localState]);
-  
+
   // 8. 조건부 렌더링 (early return)
   if (usersLoading) {
     return <LoadingSpinner />;
   }
-  
+
   // 9. 메인 렌더링 로직
   return (
     <div>
@@ -359,8 +359,8 @@ const UserCard = ({ user, showDetails }: Props) => {
 
 ```typescript
 const [isSearchBarActive, setIsSearchBarActive] = useState(true);
-const [searchBarValue, setSearchBarValue] = useState("");
-const [searchBarPlaceholder, setSearchBarPlaceholder] = useState("");
+const [searchBarValue, setSearchBarValue] = useState('');
+const [searchBarPlaceholder, setSearchBarPlaceholder] = useState('');
 ```
 
 #### ✅ 응집된 상태
@@ -368,8 +368,8 @@ const [searchBarPlaceholder, setSearchBarPlaceholder] = useState("");
 ```typescript
 const [searchBarState, setSearchBarState] = useState({
   isActive: true,
-  value: "",
-  placeholder: "검색어를 입력하세요",
+  value: '',
+  placeholder: '검색어를 입력하세요',
 });
 ```
 
@@ -380,13 +380,13 @@ const [searchBarState, setSearchBarState] = useState({
 #### ❌ 불필요한 상태
 
 ```typescript
-const [placeholder, setPlaceholder] = useState("");
+const [placeholder, setPlaceholder] = useState('');
 
 useEffect(() => {
   if (searchBarState.isActive) {
-    setPlaceholder("검색어를 입력하세요");
+    setPlaceholder('검색어를 입력하세요');
   } else {
-    setPlaceholder("검색이 비활성화되었습니다");
+    setPlaceholder('검색이 비활성화되었습니다');
   }
 }, [searchBarState.isActive]);
 ```
@@ -396,8 +396,8 @@ useEffect(() => {
 ```typescript
 const placeholder = useMemo(() => {
   return searchBarState.isActive
-    ? "검색어를 입력하세요"
-    : "검색이 비활성화되었습니다";
+    ? '검색어를 입력하세요'
+    : '검색이 비활성화되었습니다';
 }, [searchBarState.isActive]);
 ```
 
@@ -453,27 +453,27 @@ return (
 ### 6.2 Lodash 활용 예시
 
 ```typescript
-import { pick, omit, compact } from "lodash";
+import { pick, omit, compact } from 'lodash';
 
 // 객체에서 특정 키만 선택
-const userBasicInfo = pick(user, ["id", "name", "email"]);
+const userBasicInfo = pick(user, ['id', 'name', 'email']);
 
 // 특정 키 제외
-const userWithoutSensitiveData = omit(user, ["password", "ssn"]);
+const userWithoutSensitiveData = omit(user, ['password', 'ssn']);
 
 // 배열에서 falsy 값 제거
-const validItems = compact([1, 0, "hello", "", null, "world"]);
+const validItems = compact([1, 0, 'hello', '', null, 'world']);
 // 결과: [1, 'hello', 'world']
 ```
 
 ### 6.3 Immer 활용 예시
 
 ```typescript
-import { produce } from "immer";
+import { produce } from 'immer';
 
 const updateUserProfile = useCallback((updates: Partial<User>) => {
   setUser(
-    produce((draft) => {
+    produce(draft => {
       Object.assign(draft.profile, updates);
       draft.updatedAt = new Date();
     })
@@ -511,6 +511,6 @@ const SearchPage = () => {
 - [React 성능 최적화 가이드](https://react.dev/learn/render-and-commit)
 - [TypeScript 베스트 프랙티스](https://typescript-eslint.io/docs/)
 
-
 ## 사용 라이브러리
+
 eslint, prettier, vite, typescript, tailwindcss, shadcn, tanstack-query, zustand, react-router-dom
