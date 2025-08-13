@@ -19,6 +19,7 @@ export * from './label';
 export * from './navigation-menu';
 export * from './separator';
 export * from './tabs';
+export * from './popover';
 export * from './tooltip';
 export * from './color-picker';
 export * from './checkbox';

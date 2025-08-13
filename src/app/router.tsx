@@ -8,6 +8,8 @@ import {
   SignupAdditionalInfoPage,
   SignupFormPage,
   SignupPage,
+  TeamForm,
+  TeamJoinPage,
 } from '@/pages';
 
 import { HomeLayout, MainLayout } from './layouts';
@@ -41,6 +43,8 @@ export const router = createBrowserRouter([
         path: 'teams',
         element: <div className="p-8 text-center">팀 페이지 (구현 예정)</div>,
       },
+      { path: 'team-form', element: <TeamForm /> },
+      { path: 'team-join', element: <TeamJoinPage /> },
       {
         path: 'players',
         element: <div className="p-8 text-center">선수 페이지 (구현 예정)</div>,
