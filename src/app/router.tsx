@@ -1,24 +1,37 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
-import { MainLayout } from '@/app/layouts';
-
 import {
+  ApplyToMatchPage,
+  CreateMatchPage,
   HomePage,
   LoginPage,
-  SignupPage,
   SignupAdditionalInfoPage,
   SignupFormPage,
+  SignupPage,
   TeamForm,
   TeamJoinPage,
 } from '@/pages';
 import { MyTeamPage } from '@/pages/my-team';
 
+import { HomeLayout, MainLayout } from './layouts';
+
 export const router = createBrowserRouter([
   {
     path: '/',
+    element: <HomeLayout />,
+    children: [{ index: true, element: <HomePage /> }],
+  },
+  {
     element: <MainLayout />,
     children: [
-      { index: true, element: <HomePage /> },
+      {
+        path: '/create-match',
+        element: <CreateMatchPage />,
+      },
+      {
+        path: '/apply-to-match',
+        element: <ApplyToMatchPage />,
+      },
       { path: 'login', element: <LoginPage /> },
       { path: 'signup', element: <SignupPage /> },
       { path: 'signup/form', element: <SignupFormPage /> },
