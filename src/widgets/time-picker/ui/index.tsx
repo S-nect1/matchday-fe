@@ -11,6 +11,15 @@ import {
   PopoverTrigger,
 } from '@/shared';
 
+const hours = Array.from({ length: 24 }, (_, i) =>
+  String(i).padStart(2, '0')
+).reverse();
+
+const step = 5;
+const minutes = Array.from({ length: 60 / step }, (_, i) =>
+  String(i * step).padStart(2, '0')
+).reverse();
+
 export interface TimeType {
   hour: string;
   minute: string;
@@ -29,21 +38,10 @@ export const CustomTimePicker = ({
 }: CustomTimePickerProps) => {
   const [open, setOpen] = useState(false);
 
-  const initialMatchTime = {
+  const [matchTime, setMatchTime] = useState({
     hour: selectedTime ? selectedTime.hour : '12',
     minute: selectedTime ? selectedTime.minute : '30',
-  };
-
-  const [matchTime, setMatchTime] = useState(initialMatchTime);
-
-  const hours = Array.from({ length: 24 }, (_, i) =>
-    String(i).padStart(2, '0')
-  ).reverse();
-
-  const step = 5;
-  const minutes = Array.from({ length: 60 / step }, (_, i) =>
-    String(i * step).padStart(2, '0')
-  ).reverse();
+  });
 
   return (
     <div className="flex w-full flex-col gap-3">
@@ -110,7 +108,10 @@ export const CustomTimePicker = ({
                 size="sm"
                 className="text-sm"
                 onClick={() => {
-                  setMatchTime(initialMatchTime);
+                  setMatchTime({
+                    hour: selectedTime ? selectedTime.hour : '12',
+                    minute: selectedTime ? selectedTime.minute : '30',
+                  });
                   setOpen(false);
                 }}
               >
