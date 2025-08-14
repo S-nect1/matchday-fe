@@ -1,13 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { FilterMatches } from './FilterMatches';
-import { GridViewCard } from './GridViewCard';
-import { ListViewCard } from './ListViewCard';
 
 import { CustomPagination, SearchBar } from '@/widgets';
 import { mockMatchData } from '@/entities';
 import { Button, PlusIconWhite } from '@/shared';
+
+import { FilterMatches } from './FilterMatches';
+import { GridViewCard } from './GridViewCard';
+import { ListViewCard } from './ListViewCard';
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -17,10 +17,13 @@ export const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // 페이지당 아이템 수 계산
-  const itemsPerPage = isGrid ? 9 : 6;
+  const itemsPerPage = useMemo(() => (isGrid ? 9 : 6), [isGrid]);
 
   // 총 페이지 수 계산
-  const totalPages = Math.ceil(mockMatchData.length / itemsPerPage);
+  const totalPages = useMemo(
+    () => Math.ceil(mockMatchData.length / itemsPerPage),
+    [itemsPerPage]
+  );
 
   // 현재 페이지의 데이터 계산
   const currentData = useMemo(() => {
@@ -30,15 +33,15 @@ export const HomePage = () => {
   }, [currentPage, itemsPerPage]);
 
   // 페이지 변경 핸들러
-  const handlePageChange = (page: number) => {
+  const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
-  };
+  }, []);
 
   // isGrid 변경 시 페이지 초기화
-  const handleGridToggle = () => {
+  const handleGridToggle = useCallback(() => {
     setIsGrid(!isGrid);
     setCurrentPage(1);
-  };
+  }, []);
 
   return (
     <div className="mx-auto flex w-fit flex-col justify-center gap-[50px]">
