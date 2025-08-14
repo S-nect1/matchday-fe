@@ -17,13 +17,10 @@ export const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // 페이지당 아이템 수 계산
-  const itemsPerPage = useMemo(() => (isGrid ? 9 : 6), [isGrid]);
+  const itemsPerPage = isGrid ? 9 : 6;
 
   // 총 페이지 수 계산
-  const totalPages = useMemo(
-    () => Math.ceil(mockMatchData.length / itemsPerPage),
-    [itemsPerPage]
-  );
+  const totalPages = Math.ceil(mockMatchData.length / itemsPerPage);
 
   // 현재 페이지의 데이터 계산
   const currentData = useMemo(() => {
@@ -39,7 +36,7 @@ export const HomePage = () => {
 
   // isGrid 변경 시 페이지 초기화
   const handleGridToggle = useCallback(() => {
-    setIsGrid(!isGrid);
+    setIsGrid(prev => !prev);
     setCurrentPage(1);
   }, []);
 
