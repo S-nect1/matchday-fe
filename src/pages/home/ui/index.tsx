@@ -1,13 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { FilterMatches } from './FilterMatches';
-import { GridViewCard } from './GridViewCard';
-import { ListViewCard } from './ListViewCard';
 
 import { CustomPagination, SearchBar } from '@/widgets';
 import { mockMatchData } from '@/entities';
 import { Button, PlusIconWhite } from '@/shared';
+
+import { FilterMatches } from './FilterMatches';
+import { GridViewCard } from './GridViewCard';
+import { ListViewCard } from './ListViewCard';
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -30,15 +30,15 @@ export const HomePage = () => {
   }, [currentPage, itemsPerPage]);
 
   // 페이지 변경 핸들러
-  const handlePageChange = (page: number) => {
+  const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
-  };
+  }, []);
 
   // isGrid 변경 시 페이지 초기화
-  const handleGridToggle = () => {
-    setIsGrid(!isGrid);
+  const handleGridToggle = useCallback(() => {
+    setIsGrid(prev => !prev);
     setCurrentPage(1);
-  };
+  }, []);
 
   return (
     <div className="mx-auto flex w-fit flex-col justify-center gap-[50px]">
