@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { NAVIGATION_ITEMS } from '../../../shared/constant/navigation';
 
 export const Navigation = () => {

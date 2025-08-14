@@ -15,6 +15,9 @@ import {
   useRef,
   useState,
 } from 'react';
+
+import { cn } from '@/shared/lib/utils';
+
 import {
   Button,
   Input,
@@ -24,7 +27,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared';
-import { cn } from '@/shared/lib/utils';
 
 interface ColorPickerContextValue {
   hue: number;

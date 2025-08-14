@@ -1,6 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { HasBallCheck } from './HasBallCheck';
+
 import {
   CustomSelect,
   CustomTimePicker,
@@ -10,7 +12,6 @@ import {
   type PlaceSearchResult,
   type TimeType,
 } from '@/widgets';
-
 import {
   ArrowDownForDetail,
   ArrowUpForNotDetail,
@@ -25,8 +26,6 @@ import {
   LocationMarkerIcon,
   SelectButton,
 } from '@/shared';
-
-import { HasBallCheck } from './HasBallCheck';
 
 export const CreateMatchPage = () => {
   const navigate = useNavigate();

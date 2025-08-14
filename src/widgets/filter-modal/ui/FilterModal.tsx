@@ -1,3 +1,5 @@
+import type React from 'react';
+
 import {
   Button,
   CloseIcon,
@@ -9,7 +11,6 @@ import {
   DialogTrigger,
   FilterIcon,
 } from '@/shared';
-import type React from 'react';
 
 type Props = {
   title: string;

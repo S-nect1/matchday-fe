@@ -1,13 +1,13 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { FilterMatches } from './FilterMatches';
+import { GridViewCard } from './GridViewCard';
+import { ListViewCard } from './ListViewCard';
 
 import { CustomPagination, SearchBar } from '@/widgets';
 import { mockMatchData } from '@/entities';
 import { Button, PlusIconWhite } from '@/shared';
-
-import { ListViewCard } from './ListViewCard';
-import { GridViewCard } from './GridViewCard';
-import { FilterMatches } from './FilterMatches';
 
 export const HomePage = () => {
   const navigate = useNavigate();

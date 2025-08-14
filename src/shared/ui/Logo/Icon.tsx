@@ -2,7 +2,7 @@ interface IconProps {
   color?: string;
 }
 
-export const Icon = ({ color = "hsl(var(--primary))" }: IconProps) => (
+export const Icon = ({ color = 'hsl(var(--primary))' }: IconProps) => (
   <svg
     width="36"
     height="30"

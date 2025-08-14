@@ -1,18 +1,19 @@
-import { Footer } from '@/widgets/footer';
-import { Navbar } from '@/widgets/navbar';
 import { Outlet } from 'react-router-dom';
+
 import backgroundImage from './assets/background.png';
+
+import { Navbar, Footer } from '@/widgets';
 
 export const MainLayout = () => {
   return (
-    <div 
+    <div
       className="flex min-h-screen flex-col"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: 'fixed',
       }}
     >
       <Navbar />

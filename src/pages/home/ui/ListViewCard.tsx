@@ -1,12 +1,13 @@
+import { dateFormatter } from './date-formatter';
+
 import {
-  Card,
-  CardContent,
+  ArrowRightIcon,
   Badge,
   CalendarIcon,
-  ArrowRightIcon,
+  Card,
+  CardContent,
   MapPinIcon,
-} from '@/shared/ui';
-import { dateFormatter } from './date-formatter';
+} from '@/shared';
 
 type Props = {
   location: string;
