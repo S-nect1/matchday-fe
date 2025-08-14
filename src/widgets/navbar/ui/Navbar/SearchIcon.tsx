@@ -3,10 +3,7 @@ interface SearchIconProps {
   size?: number;
 }
 
-export const SearchIcon = ({
-  className = '',
-  size = 24,
-}: SearchIconProps) => {
+export const SearchIcon = ({ className = '', size = 24 }: SearchIconProps) => {
   return (
     <svg
       width={size}

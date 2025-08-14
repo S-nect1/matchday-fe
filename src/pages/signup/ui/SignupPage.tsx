@@ -1,6 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@/shared/ui/button';
 import { Card, CardContent } from '@/shared/ui/card';
-import { useNavigate } from 'react-router-dom';
 
 const KakaoIcon = () => (
   <svg

@@ -1,4 +1,3 @@
-import { FormCheck } from './FormCheck';
 import {
   Select,
   SelectContent,
@@ -8,6 +7,8 @@ import {
 } from '@/shared/ui';
 import { ColorPicker } from '@/shared/ui/color-picker';
 import { getBanks } from '@/shared/constant/bank';
+
+import { FormCheck } from './FormCheck';
 
 export const FormInput = ({
   htmlFor,

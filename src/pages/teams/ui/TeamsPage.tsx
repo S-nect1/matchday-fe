@@ -1,7 +1,4 @@
 import React from 'react';
-import { Card } from '@/shared/ui/card';
-// Select, Input 제거 (현재 디자인에서 미사용)
-import { Button } from '@/shared/ui/button';
 import {
   MapPinIcon,
   ChevronRight as ChevronRightIcon,
@@ -13,6 +10,10 @@ import {
   ChevronsRight,
   X,
 } from 'lucide-react';
+
+import { Card } from '@/shared/ui/card';
+// Select, Input 제거 (현재 디자인에서 미사용)
+import { Button } from '@/shared/ui/button';
 // Custom pagination will be rendered inline to match design
 import { getProvinces, getCitiesByProvince } from '@/shared/constant/location';
 

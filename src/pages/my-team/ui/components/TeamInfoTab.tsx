@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar';
 
 interface TeamInfoTabProps {

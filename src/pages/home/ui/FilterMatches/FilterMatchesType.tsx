@@ -1,9 +1,10 @@
-import { SelectButton } from '@/shared';
 import {
   MATCH_TYPES,
   MATCH_TYPE_LABELS,
   type MatchSearchFilters,
 } from '../../model';
+
+import { SelectButton } from '@/shared';
 
 type Props = {
   matchType: MatchSearchFilters['matchType'];

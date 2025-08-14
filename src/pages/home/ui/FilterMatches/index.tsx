@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { FilterModal } from '@/widgets';
 import { useMatchSearchFilters } from '../../model'; // 동일 슬라이스 내 import 이므로 상대경로 사용
 
 import { FilterMatchesHeader } from './FilterMatchesHeader';
@@ -8,6 +7,8 @@ import { FilterMatchesType } from './FilterMatchesType';
 import { FilterMatchesLocationTime } from './FilterMatchesLocationTime';
 import { FilterMatchesAboutTeam } from './FilterMatchesAboutTeam';
 import { FilterMatchesAction } from './FilterMatchesAction';
+
+import { FilterModal } from '@/widgets';
 
 type Props = {
   searchText: string;

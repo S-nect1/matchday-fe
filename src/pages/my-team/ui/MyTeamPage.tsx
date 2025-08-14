@@ -1,8 +1,11 @@
+import React from 'react';
+
+import bannerImg from '@/pages/my-team/assets/team-banner-sample.png';
+
 import { Button } from '@/shared/ui/button';
 import { useMyTeam } from '@/shared/hooks/use-my-team';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar';
-import React from 'react';
-import bannerImg from '@/pages/my-team/assets/team-banner-sample.png';
+
 import { TeamInfoTab } from './components/TeamInfoTab';
 import { CalendarTab } from './components/CalendarTab';
 import { ScheduleTab } from './components/ScheduleTab';
