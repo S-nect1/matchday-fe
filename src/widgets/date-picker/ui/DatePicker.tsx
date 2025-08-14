@@ -1,9 +1,15 @@
-import { Calendar as CalendarIcon } from 'lucide-react';
-import { Calendar } from '@/shared/ui/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
-import { Button } from '@/shared';
-import { Input } from '@/shared/ui/input';
 import { useEffect, useState } from 'react';
+
+import { Calendar as CalendarIcon } from 'lucide-react';
+
+import {
+  Button,
+  Calendar,
+  Input,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/shared';
 
 function formatDate(date: Date | undefined): string {
   if (!date) return '';
@@ -50,33 +56,34 @@ export const DatePicker = ({
 
   return (
     <div className="flex w-full flex-col gap-3">
-      <div className="relative flex flex-1 gap-2">
-        <Input
-          id="date"
-          value={value}
-          placeholder={placeholder}
-          className="h-[45px] bg-white px-[15px] py-2 text-[16px]"
-          onChange={e => {
-            const input = e.target.value;
-            setValue(input);
-            const parsed = parseDate(input);
-            if (parsed) {
-              onChange(parsed);
-              setMonth(parsed);
-            } else {
-              onChange(null); // 유효하지 않으면 null 처리
-            }
-          }}
-          onKeyDown={e => {
-            if (e.key === 'ArrowDown') {
-              e.preventDefault();
-              setOpen(true);
-            }
-          }}
-        />
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <div className="relative flex flex-1 gap-2">
+            <Input
+              id="date"
+              value={value}
+              placeholder={placeholder}
+              className="pointer-events-none h-[45px] bg-white px-[15px] py-2 text-[16px]"
+              onChange={e => {
+                const input = e.target.value;
+                setValue(input);
+                const parsed = parseDate(input);
+                if (parsed) {
+                  onChange(parsed);
+                  setMonth(parsed);
+                } else {
+                  onChange(null); // 유효하지 않으면 null 처리
+                }
+              }}
+              onKeyDown={e => {
+                if (e.key === 'ArrowDown') {
+                  e.preventDefault();
+                  setOpen(true);
+                }
+              }}
+            />
             <Button
+              type="button"
               id="date-picker"
               size="icon"
               variant="ghost"
@@ -85,24 +92,24 @@ export const DatePicker = ({
               <CalendarIcon className="size-6 text-[#757575]" />
               <span className="sr-only">Select date</span>
             </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto overflow-hidden p-0" align="end">
-            <Calendar
-              mode="single"
-              selected={date ?? undefined}
-              captionLayout="dropdown"
-              month={month}
-              onMonthChange={setMonth}
-              onSelect={selectedDate => {
-                if (!selectedDate) return;
-                onChange(selectedDate);
-                setValue(formatDate(selectedDate));
-                setOpen(false);
-              }}
-            />
-          </PopoverContent>
-        </Popover>
-      </div>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto overflow-hidden p-0" align="end">
+          <Calendar
+            mode="single"
+            selected={date ?? undefined}
+            captionLayout="dropdown"
+            month={month}
+            onMonthChange={setMonth}
+            onSelect={selectedDate => {
+              if (!selectedDate) return;
+              onChange(selectedDate);
+              setValue(formatDate(selectedDate));
+              setOpen(false);
+            }}
+          />
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };
