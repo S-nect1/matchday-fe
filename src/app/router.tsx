@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import { MyTeamPage } from '@/pages/my-team';
+import { MyInfoEditPage } from '@/pages/myinfo-edit';
 
 import { HomeLayout, MainLayout } from './layouts';
 
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
       { path: 'signup/form', element: <SignupFormPage /> },
       { path: 'signup/additional-info', element: <SignupAdditionalInfoPage /> },
       { path: 'mypage', element: <MyPage /> },
+      { path: 'myinfo-edit', element: <MyInfoEditPage /> },
       {
         path: 'matches',
         element: <div className="p-8 text-center">매치 페이지 (구현 예정)</div>,
