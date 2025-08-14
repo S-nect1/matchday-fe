@@ -1,3 +1,5 @@
+import { dateFormatter } from './date-formatter';
+
 import {
   ArrowRightIcon,
   Badge,
@@ -6,8 +8,6 @@ import {
   CardContent,
   MapPinIcon,
 } from '@/shared';
-
-import { dateFormatter } from './date-formatter';
 
 type Props = {
   location: string;

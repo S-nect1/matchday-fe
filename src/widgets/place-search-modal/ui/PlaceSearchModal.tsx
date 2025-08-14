@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import {
   Dialog,
   DialogContent,
@@ -6,8 +7,8 @@ import {
   DialogTitle,
   Button,
   Input,
+  SearchIcon,
 } from '@/shared';
-import { SearchIcon } from '@/shared';
 
 export interface PlaceSearchResult {
   id: string;

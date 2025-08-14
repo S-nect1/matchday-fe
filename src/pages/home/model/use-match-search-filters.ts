@@ -1,5 +1,6 @@
 // src/pages/home/ui/SearchMatchModal/useSearchFilters.ts
 import { useState, useCallback } from 'react';
+
 import {
   type MatchSearchFilters,
   initialSearchFilters,

@@ -1,9 +1,11 @@
 import { Calendar as CalendarIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
 import { Calendar } from '@/shared/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
-import { Button } from '@/shared';
 import { Input } from '@/shared/ui/input';
-import { useEffect, useState } from 'react';
+
+import { Button } from '@/shared';
 
 function formatDate(date: Date | undefined): string {
   if (!date) return '';

@@ -1,6 +1,8 @@
 import { useState } from 'react';
+
 import { FormInput } from '@/features/form-input';
 import { FormCard, FormCardContent } from '@/features/form-card';
+
 import { Button } from '@/shared/ui/button';
 
 export const TeamJoinPage = () => {

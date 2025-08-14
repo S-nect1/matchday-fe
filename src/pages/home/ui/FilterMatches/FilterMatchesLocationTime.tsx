@@ -1,7 +1,7 @@
+import { type MatchSearchFilters } from '../../model';
+
 import { DatePicker, CustomSelect } from '@/widgets';
 import { KOREA_CITIES, DISTRICTS, HOURS, MINUTES } from '@/shared';
-
-import { type MatchSearchFilters } from '../../model';
 
 type Props = {
   location: MatchSearchFilters['location'];

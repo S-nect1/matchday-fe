@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { Navbar, Footer } from '@/widgets';
+
 import backgroundImage from './assets/background.png';
+
+import { Navbar, Footer } from '@/widgets';
 
 export const MainLayout = () => {
   return (

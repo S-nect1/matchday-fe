@@ -1,5 +1,9 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
+import { MyTeamPage } from '@/pages/my-team';
+
+import { HomeLayout, MainLayout } from './layouts';
+
 import {
   ApplyToMatchPage,
   CreateMatchPage,
@@ -12,9 +16,6 @@ import {
   TeamJoinPage,
   TeamsPage,
 } from '@/pages';
-import { MyTeamPage } from '@/pages/my-team';
-
-import { HomeLayout, MainLayout } from './layouts';
 
 export const router = createBrowserRouter([
   {

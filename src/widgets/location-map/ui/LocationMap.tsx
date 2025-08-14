@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import type { PlaceSearchResult } from '@/widgets';
+
 import {
   MARKER_IMAGE_URL,
   MARKER_IMAGE_SIZE,
 } from '@/shared/constant/marker-image';
+
+import type { PlaceSearchResult } from '@/widgets';
 
 interface LocationMapProps {
   selectedPlace: PlaceSearchResult | null;

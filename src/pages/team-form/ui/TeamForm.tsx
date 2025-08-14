@@ -1,5 +1,6 @@
 import { FormInput } from '@/features/form-input';
 import { FormCard, FormCardContent } from '@/features/form-card';
+
 import { Checkbox } from '@/shared/ui/checkbox';
 import { useTeamForm } from '@/shared/hooks/use-team-form';
 
