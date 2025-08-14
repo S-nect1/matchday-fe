@@ -5,10 +5,12 @@ import { HasBallCheck } from './HasBallCheck';
 
 import {
   CustomSelect,
+  CustomTimePicker,
   DatePicker,
   LocationMap,
   PlaceSearchModal,
   type PlaceSearchResult,
+  type TimeType,
 } from '@/widgets';
 import {
   ArrowDownForDetail,
@@ -20,7 +22,6 @@ import {
   CardHeader,
   CardTitle,
   CustomColorPicker,
-  HOURS,
   Input,
   LocationMarkerIcon,
   SelectButton,
@@ -34,9 +35,11 @@ export const CreateMatchPage = () => {
   );
   const [selectedTeamSize, setSelectedTeamSize] = useState<11 | 7>(11);
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedStartTime, setSelectedStartTime] = useState<string>('');
+  const [selectedStartTime, setSelectedStartTime] = useState<TimeType | null>(
+    null
+  );
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-  const [selectedEndTime, setSelectedEndTime] = useState<string>('');
+  const [selectedEndTime, setSelectedEndTime] = useState<TimeType | null>(null);
   const [rentalFee, setRentalFee] = useState<number | undefined>(undefined);
   const [selectedBank, setSelectedBank] = useState('');
   const [accountNumber, setAccountNumber] = useState<string | undefined>(
@@ -177,10 +180,8 @@ export const CreateMatchPage = () => {
                   date={selectedStartDate}
                   onChange={setSelectedStartDate}
                 />
-                <CustomSelect
-                  value={selectedStartTime}
-                  placeholder="경기 시간을 선택해 주세요."
-                  options={HOURS}
+                <CustomTimePicker
+                  selectedTime={selectedStartTime}
                   onChange={setSelectedStartTime}
                 />
               </div>
@@ -194,10 +195,8 @@ export const CreateMatchPage = () => {
                   date={selectedEndDate}
                   onChange={setSelectedEndDate}
                 />
-                <CustomSelect
-                  value={selectedEndTime}
-                  placeholder="종료 시간을 선택해 주세요."
-                  options={HOURS}
+                <CustomTimePicker
+                  selectedTime={selectedEndTime}
                   onChange={setSelectedEndTime}
                 />
               </div>

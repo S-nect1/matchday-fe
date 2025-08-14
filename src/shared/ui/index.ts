@@ -23,4 +23,6 @@ export * from './tabs';
 export * from './popover';
 export * from './tooltip';
 export * from './color-picker';
+export * from './popover';
 export * from './checkbox';
+
