@@ -1,3 +1,4 @@
+import { CardContent } from '@/shared/ui/card';
 import { cn } from '@/shared/lib/utils';
 
 export const FormCardContent = ({
@@ -7,5 +8,7 @@ export const FormCardContent = ({
   children: React.ReactNode;
   className: string;
 }) => {
-  return <div className={cn(className, 'mt-[50px]')}>{children}</div>;
+  return (
+    <CardContent className={cn(className, 'mt-[50px]')}>{children}</CardContent>
+  );
 };

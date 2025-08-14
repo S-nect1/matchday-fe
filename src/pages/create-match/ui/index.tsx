@@ -69,12 +69,20 @@ export const CreateMatchPage = () => {
     setSelectedPlace(place);
 
     // 좌표를 주소로 변환하여 우편번호 추출
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const geocoder = new (window as any).kakao.maps.services.Geocoder();
 
     geocoder.coord2Address(
       parseFloat(place.x),
       parseFloat(place.y),
-      (result: any, status: any) => {
+      (
+        result: Array<{
+          road_address?: { zone_no?: string };
+          address?: { zip_code?: string };
+        }>,
+        status: string
+      ) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (status === (window as any).kakao.maps.services.Status.OK) {
           const addressInfo = result[0];
           if (addressInfo.road_address) {

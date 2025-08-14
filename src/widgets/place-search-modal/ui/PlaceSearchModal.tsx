@@ -1,14 +1,15 @@
 import { useState } from 'react';
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  Button,
-  Input,
-} from '@/shared';
-import { SearchIcon } from '@/shared';
+} from '@/shared/ui/dialog';
+import { SearchIcon } from '@/shared/ui/Icon';
 
+// PlaceSearchResult 타입 정의
 export interface PlaceSearchResult {
   id: string;
   place_name: string;
@@ -17,6 +18,42 @@ export interface PlaceSearchResult {
   x: string; // 경도
   y: string; // 위도
   place_url: string;
+}
+
+// 카카오맵 API 타입 정의
+interface KakaoMapsServices {
+  Places: new () => {
+    keywordSearch: (
+      keyword: string,
+      callback: (
+        data: Array<{
+          id: string;
+          place_name: string;
+          address_name: string;
+          road_address_name?: string;
+          x: string;
+          y: string;
+          place_url: string;
+        }>,
+        status: string
+      ) => void
+    ) => void;
+  };
+  Status: {
+    OK: string;
+    ZERO_RESULT: string;
+    ERROR: string;
+  };
+}
+
+interface KakaoMaps {
+  services: KakaoMapsServices;
+}
+
+interface KakaoWindow extends Window {
+  kakao: {
+    maps: KakaoMaps;
+  };
 }
 
 interface PlaceSearchModalProps {
@@ -42,9 +79,10 @@ export const PlaceSearchModal = ({
 
     // 카카오맵 API가 로드되었는지 확인
     if (
-      typeof (window as any).kakao === 'undefined' ||
-      typeof (window as any).kakao.maps === 'undefined' ||
-      typeof (window as any).kakao.maps.services === 'undefined'
+      typeof (window as unknown as KakaoWindow).kakao === 'undefined' ||
+      typeof (window as unknown as KakaoWindow).kakao.maps === 'undefined' ||
+      typeof (window as unknown as KakaoWindow).kakao.maps.services ===
+        'undefined'
     ) {
       alert('카카오맵 API가 로드되지 않았습니다. 잠시 후 다시 시도해주세요.');
       return;
@@ -54,16 +92,33 @@ export const PlaceSearchModal = ({
 
     try {
       // 카카오맵 Places 서비스 객체 생성
-      const ps = new (window as any).kakao.maps.services.Places();
+      const ps = new (
+        window as unknown as KakaoWindow
+      ).kakao.maps.services.Places();
 
       // 키워드로 장소 검색
-      ps.keywordSearch(searchKeyword, (data: any[], status: any) => {
-        setIsLoading(false);
+      ps.keywordSearch(
+        searchKeyword,
+        (
+          data: Array<{
+            id: string;
+            place_name: string;
+            address_name: string;
+            road_address_name?: string;
+            x: string;
+            y: string;
+            place_url: string;
+          }>,
+          status: string
+        ) => {
+          setIsLoading(false);
 
-        if (status === (window as any).kakao.maps.services.Status.OK) {
-          // 검색 성공 시 결과 변환
-          const transformedResults: PlaceSearchResult[] = data.map(
-            (place: any) => ({
+          if (
+            status ===
+            (window as unknown as KakaoWindow).kakao.maps.services.Status.OK
+          ) {
+            // 검색 성공 시 결과 변환
+            const transformedResults: PlaceSearchResult[] = data.map(place => ({
               id: place.id,
               place_name: place.place_name,
               address_name: place.address_name,
@@ -71,23 +126,26 @@ export const PlaceSearchModal = ({
               x: place.x,
               y: place.y,
               place_url: place.place_url,
-            })
-          );
+            }));
 
-          setSearchResults(transformedResults);
-          console.log('검색 성공:', transformedResults);
-        } else if (
-          status === (window as any).kakao.maps.services.Status.ZERO_RESULT
-        ) {
-          alert('검색 결과가 존재하지 않습니다.');
-          setSearchResults([]);
-        } else if (
-          status === (window as any).kakao.maps.services.Status.ERROR
-        ) {
-          alert('검색 중 오류가 발생했습니다.');
-          setSearchResults([]);
+            setSearchResults(transformedResults);
+            console.log('검색 성공:', transformedResults);
+          } else if (
+            status ===
+            (window as unknown as KakaoWindow).kakao.maps.services.Status
+              .ZERO_RESULT
+          ) {
+            alert('검색 결과가 존재하지 않습니다.');
+            setSearchResults([]);
+          } else if (
+            status ===
+            (window as unknown as KakaoWindow).kakao.maps.services.Status.ERROR
+          ) {
+            alert('검색 중 오류가 발생했습니다.');
+            setSearchResults([]);
+          }
         }
-      });
+      );
     } catch (error) {
       setIsLoading(false);
       console.error('검색 중 오류:', error);

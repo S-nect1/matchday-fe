@@ -1,7 +1,9 @@
-import { FormInput } from '@/features/form-input';
 import { FormCard, FormCardContent } from '@/features/form-card';
+import { FormInput } from '@/features/form-input';
 import { Checkbox } from '@/shared/ui/checkbox';
 import { useTeamForm } from '@/shared/hooks/use-team-form';
+import Color from 'color';
+import { useCallback } from 'react';
 
 export const TeamForm = () => {
   const {
@@ -14,12 +16,12 @@ export const TeamForm = () => {
     updateCeoAccount,
     updateLocation,
     updateTeamType,
-    handleFileUpload,
     isFormComplete,
     submitForm,
   } = useTeamForm();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const success = await submitForm();
     if (success) {
       console.log('팀 생성 성공!');
@@ -27,25 +29,27 @@ export const TeamForm = () => {
     }
   };
 
+  const handleColorChange = useCallback(
+    (color: any) => {
+      const colorString =
+        typeof color === 'string' ? color : Color(color).hex();
+      updateTeamInfo('uniformColor', colorString);
+    },
+    [updateTeamInfo]
+  );
+
   return (
-    <div className="shadow-[0 0 15px 0 rgba(0,0,0,.1)]] container mx-auto my-[50px] rounded-[10px] bg-white p-[50px]">
+    <form onSubmit={handleSubmit}>
       <FormCard>
-        <FormCardContent className="team-information">
+        <FormCardContent className="team-info">
           <h1 className="mb-[30px] text-[1.5rem] font-[600]">
             팀 정보 등록하기
           </h1>
           <FormInput
-            htmlFor="image-input"
-            label="팀 대표 사진"
-            type="file"
-            isImageInput
-            onFileChange={handleFileUpload}
-          />
-          <FormInput
             htmlFor="team-name"
-            label="팀 이름"
+            label="팀명"
             type="text"
-            placeholder="팀 이름을 입력해주세요."
+            placeholder="팀명을 입력해주세요."
             isNormal
             isMust
             value={formData.teamName}
@@ -53,10 +57,10 @@ export const TeamForm = () => {
             error={errors.teamName}
           />
           <FormInput
-            htmlFor="team-information"
-            label="팀 설명"
+            htmlFor="team-description"
+            label="팀 소개"
             type="text"
-            placeholder="팀 설명을 입력해주세요"
+            placeholder="팀 소개를 입력해주세요."
             isTextArea
             isMust
             value={formData.teamDescription}
@@ -64,44 +68,39 @@ export const TeamForm = () => {
             error={errors.teamDescription}
           />
           <FormInput
+            htmlFor="team-type"
             label="팀 유형"
-            type="radio"
-            isMust
+            type="text"
+            placeholder="팀 유형을 선택해주세요."
             isCheckBox
             checkContent={[
-              {
-                label: '소모임',
-                checked: formData.teamType === '소모임',
-              },
-              {
-                label: '동아리',
-                checked: formData.teamType === '동아리',
-              },
-              {
-                label: '동호회',
-                checked: formData.teamType === '동호회',
-              },
+              { label: '소모임', checked: formData.teamType === '소모임' },
+              { label: '동아리', checked: formData.teamType === '동아리' },
+              { label: '동호회', checked: formData.teamType === '동호회' },
             ]}
             onCheckboxChange={label =>
               updateTeamType(label as '소모임' | '동아리' | '동호회')
             }
+            error={errors.teamType}
           />
           <FormInput
+            htmlFor="team-location"
             label="활동 지역"
-            isMust
+            type="text"
+            placeholder="활동 지역을 선택해주세요."
             isLocation
-            onLocationChange={updateLocation}
-            error={errors.location}
             provinces={provinces}
             cities={cities}
             selectedProvince={formData.location.province}
             selectedCity={formData.location.city}
+            onLocationChange={updateLocation}
+            error={errors.location}
           />
           <FormInput
             label="상의 유니폼 색깔"
             isColor
             value={formData.uniformColor}
-            onColorChange={color => updateTeamInfo('uniformColor', color)}
+            onColorChange={handleColorChange}
           />
           <FormInput
             htmlFor="team-number-limit"
@@ -137,13 +136,6 @@ export const TeamForm = () => {
                 onCheckedChange={checked =>
                   updateCeoInfo('useSameInfo', checked)
                 }
-              />
-              <input
-                type="checkbox"
-                id="equals"
-                className="hidden"
-                checked={formData.useSameInfo}
-                onChange={e => updateCeoInfo('useSameInfo', e.target.checked)}
               />
               <span className="pl-5">가입 정보와 동일합니다.</span>
             </label>
@@ -187,24 +179,24 @@ export const TeamForm = () => {
           />
         </FormCardContent>
         <div className="submit-button-wrapper mt-[50px] flex w-full flex-col items-end gap-2">
-          {!isFormComplete() && (
+          {!isFormComplete && (
             <p className="text-sm text-gray-500">
               모든 필수 항목을 입력해주세요
             </p>
           )}
           <button
             className={`w-[240px] py-[8px] text-white transition-all duration-200 ${
-              isFormComplete()
+              isFormComplete
                 ? 'cursor-pointer bg-[rgb(67,0,255)] hover:bg-[rgb(50,0,200)]'
                 : 'cursor-not-allowed bg-gray-400'
             }`}
             onClick={handleSubmit}
-            disabled={!isFormComplete()}
+            disabled={!isFormComplete}
           >
             팀 만들기
           </button>
         </div>
       </FormCard>
-    </div>
+    </form>
   );
 };

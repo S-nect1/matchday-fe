@@ -8,3 +8,4 @@ export { PlaceSearchModal, type PlaceSearchResult } from './place-search-modal';
 export { LocationMap } from './location-map';
 export { Navbar } from './navbar';
 export { Footer } from './footer';
+export * from './my-team';

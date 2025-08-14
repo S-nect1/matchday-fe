@@ -8,6 +8,7 @@ import {
 } from '@/shared/ui';
 import { ColorPicker } from '@/shared/ui/color-picker';
 import { getBanks } from '@/shared/constant/bank';
+import Color from 'color';
 
 export const FormInput = ({
   htmlFor,
@@ -60,7 +61,7 @@ export const FormInput = ({
   onChange?: (value: string) => void;
   onFileChange?: (file: File) => void;
   onLocationChange?: (field: 'province' | 'city', value: string) => void;
-  onColorChange?: (color: string) => void;
+  onColorChange?: (value: Parameters<typeof Color.rgb>[0]) => void;
   onCheckboxChange?: (label: string) => void;
   onBankChange?: (bank: string) => void;
   onAccountNumberChange?: (accountNumber: string) => void;
