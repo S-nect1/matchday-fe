@@ -1,17 +1,18 @@
 import { CircleQuestionMarkIcon } from 'lucide-react';
 
+import { CustomTooltip } from '@/widgets';
+
 import {
   AGES,
   AGE_LABELS,
   GENDERS,
   GENDER_LABELS,
+  SelectButton,
   TEAM_ABILITIES,
   TEAM_ABILITY_LABELS,
-  type MatchSearchFilters,
-} from '../../model';
+} from '@/shared';
 
-import { CustomTooltip } from '@/widgets';
-import { SelectButton } from '@/shared';
+import { type MatchSearchFilters } from '../../model';
 
 type Props = {
   teamAbility: MatchSearchFilters['teamAbility'];

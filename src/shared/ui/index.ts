@@ -4,6 +4,7 @@ export * from './logos';
 export { CustomColorPicker } from './uniform-color-picker';
 export { SelectButton } from './select-button';
 export { TopImageBanner } from './page-banner';
+export { DualOptionButton } from './dual-option-button';
 
 export * from './badge';
 export * from './button';
@@ -25,4 +26,3 @@ export * from './tooltip';
 export * from './color-picker';
 export * from './popover';
 export * from './checkbox';
-

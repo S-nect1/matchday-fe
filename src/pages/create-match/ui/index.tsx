@@ -22,9 +22,9 @@ import {
   CardHeader,
   CardTitle,
   CustomColorPicker,
+  DualOptionButton,
   Input,
   LocationMarkerIcon,
-  SelectButton,
 } from '@/shared';
 
 export const CreateMatchPage = () => {
@@ -131,45 +131,27 @@ export const CreateMatchPage = () => {
               >
                 매치종목<span className="text-[#ff4e3e]">*</span>
               </label>
-              <div
-                id="match-category"
-                className="flex w-210 flex-row gap-[15px]"
-                role="group"
-                aria-labelledby="match-category"
-              >
-                <SelectButton
-                  label="축구"
-                  isSelected={selectedCategory === '축구'}
-                  onClickSelectButton={() => setSelectedCategory('축구')}
-                />
-                <SelectButton
-                  label="풋살"
-                  isSelected={selectedCategory === '풋살'}
-                  onClickSelectButton={() => setSelectedCategory('풋살')}
-                />
-              </div>
+              <DualOptionButton
+                firstLabel="축구"
+                secondLabel="풋살"
+                firstItem="축구"
+                secondItem="풋살"
+                isFirstSelected={selectedCategory === '축구'}
+                onClickSelectButton={setSelectedCategory}
+              />
             </div>
             <div className="flex flex-row items-center gap-[30px]">
               <label htmlFor="team-size" className="w-50 text-lg font-bold">
                 인원 수<span className="text-[#ff4e3e]">*</span>
               </label>
-              <div
-                id="team-size"
-                className="flex w-210 flex-row gap-[15px]"
-                role="group"
-                aria-labelledby="team-size"
-              >
-                <SelectButton
-                  label="11 vs 11"
-                  isSelected={selectedTeamSize === 11}
-                  onClickSelectButton={() => setSelectedTeamSize(11)}
-                />
-                <SelectButton
-                  label="7 vs 7"
-                  isSelected={selectedTeamSize === 7}
-                  onClickSelectButton={() => setSelectedTeamSize(7)}
-                />
-              </div>
+              <DualOptionButton
+                firstLabel="11 vs 11"
+                secondLabel="7 vs 7"
+                firstItem={11}
+                secondItem={7}
+                isFirstSelected={selectedTeamSize === 11}
+                onClickSelectButton={setSelectedTeamSize}
+              />
             </div>
             <div className="flex flex-row items-center gap-[30px]">
               <label htmlFor="start-date" className="w-50 text-lg font-bold">

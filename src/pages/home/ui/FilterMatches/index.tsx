@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { useMatchSearchFilters } from '../../model'; // 동일 슬라이스 내 import 이므로 상대경로 사용
 
@@ -32,10 +32,10 @@ export const FilterMatches = ({
     resetFilters,
   } = useMatchSearchFilters();
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setSearchText('');
     resetFilters();
-  };
+  }, [searchText]);
 
   const handleApplyFilter = () => {
     console.log('필터 적용:', { searchText, filters });
