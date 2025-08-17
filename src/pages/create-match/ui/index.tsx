@@ -1,8 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { HasBallCheck } from './HasBallCheck';
-
 import {
   CustomSelect,
   CustomTimePicker,
@@ -16,6 +14,7 @@ import {
   ArrowDownForDetail,
   ArrowUpForNotDetail,
   BANK_LIST,
+  BinaryRadioGroup,
   Button,
   Card,
   CardContent,
@@ -331,9 +330,9 @@ export const CreateMatchPage = () => {
               <label htmlFor="has-ball" className="w-50 text-lg font-bold">
                 공 보유 유무<span className="text-[#ff4e3e]">*</span>
               </label>
-              <HasBallCheck
-                hasBall={createMatchForm.options.hasBall}
-                setHasBall={hasBall => updateOptions({ hasBall: hasBall })}
+              <BinaryRadioGroup
+                value={createMatchForm.options.hasBall}
+                onChange={v => updateOptions({ hasBall: v })}
               />
             </div>
             <div className="flex w-full flex-row justify-end gap-[15px]">

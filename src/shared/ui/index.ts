@@ -5,6 +5,7 @@ export { CustomColorPicker } from './uniform-color-picker';
 export { SelectButton } from './select-button';
 export { TopImageBanner } from './page-banner';
 export { DualOptionButton } from './dual-option-button';
+export { BinaryRadioGroup } from './binary-radio-group';
 
 export * from './badge';
 export * from './button';
