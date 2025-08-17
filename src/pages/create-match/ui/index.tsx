@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -7,7 +6,6 @@ import {
   DatePicker,
   LocationMap,
   PlaceSearchModal,
-  type PlaceSearchResult,
 } from '@/widgets';
 
 import {
@@ -38,67 +36,12 @@ export const CreateMatchPage = () => {
     updatePayment,
     updateOptions,
     updateLocation,
+    handlePlaceSelect,
+    handleMapClick,
+    handleSubmit,
+    handlePlaceSearchOpen,
+    handlePlaceSearchClose,
   } = useCreateMatchForm();
-
-  // 장소 검색 관련 상태
-  const [isPlaceSearchOpen, setIsPlaceSearchOpen] = useState<boolean>(false);
-  const [selectedPlace, setSelectedPlace] = useState<PlaceSearchResult | null>(
-    null
-  );
-  const [zipCode, setZipCode] = useState<string>('');
-  const [detailAddress, setDetailAddress] = useState<string>('');
-  const [isLocationMapOpen, setIsLocationMapOpen] = useState<boolean>(false);
-
-  // 장소 검색 관련 핸들러
-  const handlePlaceSearchOpen = () => {
-    setIsPlaceSearchOpen(true);
-  };
-
-  const handlePlaceSearchClose = () => {
-    setIsPlaceSearchOpen(false);
-  };
-
-  const handlePlaceSelect = (place: PlaceSearchResult) => {
-    setSelectedPlace(place);
-
-    // 좌표를 주소로 변환하여 우편번호 추출
-    const geocoder = new (window as any).kakao.maps.services.Geocoder();
-
-    geocoder.coord2Address(
-      parseFloat(place.x),
-      parseFloat(place.y),
-      (result: any, status: any) => {
-        if (status === (window as any).kakao.maps.services.Status.OK) {
-          const addressInfo = result[0];
-          if (addressInfo.road_address) {
-            // 도로명 주소에서 우편번호 추출
-            setZipCode(addressInfo.road_address.zone_no || '');
-          } else if (addressInfo.address) {
-            // 지번 주소에서 우편번호 추출 (fallback)
-            setZipCode(addressInfo.address.zip_code || '');
-          }
-        } else {
-          // API 호출 실패 시 기본값 설정
-          setZipCode('');
-        }
-      }
-    );
-
-    console.log('선택된 장소:', place);
-  };
-
-  // 지도 클릭 시 카카오맵 웹으로 연결
-  const handleMapClick = useCallback(() => {
-    if (selectedPlace) {
-      const kakaoMapUrl = `https://map.kakao.com/link/map/${encodeURIComponent(selectedPlace.place_name)},${selectedPlace.y},${selectedPlace.x}`;
-      window.open(kakaoMapUrl, '_blank');
-    }
-  }, [selectedPlace]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('매치 등록하기. 서버 요청 필요');
-  };
 
   return (
     <>
@@ -197,7 +140,7 @@ export const CreateMatchPage = () => {
                     className="h-[45px] w-full bg-[#FAFAFA] placeholder:text-[#BDBDBD]"
                     disabled={true}
                     placeholder="우편번호"
-                    value={zipCode}
+                    value={createMatchForm.location.zipCode}
                   />
                   <Button
                     type="button"
@@ -214,8 +157,8 @@ export const CreateMatchPage = () => {
                   disabled={true}
                   placeholder="주소"
                   value={
-                    selectedPlace?.road_address_name ||
-                    selectedPlace?.address_name
+                    createMatchForm.location.selectedPlace?.road_address_name ||
+                    createMatchForm.location.selectedPlace?.address_name
                   }
                   aria-label="주소"
                 />
@@ -223,27 +166,36 @@ export const CreateMatchPage = () => {
                   id="detail-address"
                   className="h-[45px] w-full placeholder:text-[#BDBDBD]"
                   placeholder="상세주소를 입력해 주세요."
-                  value={detailAddress}
-                  onChange={e => setDetailAddress(e.target.value)}
+                  value={createMatchForm.location.detailAddress}
+                  onChange={e =>
+                    updateLocation({ detailAddress: e.target.value })
+                  }
                   aria-label="상세주소"
                 />
-                {selectedPlace && (
+                {createMatchForm.location.selectedPlace && (
                   <div className="flex w-full flex-col gap-[10px] rounded-[5px] border border-[#E0E0E0] p-[15px]">
                     <div className="flex flex-row items-center justify-between">
                       <div className="flex flex-row gap-[5px]">
                         <LocationMarkerIcon />
                         <span className="text-lg font-bold">
-                          {selectedPlace.place_name}
+                          {createMatchForm.location.selectedPlace.place_name}
                         </span>
                       </div>
                       <div
                         className="flex cursor-pointer flex-row gap-[5px]"
-                        onClick={() => setIsLocationMapOpen(!isLocationMapOpen)}
+                        onClick={() =>
+                          updateLocation({
+                            isLocationMapOpen:
+                              !createMatchForm.location.isLocationMapOpen,
+                          })
+                        }
                       >
                         <span className="text-[16px] font-medium text-[#757575]">
-                          {isLocationMapOpen ? '접기' : '위치 자세히보기'}
+                          {createMatchForm.location.isLocationMapOpen
+                            ? '접기'
+                            : '위치 자세히보기'}
                         </span>
-                        {isLocationMapOpen ? (
+                        {createMatchForm.location.isLocationMapOpen ? (
                           <ArrowUpForNotDetail />
                         ) : (
                           <ArrowDownForDetail />
@@ -251,12 +203,13 @@ export const CreateMatchPage = () => {
                       </div>
                     </div>
                     <p className="text-[16px] text-[#757575]">
-                      {selectedPlace.road_address_name ||
-                        selectedPlace.address_name}
+                      {createMatchForm.location.selectedPlace
+                        .road_address_name ||
+                        createMatchForm.location.selectedPlace.address_name}
                     </p>
-                    {isLocationMapOpen && (
+                    {createMatchForm.location.isLocationMapOpen && (
                       <LocationMap
-                        selectedPlace={selectedPlace}
+                        selectedPlace={createMatchForm.location.selectedPlace}
                         width="100%"
                         height="250px"
                         level={3}
@@ -382,7 +335,7 @@ export const CreateMatchPage = () => {
 
       {/* 장소 검색 모달 */}
       <PlaceSearchModal
-        isOpen={isPlaceSearchOpen}
+        isOpen={createMatchForm.location.isPlaceSearchOpen}
         onClose={handlePlaceSearchClose}
         onPlaceSelect={handlePlaceSelect}
       />
