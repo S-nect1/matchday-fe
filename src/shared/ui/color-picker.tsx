@@ -105,7 +105,7 @@ export const ColorPicker = ({
 
       onChange([rgba[0], rgba[1], rgba[2], alpha / 100]);
     }
-  }, [hue, saturation, lightness, alpha, onChange]);
+  }, [hue, saturation, lightness, alpha]);
 
   return (
     <ColorPickerContext.Provider

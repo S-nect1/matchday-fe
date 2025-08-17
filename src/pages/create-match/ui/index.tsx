@@ -10,8 +10,8 @@ import {
   LocationMap,
   PlaceSearchModal,
   type PlaceSearchResult,
-  type TimeType,
 } from '@/widgets';
+
 import {
   ArrowDownForDetail,
   ArrowUpForNotDetail,
@@ -27,27 +27,19 @@ import {
   LocationMarkerIcon,
 } from '@/shared';
 
+import { useCreateMatchForm } from '../model';
+
 export const CreateMatchPage = () => {
   const navigate = useNavigate();
 
-  const [selectedCategory, setSelectedCategory] = useState<'축구' | '풋살'>(
-    '축구'
-  );
-  const [selectedTeamSize, setSelectedTeamSize] = useState<11 | 7>(11);
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedStartTime, setSelectedStartTime] = useState<TimeType | null>(
-    null
-  );
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-  const [selectedEndTime, setSelectedEndTime] = useState<TimeType | null>(null);
-  const [rentalFee, setRentalFee] = useState<number | undefined>(undefined);
-  const [selectedBank, setSelectedBank] = useState('');
-  const [accountNumber, setAccountNumber] = useState<string | undefined>(
-    undefined
-  );
-  const [uniformColor, setUniformColor] = useState<string>('#fff');
-  const [hasBall, setHasBall] = useState<boolean>(false);
-  const [isAgreed, setIsAgreed] = useState<boolean>(false);
+  const {
+    createMatchForm,
+    updateMatchInfo,
+    updateSchedule,
+    updatePayment,
+    updateOptions,
+    updateLocation,
+  } = useCreateMatchForm();
 
   // 장소 검색 관련 상태
   const [isPlaceSearchOpen, setIsPlaceSearchOpen] = useState<boolean>(false);
@@ -131,26 +123,30 @@ export const CreateMatchPage = () => {
               >
                 매치종목<span className="text-[#ff4e3e]">*</span>
               </label>
-              <DualOptionButton
+              <DualOptionButton<'축구' | '풋살'>
                 firstLabel="축구"
                 secondLabel="풋살"
                 firstItem="축구"
                 secondItem="풋살"
-                isFirstSelected={selectedCategory === '축구'}
-                onClickSelectButton={setSelectedCategory}
+                isFirstSelected={createMatchForm.matchInfo.category === '축구'}
+                onClickSelectButton={selectedCategory =>
+                  updateMatchInfo({ category: selectedCategory })
+                }
               />
             </div>
             <div className="flex flex-row items-center gap-[30px]">
               <label htmlFor="team-size" className="w-50 text-lg font-bold">
                 인원 수<span className="text-[#ff4e3e]">*</span>
               </label>
-              <DualOptionButton
+              <DualOptionButton<11 | 7>
                 firstLabel="11 vs 11"
                 secondLabel="7 vs 7"
                 firstItem={11}
                 secondItem={7}
-                isFirstSelected={selectedTeamSize === 11}
-                onClickSelectButton={setSelectedTeamSize}
+                isFirstSelected={createMatchForm.matchInfo.teamSize === 11}
+                onClickSelectButton={selectedTeamSize =>
+                  updateMatchInfo({ teamSize: selectedTeamSize })
+                }
               />
             </div>
             <div className="flex flex-row items-center gap-[30px]">
@@ -159,12 +155,16 @@ export const CreateMatchPage = () => {
               </label>
               <div className="flex w-210 flex-row gap-[15px]">
                 <DatePicker
-                  date={selectedStartDate}
-                  onChange={setSelectedStartDate}
+                  date={createMatchForm.schedule.startDate}
+                  onChange={selectedStartDate =>
+                    updateSchedule({ startDate: selectedStartDate })
+                  }
                 />
                 <CustomTimePicker
-                  selectedTime={selectedStartTime}
-                  onChange={setSelectedStartTime}
+                  selectedTime={createMatchForm.schedule.startTime}
+                  onChange={selectedStartTime =>
+                    updateSchedule({ startTime: selectedStartTime })
+                  }
                 />
               </div>
             </div>
@@ -174,12 +174,16 @@ export const CreateMatchPage = () => {
               </label>
               <div className="flex w-210 flex-row gap-[15px]">
                 <DatePicker
-                  date={selectedEndDate}
-                  onChange={setSelectedEndDate}
+                  date={createMatchForm.schedule.endDate}
+                  onChange={selectedEndDate =>
+                    updateSchedule({ endDate: selectedEndDate })
+                  }
                 />
                 <CustomTimePicker
-                  selectedTime={selectedEndTime}
-                  onChange={setSelectedEndTime}
+                  selectedTime={createMatchForm.schedule.endTime}
+                  onChange={selectedEndTime =>
+                    updateSchedule({ endTime: selectedEndTime })
+                  }
                 />
               </div>
             </div>
@@ -273,8 +277,10 @@ export const CreateMatchPage = () => {
                   id="rental-fee"
                   type="number"
                   className="h-[45px]"
-                  value={rentalFee}
-                  onChange={e => setRentalFee(Number(e.target.value))}
+                  value={createMatchForm.payment.rentalFee}
+                  onChange={e =>
+                    updatePayment({ rentalFee: Number(e.target.value) })
+                  }
                   placeholder="대관비 총액을 입력해주세요. 매칭 확정 후 절반이 입금됩니다."
                 />
                 원
@@ -286,16 +292,20 @@ export const CreateMatchPage = () => {
               </label>
               <div className="flex w-210 flex-row gap-[15px]">
                 <CustomSelect
-                  value={selectedBank}
+                  value={createMatchForm.payment.bank}
                   placeholder="은행을 선택해 주세요."
                   options={BANK_LIST}
-                  onChange={setSelectedBank}
+                  onChange={selectedBank =>
+                    updatePayment({ bank: selectedBank })
+                  }
                 />
                 <Input
                   id="account-number"
                   className="h-[45px]"
-                  value={accountNumber}
-                  onChange={e => setAccountNumber(e.target.value)}
+                  value={createMatchForm.payment.accountNumber}
+                  onChange={e =>
+                    updatePayment({ accountNumber: e.target.value })
+                  }
                   placeholder="대관비 입금용 ex)0000-000-000000"
                   aria-label="계좌번호"
                 />
@@ -307,8 +317,10 @@ export const CreateMatchPage = () => {
               </label>
               <div className="flex flex-row items-center gap-[10px]">
                 <CustomColorPicker
-                  uniformColor={uniformColor}
-                  setUniformColor={setUniformColor}
+                  uniformColor={createMatchForm.options.uniformColor}
+                  setUniformColor={selectedColor =>
+                    updateOptions({ uniformColor: selectedColor })
+                  }
                 />
                 <span className="text-[16px] text-[#bdbdbd]">
                   색깔을 선택해 주세요.
@@ -319,7 +331,10 @@ export const CreateMatchPage = () => {
               <label htmlFor="has-ball" className="w-50 text-lg font-bold">
                 공 보유 유무<span className="text-[#ff4e3e]">*</span>
               </label>
-              <HasBallCheck hasBall={hasBall} setHasBall={setHasBall} />
+              <HasBallCheck
+                hasBall={createMatchForm.options.hasBall}
+                setHasBall={hasBall => updateOptions({ hasBall: hasBall })}
+              />
             </div>
             <div className="flex w-full flex-row justify-end gap-[15px]">
               <Button
@@ -342,8 +357,12 @@ export const CreateMatchPage = () => {
                 <input
                   id="agreement"
                   type="checkbox"
-                  checked={isAgreed}
-                  onChange={() => setIsAgreed(!isAgreed)}
+                  checked={createMatchForm.options.isAgreed}
+                  onChange={() =>
+                    updateOptions({
+                      isAgreed: !createMatchForm.options.isAgreed,
+                    })
+                  }
                   className="h-5 w-5 accent-[#0043FF]"
                   required
                 />
