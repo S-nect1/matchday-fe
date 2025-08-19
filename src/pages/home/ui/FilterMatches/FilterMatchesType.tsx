@@ -1,10 +1,6 @@
-import {
-  MATCH_TYPES,
-  MATCH_TYPE_LABELS,
-  type MatchSearchFilters,
-} from '../../model';
+import { MATCH_TYPE_LABELS, MATCH_TYPES, SelectButton } from '@/shared';
 
-import { SelectButton } from '@/shared';
+import { type MatchSearchFilters } from '../../model';
 
 type Props = {
   matchType: MatchSearchFilters['matchType'];

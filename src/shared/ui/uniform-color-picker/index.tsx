@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import Color from 'color';
 
 import {
@@ -20,6 +21,18 @@ type Props = {
 };
 
 export const CustomColorPicker = ({ uniformColor, setUniformColor }: Props) => {
+  const handleColorChange = useCallback(
+    (value: Parameters<typeof Color.rgb>[0]) => {
+      const color = Color.rgb(value);
+      const [r, g, b, a] = color.rgb().array();
+      const next =
+        a < 1 ? `rgba(${r}, ${g}, ${b}, ${a.toFixed(2)})` : color.hex();
+
+      // 같은 값이면 굳이 업데이트 안 해도 됨 (옵션)
+      setUniformColor(next);
+    },
+    [setUniformColor]
+  );
   return (
     <>
       <Dialog>
@@ -37,15 +50,7 @@ export const CustomColorPicker = ({ uniformColor, setUniformColor }: Props) => {
           <DialogContent className="w-fit p-0" showCloseButton={false}>
             <ColorPicker
               className="bg-background h-120 w-100 rounded-md border p-4 shadow-sm"
-              onChange={value => {
-                const color = Color.rgb(value);
-                const [r, g, b, a] = color.rgb().array();
-                const hex =
-                  a < 1
-                    ? `rgba(${r}, ${g}, ${b}, ${a.toFixed(2)})`
-                    : color.hex();
-                setUniformColor(hex);
-              }}
+              onChange={handleColorChange}
             >
               <ColorPickerSelection />
               <div className="flex items-center gap-4">

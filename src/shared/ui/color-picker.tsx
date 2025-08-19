@@ -105,7 +105,8 @@ export const ColorPicker = ({
 
       onChange([rgba[0], rgba[1], rgba[2], alpha / 100]);
     }
-  }, [hue, saturation, lightness, alpha, onChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hue, saturation, lightness, alpha]);
 
   return (
     <ColorPickerContext.Provider

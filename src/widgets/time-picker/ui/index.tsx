@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Picker from 'react-mobile-picker';
+import _ from 'lodash';
 
 import { ClockIcon } from 'lucide-react';
 
@@ -11,14 +12,14 @@ import {
   PopoverTrigger,
 } from '@/shared';
 
-const hours = Array.from({ length: 24 }, (_, i) =>
-  String(i).padStart(2, '0')
-).reverse();
+const hours = _.range(0, 24)
+  .map(h => _.padStart(String(h), 2, '0'))
+  .reverse();
 
 const step = 5;
-const minutes = Array.from({ length: 60 / step }, (_, i) =>
-  String(i * step).padStart(2, '0')
-).reverse();
+const minutes = _.range(0, 60, step)
+  .map(m => _.padStart(String(m), 2, '0'))
+  .reverse();
 
 export interface TimeType {
   hour: string;
@@ -43,9 +44,20 @@ export const CustomTimePicker = ({
     minute: selectedTime ? selectedTime.minute : '30',
   });
 
+  const handleToClose = useCallback(
+    (open: boolean) => {
+      setMatchTime({
+        hour: selectedTime ? selectedTime.hour : '12',
+        minute: selectedTime ? selectedTime.minute : '30',
+      });
+      setOpen(open);
+    },
+    [selectedTime]
+  );
+
   return (
     <div className="flex w-full flex-col gap-3">
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={handleToClose}>
         <PopoverTrigger asChild>
           <div className="relative flex flex-1 gap-2">
             <Input
@@ -107,13 +119,7 @@ export const CustomTimePicker = ({
                 variant="hoverHighlight"
                 size="sm"
                 className="text-sm"
-                onClick={() => {
-                  setMatchTime({
-                    hour: selectedTime ? selectedTime.hour : '12',
-                    minute: selectedTime ? selectedTime.minute : '30',
-                  });
-                  setOpen(false);
-                }}
+                onClick={() => handleToClose(false)}
               >
                 취소
               </Button>
