@@ -35,7 +35,7 @@ export const FilterMatches = ({
   const handleReset = useCallback(() => {
     setSearchText('');
     resetFilters();
-  }, [searchText]);
+  }, [setSearchText, resetFilters]);
 
   const handleApplyFilter = () => {
     console.log('필터 적용:', { searchText, filters });

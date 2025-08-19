@@ -6,9 +6,9 @@ import type { CreateMatchForm } from '../../model';
 
 interface MatchPaymentSectionProps {
   payment: {
-    rentalFee?: number;
+    rentalFee: string;
     bank: string;
-    accountNumber?: string;
+    accountNumber: string;
   };
   updatePayment: (updates: Partial<CreateMatchForm['payment']>) => void;
 }
@@ -29,7 +29,7 @@ export const MatchPaymentSection = ({
             type="number"
             className="h-[45px]"
             value={payment.rentalFee}
-            onChange={e => updatePayment({ rentalFee: Number(e.target.value) })}
+            onChange={e => updatePayment({ rentalFee: e.target.value })}
             placeholder="대관비 총액을 입력해주세요. 매칭 확정 후 절반이 입금됩니다."
           />
           원

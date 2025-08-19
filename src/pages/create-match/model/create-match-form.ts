@@ -19,9 +19,9 @@ export interface CreateMatchForm {
     isLocationMapOpen: boolean;
   };
   payment: {
-    rentalFee?: number;
+    rentalFee: string;
     bank: string;
-    accountNumber?: string;
+    accountNumber: string;
   };
   options: {
     uniformColor: string;
@@ -49,9 +49,9 @@ export const initialCreateMatchForm: CreateMatchForm = {
     isLocationMapOpen: false,
   },
   payment: {
-    rentalFee: undefined,
+    rentalFee: '',
     bank: '',
-    accountNumber: undefined,
+    accountNumber: '',
   },
   options: {
     uniformColor: '#fff',

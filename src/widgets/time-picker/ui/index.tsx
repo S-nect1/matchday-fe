@@ -52,7 +52,7 @@ export const CustomTimePicker = ({
       });
       setOpen(open);
     },
-    [selectedTime, open]
+    [selectedTime]
   );
 
   return (
