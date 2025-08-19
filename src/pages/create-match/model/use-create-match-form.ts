@@ -11,11 +11,11 @@ export const useCreateMatchForm = () => {
   );
 
   // 섹션별 업데이트
-  const updateMatchInfo = useCallback(
-    (updates: Partial<CreateMatchForm['matchInfo']>) => {
+  const updateMatchType = useCallback(
+    (updates: Partial<CreateMatchForm['matchType']>) => {
       setCreateMatchForm(prev => ({
         ...prev,
-        matchInfo: { ...prev.matchInfo, ...updates },
+        matchType: { ...prev.matchType, ...updates },
       }));
     },
     []
@@ -26,6 +26,16 @@ export const useCreateMatchForm = () => {
       setCreateMatchForm(prev => ({
         ...prev,
         schedule: { ...prev.schedule, ...updates },
+      }));
+    },
+    []
+  );
+
+  const updateLocation = useCallback(
+    (updates: Partial<CreateMatchForm['location']>) => {
+      setCreateMatchForm(prev => ({
+        ...prev,
+        location: { ...prev.location, ...updates },
       }));
     },
     []
@@ -51,15 +61,12 @@ export const useCreateMatchForm = () => {
     []
   );
 
-  const updateLocation = useCallback(
-    (updates: Partial<CreateMatchForm['location']>) => {
-      setCreateMatchForm(prev => ({
-        ...prev,
-        location: { ...prev.location, ...updates },
-      }));
-    },
-    []
-  );
+  const updateAgreement = useCallback(() => {
+    setCreateMatchForm(prev => ({
+      ...prev,
+      isAgreedToNoShowTerms: !prev.isAgreedToNoShowTerms,
+    }));
+  }, []);
 
   const handlePlaceSelect = useCallback(
     (place: PlaceSearchResult) => {
@@ -112,11 +119,12 @@ export const useCreateMatchForm = () => {
 
   return {
     createMatchForm,
-    updateMatchInfo,
+    updateMatchType,
     updateSchedule,
+    updateLocation,
     updatePayment,
     updateOptions,
-    updateLocation,
+    updateAgreement,
     handlePlaceSelect,
     handleMapClick,
     handleSubmit,

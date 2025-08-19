@@ -1,7 +1,7 @@
 import type { PlaceSearchResult, TimeType } from '@/widgets';
 
 export interface CreateMatchForm {
-  matchInfo: {
+  matchType: {
     category: '축구' | '풋살';
     teamSize: 11 | 7;
   };
@@ -26,12 +26,12 @@ export interface CreateMatchForm {
   options: {
     uniformColor: string;
     hasBall: boolean;
-    isAgreed: boolean;
   };
+  isAgreedToNoShowTerms: boolean;
 }
 
 export const initialCreateMatchForm: CreateMatchForm = {
-  matchInfo: {
+  matchType: {
     category: '축구',
     teamSize: 11,
   },
@@ -56,6 +56,6 @@ export const initialCreateMatchForm: CreateMatchForm = {
   options: {
     uniformColor: '#fff',
     hasBall: false,
-    isAgreed: false,
   },
+  isAgreedToNoShowTerms: false,
 };

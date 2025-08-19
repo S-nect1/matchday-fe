@@ -1,1 +1,2 @@
-export { MARKER_IMAGE_URL, MARKER_IMAGE_SIZE } from './marker-image';
+export { banks } from './bank';
+export { MARKER_IMAGE_SIZE, MARKER_IMAGE_URL } from './marker-image';

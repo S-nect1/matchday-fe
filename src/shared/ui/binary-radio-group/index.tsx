@@ -38,7 +38,6 @@ export const BinaryRadioGroup = ({
         <RadioGroupItem
           id={`${groupName}-true`}
           value="true"
-          className="h-5 w-5"
           disabled={disabled}
         />
         {trueLabel}
@@ -48,7 +47,6 @@ export const BinaryRadioGroup = ({
         <RadioGroupItem
           id={`${groupName}-false`}
           value="false"
-          className="h-5 w-5"
           disabled={disabled}
         />
         {falseLabel}
