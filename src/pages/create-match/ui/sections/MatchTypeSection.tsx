@@ -16,7 +16,6 @@ export const MatchTypeSection = ({
 }: MatchTypeSectionProps) => {
   return (
     <>
-      {' '}
       <div className="flex flex-row items-center gap-[30px]">
         <label htmlFor="match-category" className="w-50 text-lg font-bold">
           매치종목<span className="text-[#ff4e3e]">*</span>
