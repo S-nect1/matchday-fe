@@ -1,6 +1,6 @@
 import { CustomSelect } from '@/widgets';
 
-import { banks, Input } from '@/shared';
+import { BANK_LIST, Input } from '@/shared';
 
 import type { CreateMatchForm } from '../../model';
 
@@ -43,7 +43,7 @@ export const MatchPaymentSection = ({
           <CustomSelect
             value={payment.bank}
             placeholder="은행을 선택해 주세요."
-            options={banks}
+            options={BANK_LIST}
             onChange={selectedBank => updatePayment({ bank: selectedBank })}
           />
           <Input
