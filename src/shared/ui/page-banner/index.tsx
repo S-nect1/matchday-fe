@@ -8,8 +8,8 @@ interface TopImageBannerProps {
 }
 
 const bannerVariants = {
-  default: 'h-[220px] w-[1170px] px-12.5',
-  match: 'h-[160px] w-[1070px] px-[30px]',
+  default: 'h-[220px] px-12.5',
+  match: 'h-[160px] px-[30px]',
 };
 
 export const TopImageBanner = ({
@@ -20,7 +20,7 @@ export const TopImageBanner = ({
   return (
     <div
       className={clsx(
-        'mx-auto flex items-center rounded-[10px] bg-cover bg-center',
+        'flex w-full max-w-[1170px] items-center self-center rounded-[10px] bg-cover bg-center',
         bannerVariants[variant]
       )}
       style={{ backgroundImage: `url(${bannerImage})` }}

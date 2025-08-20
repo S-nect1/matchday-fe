@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { dateFormatter } from './date-formatter';
 
 import { Badge, CalendarIcon, Card, CardContent, MapPinIcon } from '@/shared';
 
 type Props = {
+  matchId: number;
   location: string;
   date: string;
   title: string;
@@ -14,6 +16,7 @@ type Props = {
 };
 
 export const GridViewCard = ({
+  matchId,
   location,
   date,
   title,
@@ -23,13 +26,16 @@ export const GridViewCard = ({
   teamSize,
   locationImg,
 }: Props) => {
+  const navigate = useNavigate();
   const { month, day, weekday, time } = dateFormatter(date);
+
   return (
     <Card
-      className="w-[370px] rounded-[10px] border border-transparent p-0 transition-colors duration-200 hover:border hover:border-[#0043FF]"
+      className="w-[370px] cursor-pointer rounded-[10px] border border-transparent p-0 transition-colors duration-200 hover:border hover:border-[#0043FF]"
       style={{
         boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.10)',
       }}
+      onClick={() => navigate(`/match-detail/${matchId}`)}
     >
       <CardContent className="flex flex-col p-0">
         <div className="relative">

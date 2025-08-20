@@ -9,3 +9,8 @@ export { SelectColorIcon } from './SelectColorIcon';
 export { LocationMarkerIcon } from './LocationMarkerIcon';
 export { ArrowDownForDetail } from './ArrowDownForDetail';
 export { ArrowUpForNotDetail } from './ArrowUpForNotDetail';
+export { MatchScheduleIcon } from './MatchScheduleIcon';
+export { MatchRentalFeeIcon } from './MatchRentalFeeIcon';
+export { MatchLocationIcon } from './MatchLocationIcon';
+export { MatchTypeIcon } from './MatchTypeIcon';
+export { MatchTeamSizeIcon } from './MatchTeamSizeIcon';

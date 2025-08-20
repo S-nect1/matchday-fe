@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { dateFormatter } from './date-formatter';
 
 import {
@@ -10,6 +11,7 @@ import {
 } from '@/shared';
 
 type Props = {
+  matchId: number;
   location: string;
   date: string;
   title: string;
@@ -21,6 +23,7 @@ type Props = {
 };
 
 export const ListViewCard = ({
+  matchId,
   location,
   date,
   title,
@@ -30,7 +33,9 @@ export const ListViewCard = ({
   teamSize,
   locationImg,
 }: Props) => {
+  const navigate = useNavigate();
   const { month, day, weekday, time } = dateFormatter(date);
+
   return (
     <Card
       className="w-[1170px] rounded-[10px] border border-transparent py-[30px] transition-colors duration-200 hover:border hover:border-[#0043FF]"
@@ -59,7 +64,10 @@ export const ListViewCard = ({
                 {time}
               </span>
             </div>
-            <div className="flex items-center gap-[5px]">
+            <div
+              className="flex cursor-pointer items-center gap-[5px]"
+              onClick={() => navigate(`/match-detail/${matchId}`)}
+            >
               <span className="text-[16px] leading-6 font-medium text-[#757575]">
                 매치 자세히보기
               </span>

@@ -2,11 +2,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { PlaceSearchModal } from '@/widgets';
 
+import { MatchTermsAgreement } from '@/features';
+
 import { Button, Card, CardContent, CardHeader, CardTitle } from '@/shared';
 
 import { useCreateMatchForm } from '../model';
 import {
-  MatchAgreementSection,
   MatchLocationSection,
   MatchOptionsSection,
   MatchPaymentSection,
@@ -35,7 +36,7 @@ export const CreateMatchPage = () => {
   return (
     <>
       <Card
-        className="mx-auto mt-[114px] mb-[150px] w-[1170px] gap-[50px] rounded-[10px] p-[50px]"
+        className="mx-auto mt-[50px] mb-[150px] w-[1170px] gap-[50px] rounded-[10px] p-[50px]"
         style={{
           boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.10)',
         }}
@@ -69,7 +70,7 @@ export const CreateMatchPage = () => {
               options={createMatchForm.options}
               updateOptions={updateOptions}
             />
-            <MatchAgreementSection
+            <MatchTermsAgreement
               isAgreedToNoShowTerms={createMatchForm.isAgreedToNoShowTerms}
               updateAgreement={updateAgreement}
             />

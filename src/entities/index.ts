@@ -1,2 +1,2 @@
-export { mockMatchData, mainBannerImg } from './match';
+export { mockMatchData, mainBannerImg, matchBannerImgExample } from './match';
 export type { MatchData } from './match';
