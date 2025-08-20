@@ -1,1 +1,1 @@
-export { MatchTermsAgreement } from './ui/MatchTermsAgreement';
+export { MatchTermsAgreement, MatchSummaryItem } from './ui';

@@ -98,9 +98,9 @@ export const MatchDetailPage = () => {
           <Button
             type="submit"
             size="lg"
-            className="w-60 bg-[#0043FF] text-[16px] leading-6 font-bold text-white hover:bg-[#0037cc]"
+            className="bg-primary w-60 text-[16px] leading-6 font-bold text-white hover:bg-[#0037cc]"
           >
-            매치 등록하기
+            매치 신청하기
           </Button>
         </div>
       </CardContent>
