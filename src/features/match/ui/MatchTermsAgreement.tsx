@@ -1,12 +1,12 @@
-type MatchAgreementSectionProps = {
+type MatchTermsAgreementProps = {
   isAgreedToNoShowTerms: boolean;
   updateAgreement: () => void;
 };
 
-export const MatchAgreementSection = ({
+export const MatchTermsAgreement = ({
   isAgreedToNoShowTerms,
   updateAgreement,
-}: MatchAgreementSectionProps) => {
+}: MatchTermsAgreementProps) => {
   return (
     <div className="absolute right-0 bottom-18 flex flex-row items-center gap-[10px]">
       <input

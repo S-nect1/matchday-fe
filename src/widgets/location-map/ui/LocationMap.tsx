@@ -159,7 +159,7 @@ export const LocationMap = ({
         height,
         cursor: onClick ? 'pointer' : 'default',
       }}
-      className="overflow-hidden"
+      className="overflow-hidden rounded-[5px]"
     />
   );
 };

@@ -81,6 +81,7 @@ export const HomePage = () => {
           {currentData.map(match => (
             <GridViewCard
               key={match.id}
+              matchId={match.id}
               location={match.location}
               date={match.date}
               title={match.title}
@@ -97,6 +98,7 @@ export const HomePage = () => {
           {currentData.map(match => (
             <ListViewCard
               key={match.id}
+              matchId={match.id}
               location={match.location}
               date={match.date}
               title={match.title}

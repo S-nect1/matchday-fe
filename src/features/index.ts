@@ -1,0 +1,1 @@
+export { MatchTermsAgreement } from './match';

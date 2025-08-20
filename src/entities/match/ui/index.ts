@@ -1,1 +1,1 @@
-export { mainBannerImg } from './banner';
+export { mainBannerImg, matchBannerImgExample } from './banner';

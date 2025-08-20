@@ -18,6 +18,7 @@ import {
   TeamJoinPage,
   TeamsPage,
 } from '@/pages';
+import { MatchDetailPage } from '@/pages/match-detail';
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: '/apply-to-match',
         element: <ApplyToMatchPage />,
+      },
+      {
+        path: '/match-detail/:id',
+        element: <MatchDetailPage />,
       },
       { path: 'login', element: <LoginPage /> },
       { path: 'signup', element: <SignupPage /> },
