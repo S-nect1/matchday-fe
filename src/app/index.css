@@ -376,9 +376,8 @@ body {
   }
 }
 
-/* 스크롤바 스타일 */
+/*
 @layer utilities {
-  /* Webkit 브라우저용 스크롤바 */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -398,7 +397,6 @@ body {
     background: #a8a8a8;
   }
 
-  /* Select 컴포넌트 스크롤바 완전 제거 */
   [data-radix-select-content],
   [data-radix-select-content] *,
   [data-radix-select-viewport],
@@ -418,7 +416,6 @@ body {
     height: 0 !important;
   }
 
-  /* 스크롤바가 뷰포트 안쪽으로 들어가도록 설정 */
   [data-radix-select-content],
   [data-radix-select-viewport],
   .radix-select-viewport {
@@ -429,7 +426,6 @@ body {
     margin-right: 0 !important;
   }
 
-  /* 스크롤바가 콘텐츠 영역을 침범하지 않도록 설정 */
   [data-radix-select-content] *,
   [data-radix-select-viewport] *,
   .radix-select-viewport * {
@@ -437,7 +433,6 @@ body {
     max-width: 100% !important;
   }
 
-  /* 스크롤바가 완전히 내장되도록 추가 설정 */
   [data-radix-select-content],
   [data-radix-select-viewport],
   .radix-select-viewport {
@@ -445,7 +440,6 @@ body {
     position: relative !important;
   }
 
-  /* 스크롤바 영역을 콘텐츠 밖으로 밀어내기 */
   [data-radix-select-content] > *,
   [data-radix-select-viewport] > *,
   .radix-select-viewport > * {
@@ -453,7 +447,6 @@ body {
     max-width: calc(100% - 0px) !important;
   }
 
-  /* 전역 스크롤바가 HTML width에 영향을 주지 않도록 설정 */
   html {
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
@@ -476,6 +469,7 @@ body {
     height: 0 !important;
   }
 }
+*/
 
 html,
 body {
