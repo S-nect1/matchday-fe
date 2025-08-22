@@ -3,6 +3,46 @@ import { useEffect, useRef, useState } from 'react';
 import type { PlaceSearchResult } from '@/widgets';
 import { MARKER_IMAGE_URL, MARKER_IMAGE_SIZE } from '@/shared';
 
+// 카카오맵 API 타입 정의
+interface KakaoMap {
+  setCenter: (latlng: KakaoLatLng) => void;
+}
+
+interface KakaoLatLng {
+  getLat: () => number;
+  getLng: () => number;
+}
+
+interface KakaoMarker {
+  setMap: (map: KakaoMap | null) => void;
+}
+
+interface KakaoInfoWindow {
+  close: () => void;
+  open: (map: KakaoMap, marker: KakaoMarker) => void;
+  setContent: (content: string) => void;
+}
+
+interface KakaoMapEvent {
+  addListener: (map: KakaoMap, event: string, callback: () => void) => unknown;
+  removeListener: (map: KakaoMap, event: string, listener: unknown) => void;
+}
+
+interface KakaoMaps {
+  Map: new (
+    container: HTMLElement,
+    options: Record<string, unknown>
+  ) => KakaoMap;
+  LatLng: new (lat: number, lng: number) => KakaoLatLng;
+  Marker: new (options: Record<string, unknown>) => KakaoMarker;
+  MarkerImage: new (
+    src: string,
+    size: { width: number; height: number }
+  ) => object;
+  InfoWindow: new (options: Record<string, unknown>) => KakaoInfoWindow;
+  event: KakaoMapEvent;
+}
+
 interface LocationMapProps {
   selectedPlace: PlaceSearchResult | null;
   width?: string;
@@ -20,9 +60,9 @@ export const LocationMap = ({
   onClick,
 }: LocationMapProps) => {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<any>(null);
-  const markerRef = useRef<any>(null);
-  const infowindowRef = useRef<any>(null);
+  const [map, setMap] = useState<KakaoMap | null>(null);
+  const markerRef = useRef<KakaoMarker | null>(null);
+  const infowindowRef = useRef<KakaoInfoWindow | null>(null);
 
   // 기본 지도 생성 (컴포넌트 마운트 시 한 번만)
   useEffect(() => {
@@ -30,18 +70,20 @@ export const LocationMap = ({
 
     // 카카오맵 API가 로드되었는지 확인
     if (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       typeof (window as any).kakao === 'undefined' ||
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       typeof (window as any).kakao.maps === 'undefined'
     ) {
       console.warn('카카오맵 API가 로드되지 않았습니다.');
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const kakaoMaps = (window as any).kakao.maps as KakaoMaps;
+
     // 기본 위치 (서울 시청)
-    const defaultPosition = new (window as any).kakao.maps.LatLng(
-      37.5665,
-      126.978
-    );
+    const defaultPosition = new kakaoMaps.LatLng(37.5665, 126.978);
 
     const mapOption = {
       center: defaultPosition,
@@ -49,10 +91,7 @@ export const LocationMap = ({
     };
 
     try {
-      const kakaoMap = new (window as any).kakao.maps.Map(
-        mapContainer.current,
-        mapOption
-      );
+      const kakaoMap = new kakaoMaps.Map(mapContainer.current, mapOption);
       setMap(kakaoMap);
     } catch (error) {
       console.error('지도 생성 중 오류:', error);
@@ -64,21 +103,16 @@ export const LocationMap = ({
     if (!map || !onClick) return;
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const kakaoMaps = (window as any).kakao.maps as KakaoMaps;
+
       // 클릭 이벤트 리스너 추가
-      const clickListener = (window as any).kakao.maps.event.addListener(
-        map,
-        'click',
-        onClick
-      );
+      const clickListener = kakaoMaps.event.addListener(map, 'click', onClick);
 
       // cleanup 함수로 이벤트 리스너 제거
       return () => {
-        if (clickListener && (window as any).kakao?.maps?.event) {
-          (window as any).kakao.maps.event.removeListener(
-            map,
-            'click',
-            clickListener
-          );
+        if (clickListener && kakaoMaps.event) {
+          kakaoMaps.event.removeListener(map, 'click', clickListener);
         }
       };
     } catch (error) {
@@ -91,8 +125,11 @@ export const LocationMap = ({
     if (!map || !selectedPlace) return;
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const kakaoMaps = (window as any).kakao.maps as KakaoMaps;
+
       // 새로운 위치로 지도 중심 이동
-      const newPosition = new (window as any).kakao.maps.LatLng(
+      const newPosition = new kakaoMaps.LatLng(
         parseFloat(selectedPlace.y),
         parseFloat(selectedPlace.x)
       );
@@ -110,13 +147,13 @@ export const LocationMap = ({
       }
 
       // MatchDay 마커 아이콘 설정
-      const markerIcon = new (window as any).kakao.maps.MarkerImage(
+      const markerIcon = new kakaoMaps.MarkerImage(
         MARKER_IMAGE_URL,
         MARKER_IMAGE_SIZE
       );
 
       // 새로운 마커 생성
-      const newMarker = new (window as any).kakao.maps.Marker({
+      const newMarker = new kakaoMaps.Marker({
         position: newPosition,
         image: markerIcon,
       });
@@ -125,7 +162,7 @@ export const LocationMap = ({
       markerRef.current = newMarker;
 
       // 인포윈도우 생성 (장소명 표시)
-      const infowindow = new (window as any).kakao.maps.InfoWindow({
+      const infowindow = new kakaoMaps.InfoWindow({
         content: `<div style="padding:5px;font-size:12px;white-space:nowrap;">${selectedPlace.place_name}</div>`,
       });
 

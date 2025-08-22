@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar';
+import { TeamStatsCard } from './TeamStatsCard';
 
 interface TeamInfoTabProps {
   ProgressCircle: React.FC<{
@@ -37,17 +38,14 @@ export const TeamInfoTab: React.FC<TeamInfoTabProps> = ({ ProgressCircle }) => {
       {/* Stats row */}
       <div className="mt-6 flex gap-3 rounded-lg border border-gray-300 bg-gray-50 p-4">
         {/* 승률 진행도 */}
-        <div className="flex items-center gap-4">
-          <ProgressCircle percent={65} size={76} strokeWidth={8} />
-          <div>
-            <div className="text-lg text-gray-600">2024 전반기</div>
-            <div className="mt-1 text-base">
-              <span className="font-semibold text-blue-600">00승</span>
-              <span className="mx-2 text-gray-400">00무</span>
-              <span className="font-semibold text-red-500">00패</span>
-            </div>
-          </div>
-        </div>
+        <TeamStatsCard
+          ProgressCircle={ProgressCircle}
+          period="2024 전반기"
+          wins={0}
+          draws={0}
+          losses={0}
+          percent={65}
+        />
 
         {/* 나머지 박스들이 균등하게 공간 차지 */}
         <div className="flex flex-1 gap-3">

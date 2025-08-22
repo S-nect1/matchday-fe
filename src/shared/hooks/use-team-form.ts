@@ -1,5 +1,4 @@
-import { useState, useCallback } from 'react';
-
+import { useState, useCallback, useMemo } from 'react';
 import { getProvinces, getCitiesByProvince } from '@/shared/constant/location';
 
 export interface TeamFormData {
@@ -57,12 +56,14 @@ export const useTeamForm = () => {
   >({});
 
   // 시/도 목록
-  const provinces = getProvinces();
+  const provinces = useMemo(() => getProvinces(), []);
 
   // 현재 선택된 시/도에 따른 구/군 목록
-  const cities = formData.location.province
-    ? getCitiesByProvince(formData.location.province)
-    : [];
+  const cities = useMemo(() => {
+    return formData.location.province
+      ? getCitiesByProvince(formData.location.province)
+      : [];
+  }, [formData.location.province]);
 
   // 팀 정보 업데이트
   const updateTeamInfo = useCallback(
@@ -71,7 +72,7 @@ export const useTeamForm = () => {
         TeamFormData,
         'useSameInfo' | 'ceoName' | 'ceoPhone' | 'ceoAccount'
       >,
-      value: any
+      value: string | boolean | number
     ) => {
       setFormData(prev => ({
         ...prev,
@@ -79,22 +80,23 @@ export const useTeamForm = () => {
       }));
 
       // 에러 제거
-      if (errors[field]) {
-        setErrors(prev => {
+      setErrors(prev => {
+        if (prev[field]) {
           const newErrors = { ...prev };
           delete newErrors[field];
           return newErrors;
-        });
-      }
+        }
+        return prev;
+      });
     },
-    [errors]
+    []
   );
 
   // 대표자 정보 업데이트
   const updateCeoInfo = useCallback(
     (
       field: 'useSameInfo' | 'ceoName' | 'ceoPhone' | 'ceoAccount',
-      value: any
+      value: string | boolean
     ) => {
       setFormData(prev => ({
         ...prev,
@@ -102,15 +104,16 @@ export const useTeamForm = () => {
       }));
 
       // 에러 제거
-      if (errors[field]) {
-        setErrors(prev => {
+      setErrors(prev => {
+        if (prev[field]) {
           const newErrors = { ...prev };
           delete newErrors[field];
           return newErrors;
-        });
-      }
+        }
+        return prev;
+      });
     },
-    [errors]
+    []
   );
 
   // 계좌 정보 업데이트
@@ -125,15 +128,16 @@ export const useTeamForm = () => {
       }));
 
       // 에러 제거
-      if (errors.ceoAccount) {
-        setErrors(prev => {
+      setErrors(prev => {
+        if (prev.ceoAccount) {
           const newErrors = { ...prev };
           delete newErrors.ceoAccount;
           return newErrors;
-        });
-      }
+        }
+        return prev;
+      });
     },
-    [errors]
+    []
   );
 
   // 위치 정보 업데이트
@@ -150,15 +154,16 @@ export const useTeamForm = () => {
       }));
 
       // 에러 제거
-      if (errors.location) {
-        setErrors(prev => {
+      setErrors(prev => {
+        if (prev.location) {
           const newErrors = { ...prev };
           delete newErrors.location;
           return newErrors;
-        });
-      }
+        }
+        return prev;
+      });
     },
-    [errors]
+    []
   );
 
   // 팀 유형 업데이트
@@ -235,7 +240,7 @@ export const useTeamForm = () => {
   }, [formData]);
 
   // 폼이 완전히 입력되었는지 확인
-  const isFormComplete = useCallback(() => {
+  const isFormComplete = useMemo(() => {
     // 팀 정보 필수 필드 확인
     const teamInfoComplete =
       formData.teamName.trim() !== '' &&
