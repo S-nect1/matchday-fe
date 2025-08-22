@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Calendar as CalendarIcon } from 'lucide-react';
 
@@ -19,18 +19,7 @@ function formatDate(date: Date | undefined): string {
   return `${year}.${month}.${day}`;
 }
 
-function parseDate(value: string): Date | null {
-  // "2025.07.28" 형식만 허용
-  const regex = /^\d{4}\.\d{2}\.\d{2}$/;
-  if (!regex.test(value)) return null;
-
-  const [year, month, day] = value.split('.').map(Number);
-  const date = new Date(year, month - 1, day);
-
-  return isNaN(date.getTime()) ? null : date;
-}
-
-type Props = {
+type DatePickerProps = {
   date: Date | null;
   onChange: (date: Date | null) => void;
   placeholder?: string;
@@ -40,19 +29,10 @@ export const DatePicker = ({
   date,
   onChange,
   placeholder = '날짜를 선택해 주세요.',
-}: Props) => {
+}: DatePickerProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(date ? formatDate(date) : '');
   const [month, setMonth] = useState<Date | undefined>(date ?? undefined);
-
-  useEffect(() => {
-    if (date) {
-      setValue(formatDate(date));
-      setMonth(date);
-    } else {
-      setValue('');
-    }
-  }, [date]);
 
   return (
     <div className="flex w-full flex-col gap-3">
@@ -67,13 +47,6 @@ export const DatePicker = ({
               onChange={e => {
                 const input = e.target.value;
                 setValue(input);
-                const parsed = parseDate(input);
-                if (parsed) {
-                  onChange(parsed);
-                  setMonth(parsed);
-                } else {
-                  onChange(null); // 유효하지 않으면 null 처리
-                }
               }}
               onKeyDown={e => {
                 if (e.key === 'ArrowDown') {
@@ -94,7 +67,10 @@ export const DatePicker = ({
             </Button>
           </div>
         </PopoverTrigger>
-        <PopoverContent className="w-auto overflow-hidden p-0" align="end">
+        <PopoverContent
+          className="w-auto overflow-hidden border-none p-0"
+          align="end"
+        >
           <Calendar
             mode="single"
             selected={date ?? undefined}
