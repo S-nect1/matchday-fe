@@ -68,6 +68,7 @@ export const CustomTimePicker = ({
                   : undefined
               }
               placeholder={placeholder}
+              readOnly
               className="pointer-events-none h-[45px] bg-white px-[15px] py-2 text-[16px]"
             />
             <Button

@@ -11,6 +11,7 @@ export {
   formatKstDateString,
   getKstDateAndTime,
   getKstDateAndTimeWithSec,
+  formatCalendarDate,
 } from './date-formatter';
 
 export * from './badge';
