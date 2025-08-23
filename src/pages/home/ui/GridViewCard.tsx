@@ -1,7 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { dateFormatter } from './date-formatter';
 
-import { Badge, CalendarIcon, Card, CardContent, MapPinIcon } from '@/shared';
+import {
+  Badge,
+  CalendarIcon,
+  Card,
+  CardContent,
+  getKstDateInfo,
+  MapPinIcon,
+} from '@/shared';
 
 type Props = {
   matchId: number;
@@ -27,7 +33,7 @@ export const GridViewCard = ({
   locationImg,
 }: Props) => {
   const navigate = useNavigate();
-  const { month, day, weekday, time } = dateFormatter(date);
+  const { month, day, weekday, time } = getKstDateInfo(date);
 
   return (
     <Card
