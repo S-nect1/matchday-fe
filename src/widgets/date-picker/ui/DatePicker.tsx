@@ -61,6 +61,7 @@ export const DatePicker = ({
               className="absolute top-1/2 right-2 size-6 -translate-y-1/2"
             >
               <CalendarIcon className="size-6 text-[#757575]" />
+              <span className="sr-only">날짜 선택</span>
             </Button>
           </div>
         </PopoverTrigger>
