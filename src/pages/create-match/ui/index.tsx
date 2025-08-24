@@ -94,11 +94,13 @@ export const CreateMatchPage = () => {
         </CardContent>
       </Card>
 
-      <PlaceSearchModal
-        isOpen={createMatchForm.location.isPlaceSearchOpen}
-        onClose={handlePlaceSearchClose}
-        onPlaceSelect={handlePlaceSelect}
-      />
+      {createMatchForm.location.isPlaceSearchOpen && (
+        <PlaceSearchModal
+          isOpen={createMatchForm.location.isPlaceSearchOpen}
+          onClose={handlePlaceSearchClose}
+          onPlaceSelect={handlePlaceSelect}
+        />
+      )}
     </>
   );
 };

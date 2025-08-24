@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import {
   Dialog,
@@ -9,6 +9,7 @@ import {
   Input,
   SearchIcon,
 } from '@/shared';
+import { MapSearchItem } from './MapSearchItem';
 
 export interface PlaceSearchResult {
   id: string;
@@ -35,13 +36,12 @@ export const PlaceSearchModal = ({
   const [searchResults, setSearchResults] = useState<PlaceSearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     if (!searchKeyword.trim()) {
       alert('검색어를 입력해주세요.');
       return;
     }
 
-    // 카카오맵 API가 로드되었는지 확인
     if (
       typeof (window as any).kakao === 'undefined' ||
       typeof (window as any).kakao.maps === 'undefined' ||
@@ -94,18 +94,24 @@ export const PlaceSearchModal = ({
       console.error('검색 중 오류:', error);
       alert('검색 중 오류가 발생했습니다.');
     }
-  };
+  }, [searchKeyword]);
 
-  const handlePlaceSelect = (place: PlaceSearchResult) => {
-    onPlaceSelect(place);
-    onClose();
-  };
+  const handlePlaceSelect = useCallback(
+    (place: PlaceSearchResult) => {
+      onPlaceSelect(place);
+      onClose();
+    },
+    [onPlaceSelect, onClose]
+  );
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
+  const handleKeyPress = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        handleSearch();
+      }
+    },
+    [handleSearch]
+  );
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -147,24 +153,10 @@ export const PlaceSearchModal = ({
           ) : (
             <div className="max-h-150 space-y-2 overflow-y-auto">
               {searchResults.map(place => (
-                <div
-                  key={place.id}
-                  className="cursor-pointer rounded-lg border p-4 transition-colors hover:bg-gray-50"
-                  onClick={() => handlePlaceSelect(place)}
-                >
-                  <h3 className="mb-1 text-lg font-semibold">
-                    {place.place_name}
-                  </h3>
-                  <p className="mb-1 text-sm text-gray-600">
-                    {place.road_address_name || place.address_name}
-                  </p>
-                  {place.road_address_name &&
-                    place.road_address_name !== place.address_name && (
-                      <p className="text-xs text-gray-500">
-                        지번: {place.address_name}
-                      </p>
-                    )}
-                </div>
+                <MapSearchItem
+                  place={place}
+                  handlePlaceSelect={handlePlaceSelect}
+                />
               ))}
             </div>
           )}
