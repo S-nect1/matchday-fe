@@ -27,7 +27,6 @@ export const CreateMatchPage = () => {
     updateOptions,
     updateAgreement,
     handlePlaceSelect,
-    handleMapClick,
     handleSubmit,
     handlePlaceSearchOpen,
     handlePlaceSearchClose,
@@ -60,7 +59,6 @@ export const CreateMatchPage = () => {
               location={createMatchForm.location}
               updateLocation={updateLocation}
               handlePlaceSearchOpen={handlePlaceSearchOpen}
-              handleMapClick={handleMapClick}
             />
             <MatchPaymentSection
               payment={createMatchForm.payment}

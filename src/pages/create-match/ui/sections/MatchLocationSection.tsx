@@ -20,14 +20,12 @@ interface MatchLocationSectionProps {
   };
   updateLocation: (updates: Partial<CreateMatchForm['location']>) => void;
   handlePlaceSearchOpen: () => void;
-  handleMapClick: () => void;
 }
 
 export const MatchLocationSection = ({
   location,
   updateLocation,
   handlePlaceSearchOpen,
-  handleMapClick,
 }: MatchLocationSectionProps) => {
   return (
     <div className="flex flex-row items-center gap-[30px]">
@@ -103,13 +101,7 @@ export const MatchLocationSection = ({
                 location.selectedPlace.address_name}
             </p>
             {location.isLocationMapOpen && (
-              <LocationMap
-                selectedPlace={location.selectedPlace}
-                width="100%"
-                height="250px"
-                level={3}
-                onClick={handleMapClick}
-              />
+              <LocationMap selectedPlace={location.selectedPlace} />
             )}
           </div>
         )}
