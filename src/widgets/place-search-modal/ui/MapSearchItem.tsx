@@ -12,7 +12,6 @@ const MapSearchItemComponent = ({
 }: MapSearchItemProps) => {
   return (
     <div
-      key={place.id}
       className="cursor-pointer rounded-lg border p-4 transition-colors hover:bg-gray-50"
       onClick={() => handlePlaceSelect(place)}
     >
