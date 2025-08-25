@@ -45,7 +45,7 @@ const ColorPickerContext = createContext<ColorPickerContextValue | undefined>(
   undefined
 );
 
-export const useColorPicker = () => {
+const useColorPicker = () => {
   const context = useContext(ColorPickerContext);
 
   if (!context) {
@@ -315,10 +315,7 @@ export type ColorPickerOutputProps = ComponentProps<typeof SelectTrigger>;
 
 const formats = ['hex', 'rgb', 'css', 'hsl'];
 
-export const ColorPickerOutput = ({
-  className,
-  ...props
-}: ColorPickerOutputProps) => {
+export const ColorPickerOutput = ({ ...props }: ColorPickerOutputProps) => {
   const { mode, setMode } = useColorPicker();
 
   return (

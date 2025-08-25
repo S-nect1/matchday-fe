@@ -13,7 +13,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 1,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -25,7 +25,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 2,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -37,7 +37,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 3,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -49,7 +49,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 4,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -61,7 +61,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 5,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -73,7 +73,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 6,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -85,7 +85,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 7,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -97,7 +97,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 8,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -109,7 +109,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 9,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -121,7 +121,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 10,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -133,7 +133,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 11,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -145,7 +145,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 12,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -157,7 +157,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 13,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -169,7 +169,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 14,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -181,7 +181,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 15,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -193,7 +193,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 16,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -205,7 +205,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 17,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -217,7 +217,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 18,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -229,7 +229,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 19,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -241,7 +241,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 20,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -253,7 +253,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 21,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -265,7 +265,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 22,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -277,7 +277,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 23,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -289,7 +289,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 24,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -301,7 +301,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 25,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -313,7 +313,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 26,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -325,7 +325,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 27,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -337,7 +337,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 28,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -349,7 +349,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 29,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -361,7 +361,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 30,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',
@@ -373,7 +373,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 31,
     location: '한양대학교 대운동장',
-    date: '6월 30일 금 12:00',
+    date: '2025-06-30T03:00:00.000Z',
     title: 'FC S.D.릴 11VS11 축구매치',
     rentalFee: 50000,
     matchType: 'soccer',
@@ -385,7 +385,7 @@ export const mockMatchData: MatchData[] = [
   {
     id: 32,
     location: '올림픽공원 풋살장',
-    date: '7월 1일 토 14:00',
+    date: '2025-07-01T05:00:00.000Z',
     title: '주말 풋살 친선경기',
     rentalFee: 80000,
     matchType: 'futsal',

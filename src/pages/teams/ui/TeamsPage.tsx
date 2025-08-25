@@ -1,19 +1,19 @@
 import React from 'react';
+import { Card, CardContent } from '@/shared/ui/card';
+import { TeamListItem } from '@/shared/ui/team-list-item';
 import {
-  MapPinIcon,
-  ChevronRight as ChevronRightIcon,
-  Filter,
-  Search,
-  ChevronsLeft,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsRight,
-  X,
-} from 'lucide-react';
-
-import { Card } from '@/shared/ui/card';
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationFirst,
+  PaginationLast,
+} from '@/shared/ui/pagination';
 // Select, Input 제거 (현재 디자인에서 미사용)
 import { Button } from '@/shared/ui/button';
+import { Filter, Search, X } from 'lucide-react';
 // Custom pagination will be rendered inline to match design
 import { getProvinces, getCitiesByProvince } from '@/shared/constant/location';
 
@@ -365,102 +365,53 @@ export const TeamsPage: React.FC = () => {
       )}
 
       {/* List */}
-      <div className="mt-4 space-y-3">
+      <div className="mt-4 space-y-6">
         {pageItems.map(team => (
-          <Card
+          <TeamListItem
             key={team.id}
-            className="overflow-hidden border-gray-200 bg-white px-4 py-4 shadow-sm hover:shadow-md sm:px-6"
-          >
-            <div className="flex gap-4">
-              {/* image */}
-              <div className="relative h-36 w-56 shrink-0 overflow-hidden rounded-md">
-                <img
-                  src={team.imageUrl}
-                  alt={team.name}
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute bottom-2 left-2 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white">
-                  {team.teamType}
-                </div>
-              </div>
-
-              {/* content */}
-              <div className="min-w-0 flex-1">
-                {/* top row */}
-                <div className="flex items-center justify-between text-[13px] text-gray-600">
-                  <div className="flex items-center gap-1.5">
-                    <MapPinIcon className="h-4 w-4 text-blue-600" />
-                    <span>{team.location}</span>
-                  </div>
-                  <button
-                    className="hidden items-center gap-1 text-sm font-semibold text-gray-600 hover:text-gray-800 sm:inline-flex"
-                    onClick={() => (window.location.href = '/team-join')}
-                  >
-                    매치 자세히보기
-                    <ChevronRightIcon className="h-4 w-4" />
-                  </button>
-                </div>
-
-                {/* title */}
-                <div className="mt-3 text-lg font-extrabold text-gray-900">
-                  {team.name}
-                </div>
-
-                {/* description */}
-                <p className="mt-2 line-clamp-1 text-[13px] text-gray-600">
-                  {team.description}
-                </p>
-
-                {/* bottom */}
-                <div className="mt-4 border-t pt-3">
-                  <div className="flex items-center gap-3">
-                    <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">
-                      팀원
-                    </span>
-                    <span className="text-sm font-semibold text-gray-700">
-                      {team.membersCount}명
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Card>
+            id={team.id}
+            name={team.name}
+            teamType={team.teamType}
+            location={team.location}
+            description={team.description}
+            imageUrl={team.imageUrl || '/team-banner-sample.png'}
+            membersCount={team.membersCount}
+            sport={team.sport}
+            level={team.level}
+            ageRange={team.ageRange}
+            gender={team.gender}
+            onClick={() => (window.location.href = '/team-join')}
+          />
         ))}
       </div>
 
       {/* Pagination */}
-      <nav className="mt-6 flex w-full justify-center">
-        <ul className="flex items-center gap-4 text-sm">
-          {/* First */}
-          <li className="flex items-center">
-            <button
-              className={`transition ${
-                currentPage === 1
-                  ? 'cursor-not-allowed text-gray-300'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(1)}
-              aria-label="first page"
-            >
-              <ChevronsLeft className="h-4 w-4" />
-            </button>
-          </li>
-          {/* Prev */}
-          <li className="flex items-center">
-            <button
-              className={`transition ${
-                currentPage === 1
-                  ? 'cursor-not-allowed text-gray-300'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-              aria-label="previous page"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-          </li>
+      <Pagination className="mt-6">
+        <PaginationContent className="gap-4">
+          <PaginationItem>
+            <PaginationFirst
+              href="#"
+              onClick={e => {
+                e.preventDefault();
+                setCurrentPage(1);
+              }}
+              className={
+                currentPage === 1 ? 'pointer-events-none opacity-50' : ''
+              }
+            />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              onClick={e => {
+                e.preventDefault();
+                setCurrentPage(p => Math.max(1, p - 1));
+              }}
+              className={
+                currentPage === 1 ? 'pointer-events-none opacity-50' : ''
+              }
+            />
+          </PaginationItem>
 
           {/* Page numbers (show up to 5) */}
           {Array.from({ length: totalPages })
@@ -469,54 +420,56 @@ export const TeamsPage: React.FC = () => {
               const page = i + 1;
               const isActive = page === currentPage;
               return (
-                <li key={page}>
-                  <button
-                    onClick={() => setCurrentPage(page)}
+                <PaginationItem key={page}>
+                  <PaginationLink
+                    href="#"
+                    onClick={e => {
+                      e.preventDefault();
+                      setCurrentPage(page);
+                    }}
+                    isActive={isActive}
                     className={
                       isActive
                         ? 'rounded-full bg-white px-3 py-1 font-semibold text-blue-600 shadow-sm ring-1 ring-gray-100'
                         : 'px-2 py-1 text-gray-500 hover:text-gray-700'
                     }
-                    aria-current={isActive ? 'page' : undefined}
                   >
                     {page}
-                  </button>
-                </li>
+                  </PaginationLink>
+                </PaginationItem>
               );
             })}
 
-          {/* Next */}
-          <li className="flex items-center">
-            <button
-              className={`transition ${
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={e => {
+                e.preventDefault();
+                setCurrentPage(p => Math.min(totalPages, p + 1));
+              }}
+              className={
                 currentPage === totalPages
-                  ? 'cursor-not-allowed text-gray-300'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-              aria-label="next page"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </li>
-          {/* Last */}
-          <li className="flex items-center">
-            <button
-              className={`transition ${
+                  ? 'pointer-events-none opacity-50'
+                  : ''
+              }
+            />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLast
+              href="#"
+              onClick={e => {
+                e.preventDefault();
+                setCurrentPage(totalPages);
+              }}
+              className={
                 currentPage === totalPages
-                  ? 'cursor-not-allowed text-gray-300'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(totalPages)}
-              aria-label="last page"
-            >
-              <ChevronsRight className="h-4 w-4" />
-            </button>
-          </li>
-        </ul>
-      </nav>
+                  ? 'pointer-events-none opacity-50'
+                  : ''
+              }
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 };

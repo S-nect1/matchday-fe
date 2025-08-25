@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { dateFormatter } from './date-formatter';
 
 import {
   ArrowRightIcon,
@@ -7,6 +6,7 @@ import {
   CalendarIcon,
   Card,
   CardContent,
+  getKstDateInfo,
   MapPinIcon,
 } from '@/shared';
 
@@ -34,7 +34,7 @@ export const ListViewCard = ({
   locationImg,
 }: Props) => {
   const navigate = useNavigate();
-  const { month, day, weekday, time } = dateFormatter(date);
+  const { month, day, weekday, time } = getKstDateInfo(date);
 
   return (
     <Card

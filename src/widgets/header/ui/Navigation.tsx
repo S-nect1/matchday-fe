@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import { NAVIGATION_ITEMS } from '../../../shared/constant/navigation';
+import {
+  NAVIGATION_ITEMS,
+  type NavigationItem,
+} from '@/shared/constant/navigation';
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,7 +17,7 @@ export const Navigation = () => {
       <nav className="!ml-4 !flex items-center justify-between gap-3 sm:!ml-8 md:!ml-[80px]">
         {/* 데스크톱 네비게이션 */}
         <ul className="!flex hidden items-center gap-2 md:flex md:gap-4 lg:gap-6">
-          {NAVIGATION_ITEMS.map(item => (
+          {NAVIGATION_ITEMS.map((item: NavigationItem) => (
             <li key={item.id}>
               <Link
                 to={item.href}
@@ -127,7 +129,7 @@ export const Navigation = () => {
         <div className="absolute top-full right-0 left-0 z-50 border-b border-gray-200 bg-white shadow-lg md:hidden">
           <div className="px-4 py-2">
             <ul className="space-y-2">
-              {NAVIGATION_ITEMS.map(item => (
+              {NAVIGATION_ITEMS.map((item: NavigationItem) => (
                 <li key={item.id}>
                   <Link
                     to={item.href}
