@@ -24,6 +24,8 @@ const LocationMapComponent = ({
       return;
     }
 
+    let cleanupFunc: (() => void) | undefined;
+
     const initMap = () => {
       const defaultPos = new kakao.maps.LatLng(37.5665, 126.978);
       mapRef.current = new kakao.maps.Map(containerRef.current, {
@@ -41,7 +43,7 @@ const LocationMapComponent = ({
         passive: true,
       });
 
-      return () => {
+      cleanupFunc = () => {
         if (containerRef.current) {
           containerRef.current.removeEventListener('click', onClick);
         }
@@ -49,11 +51,14 @@ const LocationMapComponent = ({
       };
     };
 
-    if (typeof kakao.maps.load === 'function') kakao.maps.load(initMap);
-    else initMap();
+    if (typeof kakao.maps.load === 'function') {
+      kakao.maps.load(initMap);
+    } else {
+      initMap();
+    }
 
     return () => {
-      mapRef.current = null;
+      cleanupFunc?.();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

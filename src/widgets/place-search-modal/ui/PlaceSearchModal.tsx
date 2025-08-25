@@ -115,34 +115,38 @@ export const PlaceSearchModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-h-[80vh] max-w-[600px] overflow-hidden">
-        <DialogHeader className="pb-4">
+      <DialogContent className="flex max-h-[90dvh] w-[min(92vw,600px)] flex-col overflow-hidden p-0 sm:p-0">
+        <DialogHeader className="px-6 pt-6 pb-4">
           <DialogTitle className="text-xl font-bold">
             매치 장소 검색
           </DialogTitle>
         </DialogHeader>
 
-        {/* 검색 입력 영역 */}
-        <div className="mb-4 flex gap-2">
-          <div className="relative flex-1">
-            <Input
-              placeholder="장소명 또는 주소를 입력해주세요."
-              value={searchKeyword}
-              onChange={e => setSearchKeyword(e.target.value)}
-              onKeyPress={handleKeyPress}
-              className="pr-10"
-            />
-            <div className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 transform text-gray-400">
-              <SearchIcon />
+        <div className="px-6 pb-4">
+          <div className="mb-4 flex gap-2">
+            <div className="relative flex-1">
+              <Input
+                placeholder="장소명 또는 주소를 입력해주세요."
+                value={searchKeyword}
+                onChange={e => setSearchKeyword(e.target.value)}
+                onKeyDown={handleKeyPress} // onKeyPress 대신 onKeyDown 권장
+                className="pr-10"
+              />
+              <div className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400">
+                <SearchIcon />
+              </div>
             </div>
+            <Button
+              onClick={handleSearch}
+              disabled={isLoading}
+              className="px-6"
+            >
+              {isLoading ? '검색중...' : '검색'}
+            </Button>
           </div>
-          <Button onClick={handleSearch} disabled={isLoading} className="px-6">
-            {isLoading ? '검색중...' : '검색'}
-          </Button>
         </div>
 
-        {/* 검색 결과 영역 */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="min-h-0 flex-1 overflow-y-auto px-6">
           {searchResults.length === 0 ? (
             <div className="py-8 text-center text-gray-500">
               <div className="mx-auto mb-3 h-12 w-12 text-gray-300">
@@ -151,9 +155,10 @@ export const PlaceSearchModal = ({
               <p>장소명 또는 주소로 검색해보세요.</p>
             </div>
           ) : (
-            <div className="max-h-150 space-y-2 overflow-y-auto">
+            <div className="space-y-2">
               {searchResults.map(place => (
                 <MapSearchItem
+                  key={place.id}
                   place={place}
                   handlePlaceSelect={handlePlaceSelect}
                 />
@@ -162,11 +167,13 @@ export const PlaceSearchModal = ({
           )}
         </div>
 
-        {/* 닫기 버튼 */}
-        <div className="flex justify-end border-t pt-4">
-          <Button variant="outline" onClick={onClose} className="px-6">
-            닫기
-          </Button>
+        <div className="sticky bottom-0 z-10 mt-auto px-6 py-4 pt-0 backdrop-blur">
+          <div className="bg-border mb-4 h-[1px]" />
+          <div className="flex justify-end">
+            <Button variant="outline" onClick={onClose} className="px-6">
+              닫기
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
