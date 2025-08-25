@@ -96,14 +96,6 @@ export const useCreateMatchForm = () => {
     [updateLocation]
   );
 
-  const handleMapClick = useCallback(() => {
-    const { selectedPlace } = createMatchForm.location;
-    if (selectedPlace) {
-      const kakaoMapUrl = `https://map.kakao.com/link/map/${encodeURIComponent(selectedPlace.place_name)},${selectedPlace.y},${selectedPlace.x}`;
-      window.open(kakaoMapUrl, '_blank');
-    }
-  }, [createMatchForm.location.selectedPlace]);
-
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     console.log('매치 등록하기. 서버 요청 필요');
@@ -126,7 +118,6 @@ export const useCreateMatchForm = () => {
     updateOptions,
     updateAgreement,
     handlePlaceSelect,
-    handleMapClick,
     handleSubmit,
     handlePlaceSearchOpen,
     handlePlaceSearchClose,
