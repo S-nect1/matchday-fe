@@ -44,45 +44,39 @@ export const FilterMatches = ({
   return (
     <FilterModal
       title="매치 검색"
-      dialogContent={
-        <div className="flex h-full flex-col gap-0">
-          <FilterMatchesHeader
-            searchText={searchText}
-            onChangeSearchText={onChangeSearchText}
+      filterDialogHeader={
+        <FilterMatchesHeader
+          searchText={searchText}
+          onChangeSearchText={onChangeSearchText}
+        />
+      }
+      filterDialogContent={
+        <>
+          <FilterMatchesType
+            matchType={filters.matchType}
+            onUpdateMatchType={updateMatchType}
           />
-
-          <div className="min-h-0 flex-1 overflow-y-auto">
-            <div className="flex flex-col gap-[15px] py-[15px]">
-              <FilterMatchesType
-                matchType={filters.matchType}
-                onUpdateMatchType={updateMatchType}
-              />
-
-              <FilterMatchesLocationTime
-                location={filters.location}
-                schedule={filters.schedule}
-                onUpdateLocation={updateLocation}
-                onUpdateSchedule={updateSchedule}
-              />
-
-              <FilterMatchesAboutTeam
-                teamAbility={filters.teamAbility}
-                age={filters.age}
-                gender={filters.gender}
-                onUpdateTeamAbility={updateTeamAbility}
-                onUpdateAge={updateAge}
-                onUpdateGender={updateGender}
-              />
-            </div>
-          </div>
-
-          <div className="border-t border-gray-100 bg-white pt-[15px]">
-            <FilterMatchesAction
-              onReset={handleReset}
-              onApplyFilter={handleApplyFilter}
-            />
-          </div>
-        </div>
+          <FilterMatchesLocationTime
+            location={filters.location}
+            schedule={filters.schedule}
+            onUpdateLocation={updateLocation}
+            onUpdateSchedule={updateSchedule}
+          />
+          <FilterMatchesAboutTeam
+            teamAbility={filters.teamAbility}
+            age={filters.age}
+            gender={filters.gender}
+            onUpdateTeamAbility={updateTeamAbility}
+            onUpdateAge={updateAge}
+            onUpdateGender={updateGender}
+          />
+        </>
+      }
+      filterDialogFooter={
+        <FilterMatchesAction
+          onReset={handleReset}
+          onApplyFilter={handleApplyFilter}
+        />
       }
     />
   );

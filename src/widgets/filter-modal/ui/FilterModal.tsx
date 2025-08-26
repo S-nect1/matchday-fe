@@ -12,12 +12,19 @@ import {
   FilterIcon,
 } from '@/shared';
 
-type Props = {
+type FilterModalProps = {
   title: string;
-  dialogContent: React.ReactNode;
+  filterDialogHeader: React.ReactNode; // 상단 고정
+  filterDialogContent: React.ReactNode; // 스크롤 영역
+  filterDialogFooter: React.ReactNode; // 하단 고정
 };
 
-export const FilterModal = ({ title, dialogContent }: Props) => {
+export const FilterModal = ({
+  title,
+  filterDialogHeader,
+  filterDialogContent,
+  filterDialogFooter,
+}: FilterModalProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -41,7 +48,17 @@ export const FilterModal = ({ title, dialogContent }: Props) => {
             <CloseIcon />
           </DialogClose>
         </DialogHeader>
-        <div className="min-h-0 flex-1">{dialogContent}</div>
+        <div className="flex h-full min-h-0 flex-1 flex-col gap-0">
+          {filterDialogHeader}
+          <div className="min-h-0 flex-1 overflow-y-auto">
+            <div className="flex flex-col gap-[15px] py-[15px]">
+              {filterDialogContent}
+            </div>
+          </div>
+          <div className="border-t border-gray-100 bg-white pt-[15px]">
+            {filterDialogFooter}
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
