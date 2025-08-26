@@ -2,8 +2,12 @@ export interface MatchSearchFilters {
   matchType: {
     soccer: boolean;
     futsal: boolean;
+  };
+  teamSize: {
     vs11: boolean;
-    vs7: boolean;
+    vs8: boolean;
+    vs6: boolean;
+    vs5: boolean;
   };
   location: {
     city: string;
@@ -34,7 +38,8 @@ export interface MatchSearchFilters {
 }
 
 export const initialSearchFilters: MatchSearchFilters = {
-  matchType: { soccer: false, futsal: false, vs11: false, vs7: false },
+  matchType: { soccer: false, futsal: false },
+  teamSize: { vs11: false, vs8: false, vs6: false, vs5: false },
   location: { city: '', district: '' },
   schedule: { date: null, hour: '', minute: '' },
   age: {

@@ -1,13 +1,15 @@
-export * from './ui';
-export { KOREA_CITIES, DISTRICTS, HOURS, MINUTES, BANK_LIST } from './lib';
 export * from './constant';
+export { BANK_LIST, DISTRICTS, HOURS, KOREA_CITIES, MINUTES } from './lib';
 export {
-  MATCH_TYPE_LABELS,
-  TEAM_ABILITY_LABELS,
   AGE_LABELS,
+  AGES,
   GENDER_LABELS,
+  GENDERS,
+  MATCH_TYPE_LABELS,
   MATCH_TYPES,
   TEAM_ABILITIES,
-  AGES,
-  GENDERS,
+  TEAM_ABILITY_LABELS,
+  TEAM_SIZE_LABELS,
+  TEAM_TYPES,
 } from './model';
+export * from './ui';
