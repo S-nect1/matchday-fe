@@ -10,6 +10,7 @@ import {
   SearchIcon,
 } from '@/shared';
 import { MapSearchItem } from './MapSearchItem';
+import { toast } from 'sonner';
 
 export interface PlaceSearchResult {
   id: string;
@@ -38,7 +39,7 @@ export const PlaceSearchModal = ({
 
   const handleSearch = useCallback(() => {
     if (!searchKeyword.trim()) {
-      alert('검색어를 입력해주세요.');
+      toast('검색어를 입력해주세요.');
       return;
     }
 
@@ -47,7 +48,7 @@ export const PlaceSearchModal = ({
       typeof (window as any).kakao.maps === 'undefined' ||
       typeof (window as any).kakao.maps.services === 'undefined'
     ) {
-      alert('카카오맵 API가 로드되지 않았습니다. 잠시 후 다시 시도해주세요.');
+      toast('카카오맵 API가 로드되지 않았습니다. 잠시 후 다시 시도해주세요.');
       return;
     }
 
@@ -80,19 +81,19 @@ export const PlaceSearchModal = ({
         } else if (
           status === (window as any).kakao.maps.services.Status.ZERO_RESULT
         ) {
-          alert('검색 결과가 존재하지 않습니다.');
+          toast('검색 결과가 존재하지 않습니다.');
           setSearchResults([]);
         } else if (
           status === (window as any).kakao.maps.services.Status.ERROR
         ) {
-          alert('검색 중 오류가 발생했습니다.');
+          toast('검색 중 오류가 발생했습니다.');
           setSearchResults([]);
         }
       });
     } catch (error) {
       setIsLoading(false);
       console.error('검색 중 오류:', error);
-      alert('검색 중 오류가 발생했습니다.');
+      toast('검색 중 오류가 발생했습니다.');
     }
   }, [searchKeyword]);
 

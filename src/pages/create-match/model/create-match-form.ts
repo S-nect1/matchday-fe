@@ -2,8 +2,8 @@ import type { PlaceSearchResult, TimeType } from '@/widgets';
 
 export interface CreateMatchForm {
   matchType: {
-    category: '축구' | '풋살';
-    teamSize: 11 | 7;
+    category: '축구' | '풋살' | null;
+    teamSize: 11 | 8 | 6 | 5 | null;
   };
   schedule: {
     startDate: Date | null;
@@ -32,8 +32,8 @@ export interface CreateMatchForm {
 
 export const initialCreateMatchForm: CreateMatchForm = {
   matchType: {
-    category: '축구',
-    teamSize: 11,
+    category: null,
+    teamSize: null,
   },
   schedule: {
     startDate: null,

@@ -24,6 +24,7 @@ export const FilterMatches = ({
   const {
     filters,
     updateMatchType,
+    updateMatchTeamSize,
     updateLocation,
     updateSchedule,
     updateAge,
@@ -54,7 +55,9 @@ export const FilterMatches = ({
         <>
           <FilterMatchesType
             matchType={filters.matchType}
+            teamSize={filters.teamSize}
             onUpdateMatchType={updateMatchType}
+            onUpdateMatchTeamSize={updateMatchTeamSize}
           />
           <FilterMatchesLocationTime
             location={filters.location}

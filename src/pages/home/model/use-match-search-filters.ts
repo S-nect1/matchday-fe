@@ -20,6 +20,16 @@ export const useMatchSearchFilters = () => {
     []
   );
 
+  const updateMatchTeamSize = useCallback(
+    (updates: Partial<MatchSearchFilters['teamSize']>) => {
+      setFilters(prev => ({
+        ...prev,
+        teamSize: { ...prev.teamSize, ...updates },
+      }));
+    },
+    []
+  );
+
   const updateLocation = useCallback(
     (updates: Partial<MatchSearchFilters['location']>) => {
       setFilters(prev => ({
@@ -77,6 +87,7 @@ export const useMatchSearchFilters = () => {
   return {
     filters,
     updateMatchType,
+    updateMatchTeamSize,
     updateLocation,
     updateSchedule,
     updateAge,
