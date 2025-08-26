@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { toast } from 'sonner';
 
 import type { PlaceSearchResult } from '@/widgets';
 
@@ -7,7 +8,6 @@ import {
   initialCreateMatchForm,
 } from './create-match-form';
 import { CreateMatchFormSchema } from './match-form-validation';
-import { toast } from 'sonner';
 
 export const useCreateMatchForm = () => {
   const [createMatchForm, setCreateMatchForm] = useState<CreateMatchForm>(
