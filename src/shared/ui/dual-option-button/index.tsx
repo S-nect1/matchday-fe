@@ -6,6 +6,7 @@ interface DualOptionButtonProps<T> {
   firstItem: T;
   secondItem: T;
   isFirstSelected: boolean;
+  isSecondSelected: boolean;
   onClickSelectButton: (selectedItem: T) => void;
 }
 
@@ -15,6 +16,7 @@ export function DualOptionButton<T>({
   firstItem,
   secondItem,
   isFirstSelected,
+  isSecondSelected,
   onClickSelectButton,
 }: DualOptionButtonProps<T>) {
   return (
@@ -26,7 +28,7 @@ export function DualOptionButton<T>({
       />
       <SelectButton
         label={secondLabel}
-        isSelected={!isFirstSelected}
+        isSelected={isSecondSelected}
         onClickSelectButton={() => onClickSelectButton(secondItem)}
       />
     </div>

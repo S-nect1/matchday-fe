@@ -13,7 +13,10 @@ export const MatchTermsAgreement = ({
         id="agreement"
         type="checkbox"
         checked={isAgreedToNoShowTerms}
-        onChange={updateAgreement}
+        onChange={e => {
+          e.currentTarget.setCustomValidity('');
+          updateAgreement();
+        }}
         className="h-5 w-5 accent-[#0043FF]"
         required
         onInvalid={e =>

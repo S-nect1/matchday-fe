@@ -37,3 +37,4 @@ export * from './checkbox';
 export * from './progress-circle';
 export * from './team-banner';
 export * from './team-list-item';
+export * from './sonner';

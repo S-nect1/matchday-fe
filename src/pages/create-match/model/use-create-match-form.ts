@@ -1,9 +1,13 @@
 import { useCallback, useState } from 'react';
+
+import type { PlaceSearchResult } from '@/widgets';
+
 import {
   type CreateMatchForm,
   initialCreateMatchForm,
 } from './create-match-form';
-import type { PlaceSearchResult } from '@/widgets';
+import { CreateMatchFormSchema } from './match-form-validation';
+import { toast } from 'sonner';
 
 export const useCreateMatchForm = () => {
   const [createMatchForm, setCreateMatchForm] = useState<CreateMatchForm>(
@@ -96,10 +100,18 @@ export const useCreateMatchForm = () => {
     [updateLocation]
   );
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('매치 등록하기. 서버 요청 필요');
-  }, []);
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      const parsed = CreateMatchFormSchema.safeParse(createMatchForm);
+      if (parsed.success) {
+        console.log(parsed.data);
+      } else {
+        toast('모든 항목을 입력해야 합니다.');
+      }
+    },
+    [createMatchForm]
+  );
 
   const handlePlaceSearchOpen = useCallback(() => {
     updateLocation({ isPlaceSearchOpen: true });
