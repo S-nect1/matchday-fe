@@ -45,37 +45,43 @@ export const FilterMatches = ({
     <FilterModal
       title="매치 검색"
       dialogContent={
-        <div className="flex flex-col gap-[15px]">
+        <div className="flex h-full flex-col gap-0">
           <FilterMatchesHeader
             searchText={searchText}
             onChangeSearchText={onChangeSearchText}
           />
 
-          <FilterMatchesType
-            matchType={filters.matchType}
-            onUpdateMatchType={updateMatchType}
-          />
+          <div className="min-h-0 flex-1 overflow-y-auto">
+            <div className="flex flex-col gap-[15px] py-[15px]">
+              <FilterMatchesType
+                matchType={filters.matchType}
+                onUpdateMatchType={updateMatchType}
+              />
 
-          <FilterMatchesLocationTime
-            location={filters.location}
-            schedule={filters.schedule}
-            onUpdateLocation={updateLocation}
-            onUpdateSchedule={updateSchedule}
-          />
+              <FilterMatchesLocationTime
+                location={filters.location}
+                schedule={filters.schedule}
+                onUpdateLocation={updateLocation}
+                onUpdateSchedule={updateSchedule}
+              />
 
-          <FilterMatchesAboutTeam
-            teamAbility={filters.teamAbility}
-            age={filters.age}
-            gender={filters.gender}
-            onUpdateTeamAbility={updateTeamAbility}
-            onUpdateAge={updateAge}
-            onUpdateGender={updateGender}
-          />
+              <FilterMatchesAboutTeam
+                teamAbility={filters.teamAbility}
+                age={filters.age}
+                gender={filters.gender}
+                onUpdateTeamAbility={updateTeamAbility}
+                onUpdateAge={updateAge}
+                onUpdateGender={updateGender}
+              />
+            </div>
+          </div>
 
-          <FilterMatchesAction
-            onReset={handleReset}
-            onApplyFilter={handleApplyFilter}
-          />
+          <div className="border-t border-gray-100 bg-white pt-[15px]">
+            <FilterMatchesAction
+              onReset={handleReset}
+              onApplyFilter={handleApplyFilter}
+            />
+          </div>
         </div>
       }
     />
