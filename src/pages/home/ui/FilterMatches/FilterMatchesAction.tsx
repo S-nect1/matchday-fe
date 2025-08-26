@@ -7,7 +7,7 @@ type Props = {
 
 export const FilterMatchesAction = ({ onReset, onApplyFilter }: Props) => {
   return (
-    <div className="mt-[15px] flex w-full flex-row gap-[15px]">
+    <div className="flex w-full flex-row gap-[15px]">
       <Button
         size="lg"
         variant="hoverHighlight"

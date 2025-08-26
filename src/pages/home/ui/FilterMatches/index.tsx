@@ -44,25 +44,24 @@ export const FilterMatches = ({
   return (
     <FilterModal
       title="매치 검색"
-      dialogContent={
-        <div className="flex flex-col gap-[15px]">
-          <FilterMatchesHeader
-            searchText={searchText}
-            onChangeSearchText={onChangeSearchText}
-          />
-
+      filterDialogHeader={
+        <FilterMatchesHeader
+          searchText={searchText}
+          onChangeSearchText={onChangeSearchText}
+        />
+      }
+      filterDialogContent={
+        <>
           <FilterMatchesType
             matchType={filters.matchType}
             onUpdateMatchType={updateMatchType}
           />
-
           <FilterMatchesLocationTime
             location={filters.location}
             schedule={filters.schedule}
             onUpdateLocation={updateLocation}
             onUpdateSchedule={updateSchedule}
           />
-
           <FilterMatchesAboutTeam
             teamAbility={filters.teamAbility}
             age={filters.age}
@@ -71,12 +70,13 @@ export const FilterMatches = ({
             onUpdateAge={updateAge}
             onUpdateGender={updateGender}
           />
-
-          <FilterMatchesAction
-            onReset={handleReset}
-            onApplyFilter={handleApplyFilter}
-          />
-        </div>
+        </>
+      }
+      filterDialogFooter={
+        <FilterMatchesAction
+          onReset={handleReset}
+          onApplyFilter={handleApplyFilter}
+        />
       }
     />
   );

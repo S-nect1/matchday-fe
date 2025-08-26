@@ -12,12 +12,19 @@ import {
   FilterIcon,
 } from '@/shared';
 
-type Props = {
+type FilterModalProps = {
   title: string;
-  dialogContent: React.ReactNode;
+  filterDialogHeader: React.ReactNode; // 상단 고정
+  filterDialogContent: React.ReactNode; // 스크롤 영역
+  filterDialogFooter: React.ReactNode; // 하단 고정
 };
 
-export const FilterModal = ({ title, dialogContent }: Props) => {
+export const FilterModal = ({
+  title,
+  filterDialogHeader,
+  filterDialogContent,
+  filterDialogFooter,
+}: FilterModalProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -30,10 +37,10 @@ export const FilterModal = ({ title, dialogContent }: Props) => {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="gap-[15px] rounded-[20px] p-[30px]"
+        className="flex h-[90dvh] max-h-235 w-[min(92vw,512px)] flex-col rounded-[20px] bg-white p-[30px]"
         showCloseButton={false}
       >
-        <DialogHeader className="flex flex-row items-center justify-between">
+        <DialogHeader className="mb-[15px] flex flex-shrink-0 flex-row items-center justify-between">
           <DialogTitle className="text-2xl leading-9 font-bold">
             {title}
           </DialogTitle>
@@ -41,7 +48,17 @@ export const FilterModal = ({ title, dialogContent }: Props) => {
             <CloseIcon />
           </DialogClose>
         </DialogHeader>
-        {dialogContent}
+        <div className="flex h-full min-h-0 flex-1 flex-col gap-0">
+          {filterDialogHeader}
+          <div className="min-h-0 flex-1 overflow-y-auto">
+            <div className="flex flex-col gap-[15px] py-[15px]">
+              {filterDialogContent}
+            </div>
+          </div>
+          <div className="border-t border-gray-100 bg-white pt-[15px]">
+            {filterDialogFooter}
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

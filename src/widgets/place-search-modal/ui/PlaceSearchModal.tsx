@@ -104,7 +104,7 @@ export const PlaceSearchModal = ({
     [onPlaceSelect, onClose]
   );
 
-  const handleKeyPress = useCallback(
+  const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'Enter') {
         handleSearch();
@@ -129,7 +129,7 @@ export const PlaceSearchModal = ({
                 placeholder="장소명 또는 주소를 입력해주세요."
                 value={searchKeyword}
                 onChange={e => setSearchKeyword(e.target.value)}
-                onKeyDown={handleKeyPress} // onKeyPress 대신 onKeyDown 권장
+                onKeyDown={handleKeyDown}
                 className="pr-10"
               />
               <div className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400">
