@@ -10,7 +10,7 @@ import {
   MapPinIcon,
 } from '@/shared';
 
-type Props = {
+type ListViewCardProps = {
   matchId: number;
   location: string;
   date: string;
@@ -32,7 +32,7 @@ export const ListViewCard = ({
   region,
   teamSize,
   locationImg,
-}: Props) => {
+}: ListViewCardProps) => {
   const navigate = useNavigate();
   const { month, day, weekday, time } = getKstDateInfo(date);
 

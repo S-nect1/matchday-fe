@@ -9,7 +9,7 @@ import {
   MapPinIcon,
 } from '@/shared';
 
-type Props = {
+type GridViewCardProps = {
   matchId: number;
   location: string;
   date: string;
@@ -31,7 +31,7 @@ export const GridViewCard = ({
   region,
   teamSize,
   locationImg,
-}: Props) => {
+}: GridViewCardProps) => {
   const navigate = useNavigate();
   const { month, day, weekday, time } = getKstDateInfo(date);
 
