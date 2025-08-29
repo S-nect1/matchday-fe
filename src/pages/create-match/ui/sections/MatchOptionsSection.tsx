@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { BinaryRadioGroup, CustomColorPicker } from '@/shared';
 
 import type { CreateMatchForm } from '../../model';
@@ -10,7 +12,7 @@ interface MatchOptionsSectionProps {
   updateOptions: (updates: Partial<CreateMatchForm['options']>) => void;
 }
 
-export const MatchOptionsSection = ({
+const MatchOptionsSectionComponent = ({
   options,
   updateOptions,
 }: MatchOptionsSectionProps) => {
@@ -44,3 +46,5 @@ export const MatchOptionsSection = ({
     </>
   );
 };
+
+export const MatchOptionsSection = memo(MatchOptionsSectionComponent);

@@ -1,4 +1,7 @@
+import { memo } from 'react';
+
 import { CustomTimePicker, DatePicker, type TimeType } from '@/widgets';
+
 import type { CreateMatchForm } from '../../model';
 
 interface MatchScheduleSectionProps {
@@ -11,7 +14,7 @@ interface MatchScheduleSectionProps {
   updateSchedule: (updates: Partial<CreateMatchForm['schedule']>) => void;
 }
 
-export const MatchScheduleSection = ({
+const MatchScheduleSectionComponent = ({
   schedule,
   updateSchedule,
 }: MatchScheduleSectionProps) => {
@@ -58,3 +61,5 @@ export const MatchScheduleSection = ({
     </>
   );
 };
+
+export const MatchScheduleSection = memo(MatchScheduleSectionComponent);

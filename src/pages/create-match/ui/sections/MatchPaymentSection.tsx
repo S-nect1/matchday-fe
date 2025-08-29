@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { CustomSelect } from '@/widgets';
 
 import { BANK_LIST, Input } from '@/shared';
@@ -13,7 +15,7 @@ interface MatchPaymentSectionProps {
   updatePayment: (updates: Partial<CreateMatchForm['payment']>) => void;
 }
 
-export const MatchPaymentSection = ({
+const MatchPaymentSectionComponent = ({
   payment,
   updatePayment,
 }: MatchPaymentSectionProps) => {
@@ -59,3 +61,5 @@ export const MatchPaymentSection = ({
     </>
   );
 };
+
+export const MatchPaymentSection = memo(MatchPaymentSectionComponent);

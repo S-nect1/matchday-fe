@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { LocationMap, type PlaceSearchResult } from '@/widgets';
 
 import {
@@ -22,7 +24,7 @@ interface MatchLocationSectionProps {
   handlePlaceSearchOpen: () => void;
 }
 
-export const MatchLocationSection = ({
+const MatchLocationSectionComponent = ({
   location,
   updateLocation,
   handlePlaceSearchOpen,
@@ -109,3 +111,5 @@ export const MatchLocationSection = ({
     </div>
   );
 };
+
+export const MatchLocationSection = memo(MatchLocationSectionComponent);

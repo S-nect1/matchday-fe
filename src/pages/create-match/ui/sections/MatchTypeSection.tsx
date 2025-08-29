@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { DualOptionButton } from '@/shared';
 
 import type { CreateMatchForm } from '../../model';
@@ -10,7 +12,7 @@ interface MatchTypeSectionProps {
   updateMatchType: (updates: Partial<CreateMatchForm['matchType']>) => void;
 }
 
-export const MatchTypeSection = ({
+const MatchTypeSectionComponent = ({
   matchType,
   updateMatchType,
 }: MatchTypeSectionProps) => {
@@ -67,3 +69,5 @@ export const MatchTypeSection = ({
     </>
   );
 };
+
+export const MatchTypeSection = memo(MatchTypeSectionComponent);
