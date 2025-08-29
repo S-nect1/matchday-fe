@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SearchBar } from '@/widgets';
 
-type Props = {
+type FilterMatchesHeaderProps = {
   searchText: string;
   onChangeSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -10,7 +10,7 @@ type Props = {
 export const FilterMatchesHeader = ({
   searchText,
   onChangeSearchText,
-}: Props) => {
+}: FilterMatchesHeaderProps) => {
   return (
     <div className="mb-[15px]">
       <SearchBar

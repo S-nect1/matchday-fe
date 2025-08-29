@@ -1,21 +1,24 @@
-import { type MatchSearchFilters } from '../../model';
+import { memo } from 'react';
 
 import { DatePicker, CustomSelect } from '@/widgets';
+
 import { KOREA_CITIES, DISTRICTS, HOURS, MINUTES } from '@/shared';
 
-type Props = {
+import { type MatchSearchFilters } from '../../model';
+
+type FilterMatchesLocationTimeProps = {
   location: MatchSearchFilters['location'];
   schedule: MatchSearchFilters['schedule'];
   onUpdateLocation: (updates: Partial<MatchSearchFilters['location']>) => void;
   onUpdateSchedule: (updates: Partial<MatchSearchFilters['schedule']>) => void;
 };
 
-export const FilterMatchesLocationTime = ({
+const FilterMatchesLocationTimeComponent = ({
   location,
   schedule,
   onUpdateLocation,
   onUpdateSchedule,
-}: Props) => {
+}: FilterMatchesLocationTimeProps) => {
   return (
     <>
       <div className="flex flex-row gap-[15px]">
@@ -69,3 +72,7 @@ export const FilterMatchesLocationTime = ({
     </>
   );
 };
+
+export const FilterMatchesLocationTime = memo(
+  FilterMatchesLocationTimeComponent
+);

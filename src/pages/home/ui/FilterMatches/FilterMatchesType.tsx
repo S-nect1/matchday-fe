@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import {
   MATCH_TYPE_LABELS,
   MATCH_TYPES,
@@ -8,7 +10,7 @@ import {
 
 import { type MatchSearchFilters } from '../../model';
 
-type Props = {
+type FilterMatchesTypeProps = {
   matchType: MatchSearchFilters['matchType'];
   teamSize: MatchSearchFilters['teamSize'];
   onUpdateMatchType: (
@@ -19,12 +21,12 @@ type Props = {
   ) => void;
 };
 
-export const FilterMatchesType = ({
+const FilterMatchesTypeComponent = ({
   matchType,
   teamSize,
   onUpdateMatchType,
   onUpdateMatchTeamSize,
-}: Props) => {
+}: FilterMatchesTypeProps) => {
   return (
     <div className="flex flex-col gap-[15px]">
       <div className="flex flex-row gap-[15px]">
@@ -56,3 +58,5 @@ export const FilterMatchesType = ({
     </div>
   );
 };
+
+export const FilterMatchesType = memo(FilterMatchesTypeComponent);

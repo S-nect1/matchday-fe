@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { CircleQuestionMarkIcon } from 'lucide-react';
 
 import { CustomTooltip } from '@/widgets';
@@ -14,7 +16,7 @@ import {
 
 import { type MatchSearchFilters } from '../../model';
 
-type Props = {
+type FilterMatchesAboutTeamProps = {
   teamAbility: MatchSearchFilters['teamAbility'];
   age: MatchSearchFilters['age'];
   gender: MatchSearchFilters['gender'];
@@ -25,14 +27,14 @@ type Props = {
   onUpdateGender: (updates: Partial<MatchSearchFilters['gender']>) => void;
 };
 
-export const FilterMatchesAboutTeam = ({
+const FilterMatchesAboutTeamComponent = ({
   teamAbility,
   age,
   gender,
   onUpdateTeamAbility,
   onUpdateAge,
   onUpdateGender,
-}: Props) => {
+}: FilterMatchesAboutTeamProps) => {
   return (
     <>
       <div className="flex w-full flex-col gap-[5px]">
@@ -100,3 +102,5 @@ export const FilterMatchesAboutTeam = ({
     </>
   );
 };
+
+export const FilterMatchesAboutTeam = memo(FilterMatchesAboutTeamComponent);

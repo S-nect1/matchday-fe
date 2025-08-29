@@ -1,11 +1,14 @@
 import { Button } from '@/shared';
 
-type Props = {
+type FilterMatchesActionProps = {
   onReset: () => void;
   onApplyFilter: () => void;
 };
 
-export const FilterMatchesAction = ({ onReset, onApplyFilter }: Props) => {
+export const FilterMatchesAction = ({
+  onReset,
+  onApplyFilter,
+}: FilterMatchesActionProps) => {
   return (
     <div className="flex w-full flex-row gap-[15px]">
       <Button
