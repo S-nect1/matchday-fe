@@ -10,4 +10,3 @@ export { SearchBar } from './search-bar';
 export { CustomSelect } from './select';
 export { CustomTimePicker, type TimeType } from './time-picker';
 export { CustomTooltip } from './tooltip';
-export * from './my-team';

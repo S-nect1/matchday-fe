@@ -1,0 +1,1 @@
+export { CommonTabs } from './CommonTabs';
