@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card, CardContent } from '@/shared/ui/card';
 import { TeamListItem } from '@/shared/ui/team-list-item';
 import {
   Pagination,
@@ -16,6 +15,7 @@ import { Button } from '@/shared/ui/button';
 import { Filter, Search, X } from 'lucide-react';
 // Custom pagination will be rendered inline to match design
 import { getProvinces, getCitiesByProvince } from '@/shared/constant/location';
+import { MainBanner } from '@/app/layouts/ui';
 
 type TeamListItem = {
   id: string;
@@ -119,28 +119,9 @@ export const TeamsPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-6 sm:py-10">
       {/* Banner */}
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-900 to-indigo-600">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: 'url(/team-banner-sample.png)',
-            backgroundSize: 'cover',
-          }}
-        />
-        <div className="relative flex items-center justify-between px-6 py-8 sm:px-10">
-          <div>
-            <h1 className="text-2xl font-extrabold text-white sm:text-3xl">
-              팀 찾기
-            </h1>
-            <p className="mt-2 text-sm text-white/90">
-              마음에 드는 팀을 검색하고 지원해보세요.
-            </p>
-          </div>
-          <div className="hidden text-xs text-white/80 sm:block">
-            총 {visible.length}개 팀
-          </div>
-        </div>
-      </div>
+      <MainBanner
+        content={<h1 className="text-[34px] text-white">팀 찾기</h1>}
+      />
 
       {/* Title + Search Controls */}
       <div className="mt-6 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">

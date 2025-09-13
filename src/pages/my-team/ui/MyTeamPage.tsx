@@ -3,7 +3,6 @@ import React from 'react';
 import { Button } from '@/shared/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/shared/ui/tabs';
 import { ProgressCircle } from '@/shared/ui/progress-circle';
-import { TeamBanner } from '@/shared/ui/team-banner';
 import { Card, CardContent } from '@/shared/ui/card';
 import { useMyTeam } from '@/shared/hooks/use-my-team';
 import {
@@ -15,6 +14,9 @@ import {
   ScheduleTab,
   TeamInfoTab,
 } from '@/widgets/my-team';
+import { MainBanner } from '@/app/layouts/ui';
+import MyTeamTag from './MyTeamTag';
+import MyTeamSubmit from './MyTeamSubmit';
 
 export const MyTeamPage = () => {
   const { isMember, team, isLoading, error } = useMyTeam();
@@ -52,29 +54,28 @@ export const MyTeamPage = () => {
     );
   }
 
-  const handleJoinTeam = () => {
-    console.log('팀 가입 신청');
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Banner */}
-      <div className="container mx-auto px-4 py-8">
-        <TeamBanner
-          teamName={team.teamName}
-          teamLevel="M1"
-          ageGroup="20대"
-          location={`${team.location.province} ${team.location.city}`}
-          teamType={team.teamType}
-          rating={5}
-          description={team.teamDescription}
-          showJoinButton={!isMember}
-          onJoinClick={handleJoinTeam}
-        />
-      </div>
-
+      <MainBanner
+        content={
+          <div className="my-team-name relative w-full self-start py-8">
+            <h2 className="text-[28px] text-white">팀 이름입니다.</h2>
+            <MyTeamTag
+              content={['M1', '20대', '서울특별시 강남구', '소모임']}
+              star={4}
+            />
+            <span className="text-white">
+              팀 설명입니다 어쩌구저쩌구.팀 설명입니다 어쩌구저쩌구.팀
+              설명입니다 어쩌구저쩌구.팀 설명입니다 어쩌구저쩌구.팀 설명입니다
+              어쩌구저쩌구
+            </span>
+            <MyTeamSubmit isMember={isMember} />
+          </div>
+        }
+      />
       {/* Main Content */}
-      <div className="container mx-auto px-4 pb-8">
+      <div className="container mx-auto mt-[30px] px-4 pb-8">
         {/* Team Info Card */}
         <Card>
           <CardContent className="p-6">
